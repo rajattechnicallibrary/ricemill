@@ -1,0 +1,89 @@
+.blog-following-btn {
+    float: right;
+    background: #fff;
+    box-shadow: 2px 2px 2px 2px #eee;
+    padding: 13px 55px;
+    border: 1px solid #e2e2e2;
+    color: #373737;
+    font-size: 18px;
+    border-radius: 5px;
+	background-color: seashell;
+}
+.recipe-favourite-btn{
+	border: 1px solid #d93333;
+}
+.heart_icon_like{font-size:14px;}
+.heart_icon_like_active{color:#c8202d;}
+
+.profile-pic{width:100%; float:left;}
+.file-upload .image-box {
+    margin-top: 0;
+    height: 66px;
+    width: 150px;
+    float: left;
+    background: #ffffff;
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+}
+.text-center {
+    text-align: center;
+}
+.file-upload .image-box p {
+    position: relative;
+    top: 10%;
+    color: #ccc;
+}
+.file-upload .image-box .fa {
+    color: #45bd41;
+    font-size: 30px;
+}
+.file-upload .image-box img {
+    height: 100%;
+    display: none;
+}
+.file-upload .controls {
+    display: none;
+}
+.file-text{display:none;}
+.later_time{height:300px;overflow-y:scroll;}
+.return-section-bottom{width:100%; float:left;}
+		.return-section-bottom img{display:block; margin:30px auto}
+		.return-section-bottom h2{text-align:center;border-bottom:none; margin-bottom:0px;margin-top:30px;}
+		.return-section-bottom p{text-align:center; width:100%; float:left;margin-bottom:30px;}
+		.return-btn{      text-align: center;height: auto;font-family: Roboto-Light;font-size: 14px;color: #fff;background: #c8202d;
+    border: 1px solid #c8202d;
+    border-radius: 5px;
+    padding: 11px 26px;
+    margin: 10px 0px 20px 5px;
+    display: block;
+    margin: 60px auto 30px;
+}
+.featured_class{position: absolute; left: 0; top: 0;}
+.load_more{float:left;width:100%;}
+.border_btm{padding: 5px 0px !important;border-top: 1px solid #ccc;float: left;width: 100%;}
+.padding-top0{padding-top:0px !important;}
+.padding-bottom10{padding-bottom: 10px !important;}
+
+.rating-otp{
+	font-family: Roboto-Light;
+    font-size: 14px;
+    color: #aeaeae;
+    margin: 0px;
+    padding: 8px 10px;
+    font-weight: normal;
+    float: right;
+}
+.ratingstar-div{
+	 float: right;
+}
+.rating-absolute-like{
+	 float: right;
+}
+.cook-insti-detail p {
+    width: 100%;
+    float: left;
+}
+.add_cart, .up_qty, .down_qty, .removeItem, .clear_search{cursor:pointer;}
+.apply_promo_code {margin-right:5px;}

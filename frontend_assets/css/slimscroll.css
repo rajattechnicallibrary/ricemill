@@ -1,0 +1,67 @@
+.scrollWrap{
+    overflow : hidden;
+    height   : 100%;
+    position : relative;
+    z-index  : 1;
+}
+.scrollContent{
+    height          : 100%;
+    width           : 100%;
+    padding         : 0 32px 0 0;
+    position        : relative;
+    right           : -18px;
+    overflow        : auto;
+    -moz-box-sizing : border-box;
+    box-sizing      : border-box;
+}
+
+.fakeScrollBar{
+    position            : absolute;
+    background          : rgba(255,255,255,.5);
+    width               : 5px;
+    border-radius       : 4px;
+    right               : -15px;
+    top                 : 0;
+    z-index             : 0;
+    cursor              : -moz-grab;
+    cursor              : -webkit-grab;height: 60px !important;
+}
+
+.fakeScroll:hover .fakeScrollBar.fakescroll-grabbed{
+    cursor     : -moz-grabbing;
+    cursor     : -webkit-grabbing;
+    background : #FFF;
+}
+
+body.fakescroll-grabbed{
+    cursor     : -moz-grabbing;
+    cursor     : -webkit-grabbing;
+}
+.fakeScroll{ position:absolute; top:0; right:0; bottom:0; left:0; margin:auto; min-height:95%; height:1px; width:100%;margin: 10px 0px 0px 0px; }
+            .fakeScroll .scrollContent{ padding-top:1em; padding-bottom:1em; }
+            .fakeScroll .scrollWrap{ background:#FFF; border-radius:4px; -moz-box-sizing:border-box; box-sizing:border-box; }
+
+            /* upper and bottom fades */
+            .scrollWrap::before{ content:''; position:absolute; z-index:1; top:0; left:0; right:0; height:5%;
+                background: -webkit-linear-gradient(#FFF 0%, rgba(255,255,255,0) 100%);
+                background: -o-linear-gradient(#FFF 0%, rgba(255,255,255,0) 100%);
+                background: linear-gradient(#FFF 0%, rgba(255,255,255,0) 100%);
+            }
+
+            .scrollWrap::after{ content:''; position:absolute; z-index:1; bottom:0; left:0; right:0; height:5%;
+                background: -webkit-linear-gradient(rgba(255,255,255,0) 0%, #FFF 100%);
+                background: -o-linear-gradient(rgba(255,255,255,0) 0%, #FFF 100%);
+                background: linear-gradient(rgba(255,255,255,0) 0%, #FFF 100%);
+            }
+
+            .fakeScroll--inside{ /*min-height:40%;*/ }
+
+            .fakeScroll--inside .fakeScrollBar{
+                background: #252233;
+                right: 3px;
+                z-index: 1;
+            }
+
+            .fakeScroll--inside:hover .fakeScrollBar.fakescroll-grabbed{
+                background: #3c3b52;
+            }
