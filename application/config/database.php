@@ -72,14 +72,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $active_group = 'default';
 $query_builder = TRUE;
-if($_SERVER['HTTP_HOST'] == 'localhost:8081' || $_SERVER['HTTP_HOST'] == '192.168.29.78:8081'){
+//print_r($_SERVER['HTTP_HOST']); die;
+if($_SERVER['HTTP_HOST'] == 'thecrindustries.com'){
 
 	$db['default'] = array(
 		'dsn'	=> '',
 		'hostname' => 'localhost',
-		'username' => 'root',
-		'password' => '',
-		'database' => 'alternative_account',
+		'username' => 'u930296518_admin',
+		'password' => ']+ei1o5W',
+		'database' => 'u930296518_mykisandata',
 		'dbdriver' => 'mysqli',
 		'dbprefix' => '',
 		'pconnect' => FALSE,

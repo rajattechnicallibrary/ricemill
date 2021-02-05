@@ -1068,8 +1068,22 @@ class Report_mod extends CI_Model {
        
 	function Billing_details(){
 		
-        $querys =  $this->db->query("SELECT ar.*, an.verification, an.account_id , an.name as name FROM aa_rokad ar LEFT JOIN aa_account_name an ON ar.account_no = an.account_id WHERE ar.type_of_account = 'deposit'");
-    //    pr($querys->result()); die;    
+        $querys =  $this->db->query("SELECT sum(expenses) as expenses,sum(deposit) as deposit, sum(deposit-expenses) as finalamt,account_no,aa_account_name.name from (SELECT (CASE WHEN type_of_account='deposit' THEN karch_amount ELSE 0 END) as deposit,(CASE WHEN type_of_account='expenses' THEN karch_amount ELSE 0 END) as expenses,account_no from aa_rokad UNION ALL SELECT (0) as deposit,Ammount as expenses,account_no FROM kisanvahidata WHERE status_rec = 'done' ) finaltbl LEFT JOIN aa_account_name on aa_account_name.account_id=finaltbl.account_no GROUP by finaltbl.account_no");
+    //  print_r($this->db->last_query()); die;
+        //    pr($querys->result()); die;    
+        if ($querys->num_rows() > 0) {
+                return $querys->result();
+            }
+            else{
+                return false;
+            }
+		
+	}
+	function expenses_Billing_details(){
+		
+        $querys =  $this->db->query("SELECT SUM(ar.karch_amount) as final_karch_amount, ar.*, an.verification, an.account_id , an.name as name FROM aa_rokad ar INNER JOIN aa_account_name an ON ar.account_no = an.account_id WHERE ar.type_of_account = 'expenses'  GROUP BY ar.account_no");
+      // print_r($this->db->last_query()); die;
+        //    pr($querys->result()); die;    
         if ($querys->num_rows() > 0) {
                 return $querys->result();
             }
@@ -1306,7 +1320,7 @@ function publisher_mapping_deatils($id){
         $this->db->select('*');
       //  $this->db->where('type_of_account', 'expenses');
        // $this->db->where('account_no', $id);
-       $query = $this->db->get('aa_searchLog');
+       $query = $this->db->get('aa_searchlog');
        // echo $this->db->last_query();
         return $query->result();
     }
@@ -1321,15 +1335,15 @@ function publisher_mapping_deatils($id){
         $recorddata['finalexpenses'] =  $data['Finalexpenses'];
         $recorddata['added_date']       =   date('Y-m-d H:i:s');
         $recorddata['updated_date']       =   date('Y-m-d H:i:s');
-        // pr($recorddata);
-        // die;
+        //pr($recorddata);
+        //die;
             $this->db->select('*');
             $this->db->where('account_no', $SearchName[1]);
-            $query = $this->db->get('aa_searchLog');
-          
+            $query = $this->db->get('aa_searchlog');
+        //  die;
        if( $query->num_rows() > 0){
         $this->db->where('search_id ',$SearchName[1]);
-        $this->db->update('aa_searchLog',$recorddata);
+        $this->db->update('aa_searchlog',$recorddata);
         $affected = $this->db->affected_rows();
         if($affected>= 0){
             $res['status'] ='success';
@@ -1340,7 +1354,7 @@ function publisher_mapping_deatils($id){
         }
         return $res;
        }else{
-        $this->db->insert("aa_searchLog", $recorddata);
+        $this->db->insert('aa_searchlog', $recorddata);
         $seller_id  =   $this->db->insert_id();
         if($seller_id){
           $rs_data['status']      =   'success';

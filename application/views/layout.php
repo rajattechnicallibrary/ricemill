@@ -133,8 +133,8 @@
          </div>
       </div>
     
-      <script type="text/javascript" src="<?=base_url()?>assets/admin/assets/js/vendor.js"></script>
-      <script type="text/javascript" src="<?=base_url()?>assets/admin/assets/js/bundle.js"></script>
+      <script type="text/javascript" src="<?= base_url(); ?>assets/admin/assets/js/vendor.js"></script>
+      <script type="text/javascript" src="<?= base_url(); ?>assets/admin/assets/js/bundle.js"></script>
 
 
 <script src="<?php echo base_url(); ?>assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>

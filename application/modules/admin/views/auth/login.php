@@ -169,13 +169,13 @@ $fs_password_decr	=	custom_encryption($fs_password,'ak!@#s$on!','decrypt');
 <!-- END LOGIN -->
 
 
-<script type="text/javascript" src="<?=base_url()?>assets/js/vendor.js"></script>
-    <script type="text/javascript" src="<?=base_url()?>assets/js/bundle.js"></script>
-	<script src="<?=base_url()?>assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-<script src="<?=base_url()?>assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="<?= base_url()?>assets/js/vendor.js"></script>
+    <script type="text/javascript" src="<?= base_url()?>assets/js/bundle.js"></script>
+	<script src="<?= base_url()?>assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="<?= base_url()?>assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
-<script src="<?=base_url()?>assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="<?= base_url()?>assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <!-- END PAGE LEVEL SCRIPTS -->

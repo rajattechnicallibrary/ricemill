@@ -328,11 +328,30 @@ class Report extends CI_Controller {
 			echo json_encode($data);
 			return;			
 		}
-       
+		
         $data['page'] = 'report/view';
         $data['title'] = "Track (The Rest Accounting Key) || Search Report";
 		$data['users']= $this->Report_mod->Billing_details();
-		// pr($data); die;
+		//$data['expenses']= $this->Report_mod->expenses_Billing_details();
+		// pr($data);
+		//$count[] = count($data['expenses']);
+		//$count[] = count($data['deposit']);
+		//$count = max($count);
+		// echo $count;
+		// echo "<br>";
+		//echo  count($data['deposit']);
+		// die;
+		//$newdata = [];
+		// for( $i=0; $i<($count);$i++ ) 
+		// {  
+			
+		// 	if($data['deposit'][$i]->account_no == $data['expenses'][$i]->account_no ){
+		// 		pr($data['expenses'][$i]);
+			
+		// 	}
+
+			
+		// }
 		$this->load->view('layout', $data);
 		
 	}

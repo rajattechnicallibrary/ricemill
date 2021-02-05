@@ -13,34 +13,22 @@
                                             <tr style="text-align: center;">
                                                 <th class="table_bg" scope="col">Sno</th>
                                                 <th class="table_bg" scope="col">Account ID</th>
+                                                <th class="table_bg" scope="col">Account Name</th>
                                                 <th class="table_bg" scope="col">नाम</th>
                                                 <th class="table_bg" scope="col">जमा</th>
-                                                <th class="table_bg" scope="col">Status</th>
-                                                <!-- <th class="table_bg" scope="col">शेष जमा</th>
-                                                <th class="table_bg" scope="col">शेष नाम</th> -->
+                                                <th class="table_bg" scope="col">शेष</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php foreach($users as $key => $user){?>
                                             <tr style="text-align: center;">
                                                 <td><?php echo $key+1;?></td>
-                                                <td><?php echo $user->account_id ;?></td>
+                                                <td><?php echo $user->account_no;?></td>
                                                 <td><?php echo $user->name;?></td>
-                                                <td><?php echo $user->karch_amount;?></td>
-                                               <td> <?php if($user->verification == 'pending'){
-
-                                                        echo "<button class='btn btn-primary'>Pending</button>";
-
-                                                 } else if ($user->verification == 'done'){
-
-                                                    echo "<button class='btn btn-success'>Done</button>";
-
-                                                 } else if($user->verification == 'undone'){
-                                              
-                                                    echo "<button class='btn btn-danger'>Undone</button>";
-
-                                                 }; ?>
-                                                </td>
+                                                <td><?php echo round($user->expenses,2) ;?></td>
+                                                <td><?php echo round($user->deposit,2);?></td>
+                                                <td><?php echo abs($user->finalamt);?></td>
+                                               
                                             </tr>
                                        <?php }; ?>
                                             
@@ -63,6 +51,12 @@
    newWin.close();
 }
    
+$(document).ready(function() {
+    $('#printTable').DataTable( {
+        "processing": true,
+        "aLengthMenu": [1000]
+    } );
+} );
 
  </script>
 

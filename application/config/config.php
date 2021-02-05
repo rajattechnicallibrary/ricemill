@@ -24,9 +24,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-if( $_SERVER['HTTP_HOST'] == 'localhost:8081'){
+if( $_SERVER['HTTP_HOST'] == 'thecrindustries.com'){
     
-    $config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/thealternativeaccountp';
+    $config['base_url'] = 'https://'.$_SERVER['HTTP_HOST'];
 }else{
     
     $config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/thealternativeaccountp';
