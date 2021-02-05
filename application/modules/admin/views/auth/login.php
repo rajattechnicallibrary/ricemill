@@ -114,7 +114,7 @@ $fs_password_decr	=	custom_encryption($fs_password,'ak!@#s$on!','decrypt');
 								<img src="<?=base_url()?>assets/images/logo.png" alt="">
 							</label>
 						
-							<h4 class="fw-300 c-grey-900 mB-30" style="font-size: 16px;color: #1a7fd0 !important;">Track (The Rest Accounting Key)</h4>
+							<h4 class="fw-300 c-grey-900 mB-30" style="font-weight:800;font-size: 20px;color: #1a7fd0 !important; text-align:center">C R Indutries </h4>
 							<form>
 								<div class="form-group">
 								<?= get_flashdata() ?>	
