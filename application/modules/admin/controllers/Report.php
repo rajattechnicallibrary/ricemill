@@ -434,6 +434,16 @@ class Report extends CI_Controller {
 
 	}
 
+	public function searchbycondition(){
+		if(isPostBack()){
+		}
+		$data['page'] = 'report/searchbycondition';
+		$data['title'] = "Track (The Rest Accounting Key) || Search Report By Condition";
+		$data['users']= $this->Report_mod->Billing_details();
+		$this->load->view('layout', $data);
+
+	}
+
 	
 	
 
