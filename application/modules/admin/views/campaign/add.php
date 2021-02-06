@@ -92,9 +92,9 @@ input[type=submit] {
                                                        <option value="2" >शाहाबाद मंडी द्विती</option>
                                                        <option value="3" >FCS जमुरा-टोडरपुर</option>
                                                        <option value="pcf" >PCF शाहाबाद - शाहाबाद नगर पा. प.</option>
-                                                       <option value="reva" >Revamuradpur</option>
-                                                       <option value="upss" >UPSS</option>
-                                                       <option value="todarpur_hardoi" >UPSS</option>
+                                                       <option value="reva" >रेवमुरादपुर</option>
+                                                       <option value="upss" >यूपीएसएस ( UPSS )</option>
+                                                       <option value="todarpur_hardoi" >हरदोई टोडरपुर</option>
                                                   </select>                                         
                                            <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('rokad_type'); ?></div></label>
                                            </div> 
