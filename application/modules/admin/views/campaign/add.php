@@ -94,6 +94,7 @@ input[type=submit] {
                                                        <option value="pcf" >PCF शाहाबाद - शाहाबाद नगर पा. प.</option>
                                                        <option value="reva" >Revamuradpur</option>
                                                        <option value="upss" >UPSS</option>
+                                                       <option value="todarpur_hardoi" >UPSS</option>
                                                   </select>                                         
                                            <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('rokad_type'); ?></div></label>
                                            </div> 
