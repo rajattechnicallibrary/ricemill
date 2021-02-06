@@ -366,7 +366,7 @@ class Report extends CI_Controller {
 
 		//pr(@$_POST['search_name']); die;
 		if(empty(@$_POST['search_name'])){
-			$new_date = date('Y-m-d');
+			$new_date = date('Y-m-d',strtotime("-2day"));
 			$this->session->set_userdata("setParchaDate",$new_date);   
 		}
 		$data['page'] = 'report/view_rokad_parcha';
