@@ -106,9 +106,9 @@ if(!empty($_SESSION['user_type'])){
 		<a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">रिपोर्ट</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
 		<ul class="dropdown-menu">
 		<li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'report'&& $uri3 == 'search'){echo 'btn_active';} ?>" href="<?= base_url('admin/report/search')?>">खाता नाम</a></li>
-		<li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'report'&& $uri3 == 'byaccount_name'){echo 'btn_active';} ?>" href="<?= base_url('admin/report/byaccount_name')?>">खाता नाम सूची</a></li>
-		<li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'report'&& $uri3 == 'rokad_parcha'){echo 'btn_active';} ?>" href="<?= base_url('admin/report/rokad_parcha')?>">रोकड़ पर्चा</a></li>
-		<li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'report'&& $uri3 == 'searchbycondition'){echo 'btn_active';} ?>" href="<?= base_url('admin/report/searchbycondition')?>">शर्त के आधार पर खोजें</a></li>
+		<!-- <li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'report'&& $uri3 == 'byaccount_name'){echo 'btn_active';} ?>" href="<?= base_url('admin/report/byaccount_name')?>">खाता नाम सूची</a></li> -->
+		<!-- <li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'report'&& $uri3 == 'rokad_parcha'){echo 'btn_active';} ?>" href="<?= base_url('admin/report/rokad_parcha')?>">रोकड़ पर्चा</a></li> -->
+		<!-- <li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'report'&& $uri3 == 'searchbycondition'){echo 'btn_active';} ?>" href="<?= base_url('admin/report/searchbycondition')?>">शर्त के आधार पर खोजें	</a></li> -->
 		
 		</ul>
 	</li>
