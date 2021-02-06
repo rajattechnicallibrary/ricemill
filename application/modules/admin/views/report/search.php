@@ -82,16 +82,16 @@ input[type=submit] {
                                 <div class="form-row">
                                            
                                            <div class="form-group col-md-4" style="height:67px">
-                                               <label for="inputEmail4">Search Report *</label>
+                                               <label for="inputEmail4">Search Name *</label>
                                               <?php  
                                                    $name = @$result->search_name;
                                                    $postvalue = @$_SESSION['search_name'];
                                                    // echo $postvalue; die;
-                                                   echo form_input(array('id'=>'myInput','name' => 'search_name', 'maxlength'=>'25', 'class' => 'form-control', 'placeholder' => 'Search Report...', 'value' => !empty($postvalue) ? $postvalue : $name )); ?>
+                                                   echo form_input(array('id'=>'myInput','name' => 'search_name', 'maxlength'=>'25', 'class' => 'form-control', 'placeholder' => 'Account Name', 'value' => !empty($postvalue) ? $postvalue : $name )); ?>
                                               <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('search_name'); ?></div></label>
                                            </div>
                                            <div class="form-group col-md-1" style="margin-top: 23px;}">
-                                                   <button type="submit" class="btn btn-primary" id="search"> Search </button>
+                                                   <button type="submit" class="btn btn-primary" id="search"> Find </button>
                                                     
                                            </div> 
                                            <style>
@@ -142,6 +142,11 @@ input[type=submit] {
                                             <tr>
                                                 <th class="table_bg" scope="row">शेष नाम</th>
                                                 <td id="MyFinalExpenses" class="blackCSS"></td>
+
+                                            </tr>
+                                            <tr>
+                                                <th class="table_bg" scope="row">किसान संख्या</th>
+                                                <td id="mykisanvahicount" class="blackCSS" style="margin-left:10px"></td>
 
                                             </tr>
 
@@ -411,13 +416,30 @@ $('#search').click(()=>{
           finalDeposit(a);
           finalExpenses(a);
           fetchsearchReport(a)
+          mykisanvahi(a)
         },
         error: function () {
             alert("Error");
         }
         });
 })
-
+//mykisanvahicount
+function mykisanvahi(a){
+  console.log(a)
+    $.ajax({
+        url: "<?php echo base_url(); ?>admin/report/mytotalkisanvahi",
+        type: "POST",
+        dataType: 'json',
+        data:{'search_name':$('#myInput').val()},
+        success: function (a) {
+          console.log("**************************",a)
+          $('#mykisanvahicount').text(a.totalcount)
+        },
+        error: function () {
+            alert("Error");
+        }
+        });
+}
 function changeFunc(val){
   $('#myInput').val(($('#mySelect :selected').text()))
   $.ajax({

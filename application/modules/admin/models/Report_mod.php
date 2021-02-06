@@ -1377,6 +1377,14 @@ function publisher_mapping_deatils($id){
         $query = $this->db->get('aa_rokad');
         return $query->row();
     }
+    
+    function fetchsearchReportbykishanvahi($id){
+        $this->db->select('count(*) as totalcount');
+        $this->db->where('status_rec', 'done');
+        $this->db->where('account_no', $id);
+        $query = $this->db->get('kisanvahidata');
+        return $query->row();
+    }
 
 
 }

@@ -356,6 +356,13 @@ class Report extends CI_Controller {
 		
 	}
 	
+	public function mytotalkisanvahi(){
+		if (isPostBack()) {
+			$isFoundAccountDetail = explode('_',$_POST['search_name']);
+		//	pr($isFoundAccountDetail); die;
+			echo json_encode($this->Report_mod->fetchsearchReportbykishanvahi($isFoundAccountDetail[1]));
+		}
+	}
 	public function rokad_parcha(){
 		if (isPostBack()) {
 			$old_date = $_POST['search_name'];            // works
