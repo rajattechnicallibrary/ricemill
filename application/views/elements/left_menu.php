@@ -3,6 +3,7 @@
 $uri1 = @uri_segment(1);
 $uri2 = @uri_segment(2);
 $uri3 = @uri_segment(3);
+
 if(!empty($_SESSION['user_type'])){
 	if($_SESSION['user_type'] == 1){
 		
@@ -53,7 +54,15 @@ if(!empty($_SESSION['user_type'])){
 	</li>
 	
 	
+	<ul class="sidebar-menu scrollable pos-r">
+	<li class="nav-item dropdown  <?php if($uri1 == 'admin' && $uri2 == 'accountMapping'){echo 'open';} ?>">
+		<a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">मैपिंग किसान बही</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
+		<ul class="dropdown-menu">
+		<li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'accountMapping'&& $uri3 == 'account_mapping'){echo 'btn_active';} ?>" href="<?= base_url('admin/accountMapping/account_mapping')?>">Kisan Account Mapping</a></li>
+		</ul>
+	</li>
 	
+	</ul>
 	
 	
 	
@@ -88,14 +97,15 @@ if(!empty($_SESSION['user_type'])){
 <?php
 
 if(!empty($_SESSION['user_type'])){
-	if($_SESSION['user_type'] == 3 && $_SESSION['user_type'] == 41){
+	
+	if($_SESSION['user_type'] == 3){
 		
 ?>
 <ul class="sidebar-menu scrollable pos-r">
 	<li class="nav-item dropdown  <?php if($uri1 == 'admin' && $uri2 == 'accountMapping'){echo 'open';} ?>">
-		<a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">Mapping Kisan Vahi</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
+		<a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">मैपिंग किसान बही</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
 		<ul class="dropdown-menu">
-		<li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'accountMapping'&& $uri3 == ''){echo 'btn_active';} ?>" href="<?= base_url('admin/accountMapping/account_mapping')?>">Kisan Account Mapping</a></li>
+		<li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'accountMapping'&& $uri3 == 'account_mapping'){echo 'btn_active';} ?>" href="<?= base_url('admin/accountMapping/account_mapping')?>">Kisan Account Mapping</a></li>
 		</ul>
 	</li>
 	
