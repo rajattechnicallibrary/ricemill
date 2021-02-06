@@ -176,4 +176,6 @@ $QUERY_STRING = $_SERVER['QUERY_STRING'];
         else{$("#filter_id").submit();}
          
     });
+
+    
 </script> 		

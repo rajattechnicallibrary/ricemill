@@ -144,8 +144,8 @@ input[type=submit] {
                                                 <td id="MyFinalExpenses" class="blackCSS"></td>
 
                                             </tr>
-                                            <tr>
-                                                <th class="table_bg" scope="row">किसान संख्या</th>
+                                            <tr onClick="myFunction()">
+                                                <th class="table_bg" scope="row"  data-toggle="modal" data-target="#myModal">किसान संख्या</th>
                                                 <td id="mykisanvahicount" class="blackCSS" style="margin-left:10px"></td>
 
                                             </tr>
@@ -158,10 +158,90 @@ input[type=submit] {
                     </div>
                 </div>
             </main>
+<style>
+.modal-lg {
+    max-width: 90% !important;
+}
+</style>
 
+              <!-- Modal -->
+              <div class="modal fade" id="myModal" role="dialog">
+              <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  
+                  <div class="modal-body">
+                  <div class="container">
+                      <h2>Information About Kisan</h2>
+                      <table class="table" id="runmytable">
+                        <thead>
+                          <tr>
+                            <th>Sno</th>
+                            <th>Farmer ID</th>
+                            <th>Farmer Name</th>
+                            <th>Quantity</th>
+                            <th>Amount</th>
+                            <th>Purchase Date</th>
+                            <th>Latest Account No</th>
+                            <th>Center Name</th>
+                          </tr>
+                        </thead>
+                        <tbody id="getData">
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+                
+              </div>
+              </div>
+  
             <script>
 
-            
+//myFunction()
+function myFunction() {
+ // $('#myInput').val(($('#mySelect :selected').text()))
+  $.ajax({
+        url: "<?php echo base_url(); ?>admin/report/Listmytotalkisanvahi",
+        type: "POST",
+        dataType: 'json',
+        data:{'search_name':$('#myInput').val()},
+        success: function (a) {
+          console.log("**************************",a)
+          for(var i = 0 ; i < a.length; i++){
+            $('#getData').append(`
+                    <tr>
+                    <td>`+(i+1)+`</td>
+                    <td>`+a[i].Farmer_ID+`</td>
+                    <td>`+a[i].Farmer_name+`</td>
+                    <td>`+a[i].Quantity+`</td>
+                    <td>`+a[i].Ammount+`</td>
+                    <td>`+a[i].Purchase_Date+`</td>
+                    <td>`+a[i].Latest_Account_no+`</td>
+                    <td>`+a[i].CenterName+`</td>
+                    
+                    </tr>
+              `);
+          }
+         setTimeout(()=>{
+                  $('#runmytable').DataTable( {
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+            } );
+         })
+         
+        },
+        error: function () {
+            alert("Error");
+        }
+        });
+
+}
+
 function autocomplete(inp, arr) {
    
    var arr;
@@ -540,5 +620,19 @@ function fetchsearchReport(){
     }
   }     
 
+
+//runmytable
+
+
+$('#runmytable').DataTable( {
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+    } );
+
+    $(document).ready(function() {
+    $('#runmytable').DataTable( {
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+    } );
+} );
+
 </script>
-			
+<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>			

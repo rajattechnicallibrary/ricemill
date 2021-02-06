@@ -1385,6 +1385,13 @@ function publisher_mapping_deatils($id){
         $query = $this->db->get('kisanvahidata');
         return $query->row();
     }
+    function Listmytotalkisanvahi($id){
+        $this->db->select('*');
+        $this->db->where('status_rec', 'done');
+        $this->db->where('account_no', $id);
+        $query = $this->db->get('kisanvahidata');
+        return $query->result();
+    }
 
 
 }
