@@ -42,6 +42,8 @@
                                  <h5 class="lh-1 mB-0 logo-text"><?php 
                                  if($_SESSION['user_type'] == 1){
                                      echo "Administrator";
+                                 }else{
+                                    echo ucfirst(@currentuserinfo()->first_name . ' ' . @currentuserinfo()->last_name);
                                  }
                                  ?></h5>
                               </div>
@@ -95,7 +97,7 @@
 						?>
 						<ul class="dropdown-menu fsz-sm profile-menu">
                            <li><a href="<?=base_url('advertiser/profile')?>" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-settings mR-10"></i> <span>My Profile</span></a></li>
-                           <li><a href="<?=base_url('advertiser/campaign')?>" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-user mR-10"></i> <span>My Campaigns</span></a></li>
+                           <!-- <li><a href="<?=base_url('advertiser/campaign')?>" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-user mR-10"></i> <span>My Campaigns</span></a></li> -->
                            <li><a href="<?=base_url('advertiser/profile/reset_password')?>" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-settings mR-10"></i> <span>Change Password</span></a></li>
                            <li role="separator" class="divider"></li>
                            <li><a href="<?=base_url('advertiser/logout')?>" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-power-off mR-10"></i> <span>Logout</span></a></li>
@@ -111,8 +113,8 @@
 						?>
 						<ul class="dropdown-menu fsz-sm profile-menu">
                            <li><a href="<?=base_url('publisher/profile')?>" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-settings mR-10"></i> <span>My Profile</span></a></li>
-                           <li><a href="<?=base_url('publisher/campaign')?>" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-user mR-10"></i> <span>My Campaigns</span></a></li>
-                           <li><a href="<?=base_url('publisher/earning')?>" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-settings mR-10"></i> <span>My Earnings</span></a></li>
+                           <!-- <li><a href="<?=base_url('publisher/campaign')?>" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-user mR-10"></i> <span>My Campaigns</span></a></li> -->
+                           <!-- <li><a href="<?=base_url('publisher/earning')?>" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-settings mR-10"></i> <span>My Earnings</span></a></li> -->
                            <li><a href="<?=base_url('publisher/profile/reset_password')?>" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-settings mR-10"></i> <span>Change Passsword</span></a></li>
                            <li role="separator" class="divider"></li>
                            <li><a href="<?=base_url('publisher/logout')?>" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-power-off mR-10"></i> <span>Logout</span></a></li>
