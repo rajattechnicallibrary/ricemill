@@ -58,7 +58,7 @@ if(!empty($_SESSION['user_type'])){
 	<li class="nav-item dropdown  <?php if($uri1 == 'admin' && $uri2 == 'accountMapping'){echo 'open';} ?>">
 		<a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">मैपिंग किसान बही</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
 		<ul class="dropdown-menu">
-		<li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'accountMapping'&& $uri3 == 'account_mapping'){echo 'btn_active';} ?>" href="<?= base_url('admin/accountMapping/account_mapping')?>">Kisan Account Mapping</a></li>
+		<li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'accountMapping'&& $uri3 == 'account_mapping'){echo 'btn_active';} ?>" href="<?= base_url('admin/accountMapping/account_mapping')?>">किसान खाता नक्शा</a></li>
 		</ul>
 	</li>
 	
@@ -105,7 +105,7 @@ if(!empty($_SESSION['user_type'])){
 	<li class="nav-item dropdown  <?php if($uri1 == 'admin' && $uri2 == 'accountMapping'){echo 'open';} ?>">
 		<a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">मैपिंग किसान बही</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
 		<ul class="dropdown-menu">
-		<li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'accountMapping'&& $uri3 == 'account_mapping'){echo 'btn_active';} ?>" href="<?= base_url('admin/accountMapping/account_mapping')?>">Kisan Account Mapping</a></li>
+		<li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'accountMapping'&& $uri3 == 'account_mapping'){echo 'btn_active';} ?>" href="<?= base_url('admin/accountMapping/account_mapping')?>">किसान खाता नक्शा</a></li>
 		</ul>
 	</li>
 	
