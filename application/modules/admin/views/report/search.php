@@ -144,8 +144,8 @@ input[type=submit] {
                                                 <td id="MyFinalExpenses" class="blackCSS"></td>
 
                                             </tr>
-                                            <tr onClick="myFunction()">
-                                                <th class="table_bg" scope="row"  data-toggle="modal" data-target="#myModal">किसान संख्या</th>
+                                            <tr onClick="myFunction()"  data-toggle="modal" data-target="#myModal">
+                                                <th class="table_bg" scope="row" >किसान संख्या</th>
                                                 <td id="mykisanvahicount" class="blackCSS" style="margin-left:10px"></td>
 
                                             </tr>
@@ -201,10 +201,12 @@ input[type=submit] {
               </div>
               </div>
   
+              <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
             <script>
 
 //myFunction()
 function myFunction() {
+  
  // $('#myInput').val(($('#mySelect :selected').text()))
   $.ajax({
         url: "<?php echo base_url(); ?>admin/report/Listmytotalkisanvahi",
@@ -228,11 +230,15 @@ function myFunction() {
                     </tr>
               `);
           }
-         setTimeout(()=>{
-                  $('#runmytable').DataTable( {
-                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
-            } );
-         })
+        
+          $(document).ready(function() {
+      setTimeout(()=>{
+      $('#runmytable').DataTable( {
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+      } );
+      } ,);
+    } );
+    
          
         },
         error: function () {
@@ -624,15 +630,4 @@ function fetchsearchReport(){
 //runmytable
 
 
-$('#runmytable').DataTable( {
-        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
-    } );
-
-    $(document).ready(function() {
-    $('#runmytable').DataTable( {
-        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
-    } );
-} );
-
-</script>
-<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>			
+</script>			
