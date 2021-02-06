@@ -113,7 +113,7 @@ input[type=submit] {
                                            <div class="form-group col-md-2" style="margin-top:2%" onclick="getkisanData()">  <button type="button" class="btn btn-primary"> Submit </button></div>
                                            <div class="form-group col-md-6">
                                                     <label for="inputEmail4">Farmer Name*</label>
-                                                    <input type="text" name="farmer_name" readonly value="<?php echo set_value('farmer_name') ?>" class="form-control" id="farmer_name" placeholder="farmer_name">
+                                                    <input type="text" name="farmer_name" readonly value="<?php echo set_value('farmer_name') ?>" class="form-control" id="farmer_name" placeholder="Farmer Name">
                                                     <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('farmer_name'); ?></div></label>
 
                                                 </div>
@@ -128,14 +128,14 @@ input[type=submit] {
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label for="inputEmail4">Quantity*</label>
-                                                    <input type="text" name="quantity" readonly value="<?php echo set_value('quantity') ?>" class="form-control" id="quantity" placeholder="quantity">
+                                                    <input type="text" name="quantity" readonly value="<?php echo set_value('quantity') ?>" class="form-control" id="quantity" placeholder="Quantity">
                                                     <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('quantity'); ?></div></label>
 
                                                 </div>
                                             </div>
 											<div class="form-row">
                                                 <div class="form-group col-md-6">
-                                                    <label for="inputEmail4">Amount  ( &#163; ) *</label>
+                                                    <label for="inputEmail4">Amount *</label>
                                                     <input type="text" readonly name="amount" value="<?php echo set_value('amount') ?>" class="form-control" id="amount" placeholder="Amount">
                                                     <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('amount'); ?></div></label>
 
