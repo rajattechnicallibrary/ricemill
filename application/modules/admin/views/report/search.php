@@ -87,7 +87,7 @@ input[type=submit] {
                                                    $name = @$result->search_name;
                                                    $postvalue = @$_SESSION['search_name'];
                                                    // echo $postvalue; die;
-                                                   echo form_input(array('id'=>'myInput','name' => 'search_name', 'maxlength'=>'25', 'class' => 'form-control', 'placeholder' => 'Account Name', 'value' => !empty($postvalue) ? $postvalue : $name )); ?>
+                                                   echo form_input(array('autocomplete'=>'off','id'=>'myInput','name' => 'search_name', 'maxlength'=>'25', 'class' => 'form-control', 'placeholder' => 'Account Name', 'value' => !empty($postvalue) ? $postvalue : $name )); ?>
                                               <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('search_name'); ?></div></label>
                                            </div>
                                            <div class="form-group col-md-1" style="margin-top: 23px;}">
@@ -185,6 +185,7 @@ input[type=submit] {
                             <th>Purchase Date</th>
                             <th>Latest Account No</th>
                             <th>Center Name</th>
+                            <th>Action</th>
                           </tr>
                         </thead>
                         <tbody id="getData">
@@ -206,7 +207,10 @@ input[type=submit] {
 
 //myFunction()
 function myFunction() {
-  
+  if($('#mykisanvahicount').text() == 0){
+    alert('There is not Kisan Vahi')
+    return
+  }
  // $('#myInput').val(($('#mySelect :selected').text()))
   $.ajax({
         url: "<?php echo base_url(); ?>admin/report/Listmytotalkisanvahi",
@@ -226,6 +230,7 @@ function myFunction() {
                     <td>`+a[i].Purchase_Date+`</td>
                     <td>`+a[i].Latest_Account_no+`</td>
                     <td>`+a[i].CenterName+`</td>
+                    <td><button name="unmap" id="kisan_`+a[i].Kisan_ID+`" class="btn btn-primary" value="`+a[i].Kisan_ID+`" onclick="unMapMyID(`+a[i].Kisan_ID+`)">Unmap</button></td>
                     
                     </tr>
               `);
@@ -234,7 +239,7 @@ function myFunction() {
           $(document).ready(function() {
       setTimeout(()=>{
       $('#runmytable').DataTable( {
-        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+        "order": []
       } );
       } ,);
     } );
@@ -248,6 +253,23 @@ function myFunction() {
 
 }
 
+function unMapMyID(x){
+ // alert(x)
+  $.ajax({
+        url: "<?php echo base_url(); ?>admin/report/unmapkisanVahi",
+        type: "POST",
+        dataType: 'json',
+        data:{'search_name':x},
+        success: function (a) {
+          console.log("**************************",a)
+          window.reload();
+          //myFunction();
+        },
+        error: function () {
+            alert("Error");
+        }
+        });
+}
 function autocomplete(inp, arr) {
    
    var arr;

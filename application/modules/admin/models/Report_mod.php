@@ -1392,6 +1392,20 @@ function publisher_mapping_deatils($id){
         $query = $this->db->get('kisanvahidata');
         return $query->result();
     }
+    function unmapkisanVahi($id){
+       
+		$up['account_no'] = '0';
+		$up['status_rec'] = 'pending';
+        $this->db->where('Kisan_ID', $id);
+		$update =  $this->db->update('kisanvahidata', $up);
+		$rs = $this->db->affected_rows();
+		if($rs){
+			return true;
+		} else {
+			return false;
+		}
+
+    }
 
 
 }

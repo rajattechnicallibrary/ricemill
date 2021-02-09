@@ -370,6 +370,11 @@ class Report extends CI_Controller {
 			echo json_encode($this->Report_mod->Listmytotalkisanvahi($isFoundAccountDetail[1]));
 		}
 	}
+	public function unmapkisanVahi(){
+		if (isPostBack()) {
+			echo json_encode($this->Report_mod->unmapkisanVahi($_POST['search_name']));
+		}
+	}
 	public function rokad_parcha(){
 		if (isPostBack()) {
 			$old_date = $_POST['search_name'];            // works
