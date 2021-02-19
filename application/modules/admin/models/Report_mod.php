@@ -1392,6 +1392,20 @@ function publisher_mapping_deatils($id){
         $query = $this->db->get('kisanvahidata');
         return $query->result();
     }
+    function ListmytotalDeposit($id){
+        $this->db->select('*');
+        $this->db->where('type_of_account', 'deposit');
+        $this->db->where('account_no', $id);
+        $query = $this->db->get('aa_rokad');
+        return $query->result();
+    }
+    function ListmytotalExpenses($id){
+        $this->db->select('*');
+        $this->db->where('type_of_account', 'deposit');
+        $this->db->where('account_no', $id);
+        $query = $this->db->get('aa_rokad');
+        return $query->result();
+    }
     function unmapkisanVahi($id){
        
 		$up['account_no'] = '0';

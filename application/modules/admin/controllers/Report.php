@@ -370,6 +370,20 @@ class Report extends CI_Controller {
 			echo json_encode($this->Report_mod->Listmytotalkisanvahi($isFoundAccountDetail[1]));
 		}
 	}
+	public function ListmytotalDeposit(){
+		if (isPostBack()) {
+			$isFoundAccountDetail = explode('_',$_POST['search_name']);
+			//pr($isFoundAccountDetail); die;
+			echo json_encode($this->Report_mod->ListmytotalDeposit($isFoundAccountDetail[1]));
+		}
+	}
+	public function ListmytotalExpenses(){
+		if (isPostBack()) {
+			$isFoundAccountDetail = explode('_',$_POST['search_name']);
+			//pr($isFoundAccountDetail); die;
+			echo json_encode($this->Report_mod->ListmytotalExpenses($isFoundAccountDetail[1]));
+		}
+	}
 	public function unmapkisanVahi(){
 		if (isPostBack()) {
 			echo json_encode($this->Report_mod->unmapkisanVahi($_POST['search_name']));

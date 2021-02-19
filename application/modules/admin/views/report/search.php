@@ -125,11 +125,11 @@ input[type=submit] {
                                     <!--<h4 class="c-grey-900 mB-20">Simple Table</h4>-->
                                     <table class="table">
                                         <tbody>
-                                            <tr>
+                                            <tr onClick="myFunction_deposit()"  data-toggle="modal" data-target="#DepositmyModal">
                                                 <th  class="table_bg" scope="row">नाम</th>
                                                 <td id="expense" class="blackCSS"></td>
                                             </tr>
-                                            <tr>
+                                            <tr onClick="myFunction_expenses()"  data-toggle="modal" data-target="#ExpensesmyModal">
                                                 <th class="table_bg" scope="row">जमा</th>
                                                 <td id="deposit" class="blackCSS"></td>
 
@@ -176,16 +176,8 @@ input[type=submit] {
                       <h2>Information About Kisan</h2>
                       <table class="table" id="runmytable">
                         <thead>
-                          <tr>
-                            <th>Sno</th>
-                            <th>Farmer ID</th>
-                            <th>Farmer Name</th>
-                            <th>Quantity</th>
-                            <th>Amount</th>
-                            <th>Purchase Date</th>
-                            <th>Latest Account No</th>
-                            <th>Center Name</th>
-                            <th>Action</th>
+                          <tr id="overLapData">
+                           
                           </tr>
                         </thead>
                         <tbody id="getData">
@@ -201,6 +193,66 @@ input[type=submit] {
                 
               </div>
               </div>
+
+              <div class="modal fade" id="DepositmyModal" role="dialog">
+              <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  
+                  <div class="modal-body">
+                  <div class="container">
+                      <h2>Information About Deposit Value</h2>
+                      <table class="table" id="Depositrunmytable">
+                        <thead>
+                          <tr id="DepositoverLapData">
+                           
+                          </tr>
+                        </thead>
+                        <tbody id="DepositgetData">
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+                
+              </div>
+              </div>
+
+
+              <div class="modal fade" id="ExpensesmyModal" role="dialog">
+              <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  
+                  <div class="modal-body">
+                  <div class="container">
+                      <h2>Information About Kisan</h2>
+                      <table class="table" id="Expensesrunmytable">
+                        <thead>
+                          <tr id="ExpensesoverLapData">
+                           
+                          </tr>
+                        </thead>
+                        <tbody id="ExpensesgetData">
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+                
+              </div>
+              </div>
+
   
               <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
               <link rel="stylesheet" type="text/css"  href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
@@ -215,6 +267,7 @@ input[type=submit] {
 <script src="https://cdn.datatables.net/buttons/1.4.0/js/buttons.flash.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.4.0/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.4.0/js/buttons.print.min.js"></script>
+<script src="//cdn.datatables.net/plug-ins/1.10.22/api/sum().js"></script>
 
 
             <script>
@@ -225,7 +278,18 @@ function myFunction() {
     alert('There is not Kisan Vahi')
     return
   }
- // $('#myInput').val(($('#mySelect :selected').text()))
+  $('#overLapData').append(``);
+ $('#overLapData').append(`
+ <th>Sno</th>
+                            <th>Farmer ID</th>
+                            <th>Farmer Name</th>
+                            <th>Quantity</th>
+                            <th>Amount</th>
+                            <th>Purchase Date</th>
+                            <th>Latest Account No</th>
+                            <th>Center Name</th>
+                            <th>Action</th>
+                            `)
   $.ajax({
         url: "<?php echo base_url(); ?>admin/report/Listmytotalkisanvahi",
         type: "POST",
@@ -254,6 +318,120 @@ function myFunction() {
           $(document).ready(function() {
       setTimeout(()=>{
       $('#runmytable').DataTable( {
+       
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
+        "drawCallback": function () {
+      var api = this.api();
+      $( api.table().footer() ).html(
+        api.column( 4, {page:'current'} ).data().sum()
+      );
+    }
+      } );
+      } ,);
+    } );
+    
+         
+        },
+        error: function () {
+            alert("Error");
+        }
+        });
+
+}
+function myFunction_deposit() {
+  if($('#deposit').text() == 0){
+    alert('There is not Kisan Vahi')
+    return
+  }
+
+
+  $('#DepositoverLapData').append(`
+                            <th>Sno</th>
+                            <th>Rokadh Date</th>
+                            <th>Name</th>
+                            <th>Rokadh ID</th>
+                            <th>Amount</th>
+                            `)
+  $.ajax({
+        url: "<?php echo base_url(); ?>admin/report/ListmytotalDeposit",
+        type: "POST",
+        dataType: 'json',
+        data:{'search_name':$('#myInput').val()},
+        success: function (a) {
+          console.log("**************************",a)
+          for(var i = 0 ; i < a.length; i++){
+            $('#DepositgetData').append(`
+                    <tr>
+                    <td>`+(i+1)+`</td>
+                    <td>`+a[i].rokad_date+`</td>
+                    <td>`+a[i].account_name+`</td>
+                    <td>`+a[i].rokad_id+`</td>
+                    <td>`+a[i].karch_amount+`</td>
+                     
+                    </tr>
+              `);
+          }
+        
+        
+          $(document).ready(function() {
+      setTimeout(()=>{
+      $('#Depositrunmytable').DataTable( {
+       
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
+      } );
+      } ,);
+    } );
+    
+         
+        },
+        error: function () {
+            alert("Error");
+        }
+        });
+
+}
+function myFunction_expenses() {
+  if($('#expense').text() == 0){
+    alert('There is not Kisan Vahi')
+    return
+  }
+  $('#ExpensesoverLapData').append(`
+  <th>Sno</th>
+                            <th>Rokadh Date</th>
+                            <th>Name</th>
+                            <th>Rokadh ID</th>
+                            <th>Amount</th>
+                           
+                            `)
+  $.ajax({
+        url: "<?php echo base_url(); ?>admin/report/ListmytotalExpenses",
+        type: "POST",
+        dataType: 'json',
+        data:{'search_name':$('#myInput').val()},
+        success: function (a) {
+          console.log("**************************",a)
+          for(var i = 0 ; i < a.length; i++){
+            $('#ExpensesgetData').append(`
+                    <tr>
+                    <td>`+(i+1)+`</td>
+                    <td>`+a[i].rokad_date+`</td>
+                    <td>`+a[i].account_name+`</td>
+                    <td>`+a[i].rokad_id+`</td>
+                    <td>`+a[i].karch_amount+`</td>
+                    </tr>
+              `);
+          }
+        
+        
+          $(document).ready(function() {
+      setTimeout(()=>{
+      $('#Expensesrunmytable').DataTable( {
        
         dom: 'Bfrtip',
         buttons: [
