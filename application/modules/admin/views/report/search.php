@@ -125,11 +125,11 @@ input[type=submit] {
                                     <!--<h4 class="c-grey-900 mB-20">Simple Table</h4>-->
                                     <table class="table">
                                         <tbody>
-                                            <tr onClick="myFunction_expenses()"  data-toggle="modal" data-target="#DepositmyModal">
+                                            <tr onClick="myFunction_expenses()"  data-toggle="modal" data-target="#ExpensesmyModal">
                                                 <th  class="table_bg" scope="row">नाम</th>
                                                 <td id="expense" class="blackCSS"></td>
                                             </tr>
-                                            <tr onClick="myFunction_deposit()"  data-toggle="modal" data-target="#ExpensesmyModal">
+                                            <tr onClick="myFunction_deposit()"  data-toggle="modal" data-target="#DepositmyModal">
                                                 <th class="table_bg" scope="row">जमा</th>
                                                 <td id="deposit" class="blackCSS"></td>
 
