@@ -1401,7 +1401,7 @@ function publisher_mapping_deatils($id){
     }
     function ListmytotalExpenses($id){
         $this->db->select('*');
-        $this->db->where('type_of_account', 'deposit');
+        $this->db->where('type_of_account', 'expenses');
         $this->db->where('account_no', $id);
         $query = $this->db->get('aa_rokad');
         return $query->result();
