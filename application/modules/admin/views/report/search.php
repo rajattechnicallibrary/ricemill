@@ -288,7 +288,6 @@ function myFunction() {
                             <th>Purchase Date</th>
                             <th>Latest Account No</th>
                             <th>Center Name</th>
-                            <th>Action</th>
                             `)
   $.ajax({
         url: "<?php echo base_url(); ?>admin/report/Listmytotalkisanvahi",
@@ -308,7 +307,6 @@ function myFunction() {
                     <td>`+a[i].Purchase_Date+`</td>
                     <td>`+a[i].Latest_Account_no+`</td>
                     <td>`+a[i].CenterName+`</td>
-                    <td><button name="unmap" id="kisan_`+a[i].Kisan_ID+`" class="btn btn-primary" value="`+a[i].Kisan_ID+`" onclick="unMapMyID(`+a[i].Kisan_ID+`)">Unmap</button></td>
                     
                     </tr>
               `);
@@ -396,11 +394,13 @@ function myFunction_deposit() {
         });
 
 }
+
 function myFunction_expenses() {
-  if($('#expense').text() == 0){
-    alert('There is not Kisan Vahi')
+  if(myFunction_expenese_var != 0){
+    //alert('There is not Kisan Vahi')
     return
   }
+//  console.log($('#ExpensesoverLapData').empty())
   $('#ExpensesoverLapData').append(`
   <th>Sno</th>
                             <th>Rokadh Date</th>
@@ -415,6 +415,7 @@ function myFunction_expenses() {
         dataType: 'json',
         data:{'search_name':$('#myInput').val()},
         success: function (a) {
+          myFunction_expenese_var = 1;
           console.log("**************************",a)
           for(var i = 0 ; i < a.length; i++){
             $('#ExpensesgetData').append(`
@@ -734,6 +735,7 @@ $('#search').click(()=>{
           finalExpenses(a);
           fetchsearchReport(a)
           mykisanvahi(a)
+          myFunction_expenese_var = 0
         },
         error: function () {
             alert("Error");
@@ -758,6 +760,7 @@ function mykisanvahi(a){
         });
 }
 function changeFunc(val){
+  var myFunction_expenese_var = 0;
   $('#myInput').val(($('#mySelect :selected').text()))
   $.ajax({
         url: "<?php echo base_url(); ?>admin/report/search",

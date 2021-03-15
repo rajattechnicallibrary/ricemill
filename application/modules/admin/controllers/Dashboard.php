@@ -51,6 +51,13 @@ class Dashboard extends MY_Controller {
         $data['FinalAmountPaddy']   = $this->Auth_mod->RealTimeDataCount()['FinalAmountPaddy'];
         $data['TotalKatti']   = $this->Auth_mod->RealTimeDataCount()['TotalKatti'];
         $data['maxpurchaser']   = $this->Auth_mod->RealTimeDataCount()['maxpurchaser'];
+        $data['first']   = $this->Auth_mod->RealTimeDataCount()['first'];
+        $data['second']   = $this->Auth_mod->RealTimeDataCount()['second'];
+        $data['jamura']   = $this->Auth_mod->RealTimeDataCount()['jamura'];
+        $data['pcf']   = $this->Auth_mod->RealTimeDataCount()['pcf'];
+        $data['reva']   = $this->Auth_mod->RealTimeDataCount()['reva'];
+        $data['upss']   = $this->Auth_mod->RealTimeDataCount()['upss'];
+        $data['todharpur']   = $this->Auth_mod->RealTimeDataCount()['todharpur'];
        // $data['FinalWeight']   = $data['total_weight']->FinalWeight;
     //   pr($data); die;
         $data['total_runningcampaigns']   = 50;

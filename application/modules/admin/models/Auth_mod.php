@@ -217,16 +217,30 @@ class Auth_mod extends CI_Model {
             $this->db->select('MAX(final_amount) as maxpurchaser');
             $this->db->from('aa_billing');
             $maxpurchaser = $this->db->get();
+
+            $TotalQuant = $this->db->query("SELECT ROUND(SUM(Quantity),2) AS totalQuant FROM kisanvahidata WHERE status_rec = 'done' GROUP by CenterName");
+          //  $TotalQuant = $TotalQuant->result();
             
             $this->db->select('*');
             $this->db->from('aa_rokad');
             $rokad = $this->db->get();
             
-          
+            // pr($TotalQuant);
+            // die;
             $data_count['billing'] = $billing->result()[0];
             $data_count['FinalAmountPaddy'] = $FinalAmountPaddy->result()[0];
             $data_count['TotalKatti'] = $TotalKatti->result()[0];
             $data_count['maxpurchaser'] = $maxpurchaser->result()[0];
+            
+            $data_count['first'] = $TotalQuant->result()[0];
+            $data_count['second'] = $TotalQuant->result()[1];
+            $data_count['jamura'] = $TotalQuant->result()[2];
+            $data_count['pcf'] = $TotalQuant->result()[3];
+            $data_count['reva'] = $TotalQuant->result()[4];
+            $data_count['upss'] = $TotalQuant->result()[5];
+            $data_count['todharpur'] = $TotalQuant->result()[6];
+
+
             $data_count['rokad'] = $rokad->num_rows();
             return $data_count;
         }
