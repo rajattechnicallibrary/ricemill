@@ -1,6 +1,6 @@
 <main class="main-content bgc-grey-100">
                 <div id="mainContent">
-                    <div class="container-fluid" id="printTable">
+                    <div class="container"  >
                                 <a onclick="printData()" id="back-btn" class="btn cur-p btn-primary pull-right" style="color:white">Print</a>
                         <h4 class="c-grey-900 mT-10 mB-30 text-center" style="font-weight:900; text-decoration:underline">रोकड़ पर्चा</h4>
                         <?php echo form_open_multipart('', array('class' => '', 'id' => 'teamForm')); ?>
@@ -14,10 +14,10 @@
                                               
                                               $new_date = date('d-m-Y', $middle);
                                               
-                                                   $name = @$result->search_name;
-                                                   $postvalue = @$new_date;
-                                                   // echo $postvalue; die;
-                                                   echo form_input(array('id'=>'myInput','name' => 'search_name', 'maxlength'=>'25', 'class' => 'form-control', 'placeholder' => 'Search Report...', 'value' => !empty($postvalue) ? $postvalue : $name )); ?>
+                                              $name = @$result->search_name;
+                                              $postvalue = @$new_date;
+                                              // echo $postvalue; die;
+                                              echo form_input(array('id'=>'myInput','name' => 'search_name', 'maxlength'=>'25', 'class' => 'form-control', 'placeholder' => 'Search Report...', 'value' => !empty($postvalue) ? $postvalue : $name )); ?>
                                               <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('search_name'); ?></div></label>
                                            </div>
                                            <div class="form-group col-md-1" style="margin-top: 27px;}">
@@ -26,64 +26,78 @@
                                            </div> 
                                            </div> 
                                            </form>
-                        <div class="row">
+                        <div class="container" id="printTable" style="text-align: center; border: 4px solid black;">
+                                              <div style="text-align:center;"><img width="50" height="50" src="https://i.pinimg.com/originals/df/7a/c3/df7ac32ca67a39a812bbe7b7b69f1a28.jpg" alt="" srcset=""></div>
                             <div class="col-md-12">
                                 <div class="bgc-white bd bdrs-3 p-20 mB-20">
 
                                     
-                                    <div class="container-fluid">
+                                    <div class="container-fluid" style="border: 4px dashed black;">
                                    
   <h1 class="text-center" style="font-weight:500; font-size:20px; text-decoration:underline">दिनांक: <?php $old_date = $this->session->all_userdata("setParchaDate")['setParchaDate']; 
 			$middle = strtotime($old_date);             // returns bool(false)
 			
             $new_date = date('d-m-Y', $middle);
             echo $new_date;?></h1>
-  <div class="row" style="margin:8px">
-    <div class="col-sm-9 col-md-6 col-lg-6 text-center" style="border: 2px solid;
-    border-left: none;
-    border-top: none;
-    border-bottom: none;">
+  <div class="col-xs-1 text-center" style="margin:8px; display: flex;">
+    <div class="col-sm-9 col-md-6 col-lg-6 text-center;" style="border: 2px solid; border-left: none;border-top: none;border-bottom: none; width: 50%">
       <p class="text-center" style="font-weight:900; ; font-size:20px; text-decoration:underline">जमा</p>
-        <div class="row">
-            <!-- <div class="col-3" style="padding: 10px;border-bottom-left-radius: 45px 40px;border-bottom-style: solid;border-bottom-color: black;"> -->
-           <!-- <?php if(!empty($naam)){?> -->
+        <!-- <div class="row">
+        
+    </div> -->
            <?php  $sums = 0; foreach($naam as $key=>$val){?>
-            <div class="col-3" >
+    <div class="grid-container">
+
+    <div class="grid-child purple">
                 <?php $sums += $val->karch_amount; echo $val->karch_amount;?>
-            </div>
-            <!-- <div class="col-9" style="padding: 10px;border-top-style: solid;border-top-color: black;"> -->
-            <div class="col-9" >
-                <?php echo $val->account_name;?>
-        </div>
-        <?php }?>
-        <!-- <?php }?> -->
-        
-        
     </div>
+
+    <div class="grid-child green">
+                <?php echo $val->account_name;?>
+    </div>
+  
+    </div>
+        <?php }?>
+<style>
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+</style>
     <div style="text-align:left; margin-left:20px">
    <hr style="border: 1px solid black">
-    <?php echo @$sums; ?>
+   <span class="margin-left-short"> <?php echo @$sums; ?> </span>
     <hr style="border: 1px solid black">
     </div>
     </div>
-    <div class="col-sm-9 col-md-6 col-lg-6 text-center" >
+    <div class="col-6" style="width:50%">
       <p class="text-center" style="font-weight:900; font-size:20px; text-decoration:underline">नाम</p>
-      <div class="row" style="margin:8px">
-      <!-- <?php if(!empty($jama)){?> -->
       <?php $sum = 0; foreach($jama as $key=>$val){?>
-            <div class="col-3" >
-                <?php $sum += $val->karch_amount; echo $val->karch_amount;?>
-            </div>
-            <!-- <div class="col-9" style="padding: 10px;border-top-style: solid;border-top-color: black;"> -->
-            <div class="col-9" >
-                <?php echo $val->account_name;?>
-        </div>
+        <div class="grid-container">
+
+<div class="grid-child purple">
+            <?php $sum += $val->karch_amount; echo $val->karch_amount;?>
+</div>
+
+<div class="grid-child green">
+            <?php echo $val->account_name;?>
+</div>
+
+</div>
+
+<style>
+.margin-left-short{
+    margin-left: 40px;
+    font-weight: bolder;
+}
+</style>
+
+     
         <?php }?>
-        <!-- <?php }?> -->
-    </div>
    <div style="text-align:left; margin-left:20px">
    <hr style="border: 1px solid black">
-    <?php echo @$sum; ?>
+   <span class="margin-left-short"> <?php echo @$sum; ?> </span>
     <hr style="border: 1px solid black">
     </div>
     </div>
@@ -114,7 +128,7 @@
    newWin= window.open("");
    newWin.document.write(divToPrint.outerHTML);
    newWin.print();
-   newWin.close();
+  // newWin.close();
 }
    
 
