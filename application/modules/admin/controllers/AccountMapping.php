@@ -112,6 +112,45 @@ class AccountMapping extends CI_Controller {
         $this->load->view('layout', $data);
 	}
 
+	public function add_Kisan_Vahi(){
+		//pr($_POST);
+		// die;
+
+		
+		if(isPostBack()){
+			$this->form_validation->set_rules('center_type', 'Center Type', 'trim|required');
+            $this->form_validation->set_rules('purchase_id', 'Purchase ID', 'trim|required');
+            $this->form_validation->set_rules('farmer_id', 'Farmer ID', 'trim|required');
+            $this->form_validation->set_rules('farmer_name', 'Farmer Name', 'trim|required');
+            $this->form_validation->set_rules('quantity', 'Quantity', 'trim|required');
+            $this->form_validation->set_rules('amount', 'Amount', 'trim|required');
+            $this->form_validation->set_rules('purchase_date', 'Purchase Date', 'trim');
+            $this->form_validation->set_rules('pfms_status', 'PFMS Status', 'trim|required');
+			$this->form_validation->set_rules('bank_account_no', 'Account Number', 'trim');
+			$this->form_validation->set_rules('ack_status', 'ACK Status', 'trim');
+			$this->form_validation->set_rules('payment_status', 'Payment Status', 'trim');
+			$this->form_validation->set_rules('payment_date', 'Payment Date', 'trim');
+			$this->form_validation->set_rules('utr_no', 'Payment UTR No.', 'trim');
+			$this->form_validation->set_rules('account_name', 'Account Name', 'trim|required');
+			if ($this->form_validation->run() == false) {
+				set_flashdata("error", "Invalid Data.");
+            } else {
+				
+				$result = $this->AccountMapping_mod->add_Kisan_Vahi();
+			//	$results = $this->AccountMapping_mod->count_account_mapping();
+				//pr($results);  die;
+				if($result){
+					set_flashdata("success", "Kisaan Vahi Added successfully.Last ID is ".$_POST['farmer_id']." (Total Count ".$results." )");
+					redirect('/admin/accountMapping/add_Kisan_Vahi');
+				}
+				
+			}
+		}
+		$data['page'] = 'campaign/add_Kisan_Vahi';
+        $data['title'] = "Track (The Rest Accounting Key) || Add";
+        $this->load->view('layout', $data);
+	}
+
 	public function add(){
         if (isPostBack()) {
             

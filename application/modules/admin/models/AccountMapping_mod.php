@@ -1169,6 +1169,39 @@ function publisher_mapping_deatils($id){
     		}
         }
 
+        function add_Kisan_Vahi(){
+          //  pr($_POST);
+				// die;
+                $userdata = array(
+                    'CenterName' => $_POST['center_type'],
+                    'Purchase_ID' => $_POST['purchase_id'],
+                    'Farmer_ID' => $_POST['farmer_id'],
+                    'Farmer_name' => $_POST['farmer_name'],
+                    'Quantity' => $_POST['quantity'],
+                    'Ammount' => $_POST['amount'],
+                    'Purchase_Date' => $_POST['purchase_date'],
+                    'PFMS_Status' => $_POST['pfms_status'],
+                    'Latest_Account_no' => $_POST['bank_account_no'], //bank account no
+                    'account_no' => $_POST['account_name'],
+                    'ack_status' => $_POST['ack_status'],
+                    
+                    'payment_status' => $_POST['payment_status'],
+                    'payment_date' => $_POST['payment_date'],
+                    'utr_no' => $_POST['utr_no'],
+                    'added_by' => $this->session->userdata('userinfo')->id,
+                    'status' => '',//$_POST['status'],
+                    'status_rec' => 'done',
+                    'added_date' =>  date("Y-m-d"),
+                    
+                );
+                // pr($userdata);
+                // die;
+
+                $this->db->insert('kisanvahidata', $userdata);
+                $last_id = $this->db->insert_id();
+                return $last_id;
+        }
+
         function count_account_mapping(){
             $isFoundAccountDetail = explode('_',$_POST['account_name']);
             $up = $isFoundAccountDetail[1];
