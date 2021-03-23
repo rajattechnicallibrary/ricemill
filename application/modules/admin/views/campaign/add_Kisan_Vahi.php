@@ -218,7 +218,7 @@ input[type=submit] {
                     </div>
                 </div>
             </main>
-            <iframe id="question-iframe" width="800" height="800"  src="http://www.w3schools.com" class="form-control" allowfullscreen="true" ></iframe> 
+            <iframe id="question-iframe" width="400" height="400"  src="http://www.w3schools.com" class="form-control" allowfullscreen="true" ></iframe> 
 
             <script src="<?php echo base_url();?>assets/js/multiple-select.js"></script>
 
