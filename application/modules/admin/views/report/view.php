@@ -27,7 +27,7 @@
                                                 <td><?php echo $user->name;?></td>
                                                 <td><?php echo round($user->expenses,2) ;?></td>
                                                 <td><?php echo round($user->deposit,2);?></td>
-                                                <td><?php echo abs($user->finalamt);?></td>
+                                                <td><?php echo round($user->finalamt,2);?></td>
                                                
                                             </tr>
                                        <?php }; ?>

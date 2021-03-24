@@ -1,6 +1,7 @@
-                                               <iframe id="question-iframe" width="400" height="400"  src="http://www.w3schools.com"  allowfullscreen="true" ></iframe> 
 
-<link rel="stylesheet" href="<?php echo base_url();?>assets/css/multiple-select.css" />
+                                               <iframe id="question-iframe" width="400" height="400"  src="http://www.w3schools.com"  allowfullscreen="true" ></iframe> 
+<link rel="stylesheet" href="<?php echo base_ur+
+l();?>assets/css/multiple-select.css" />
 <style>
 * {
   box-sizing: border-box;
