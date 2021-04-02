@@ -61,7 +61,7 @@ class Auth extends CI_Controller {
         public function login(){
           //  pr(phpinfo()); 
           //  die;
-            $this->cron_job();
+           // $this->cron_job();
             if(isPostBack()) 
             {
             

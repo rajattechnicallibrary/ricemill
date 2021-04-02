@@ -77,6 +77,7 @@ class Auth_mod extends CI_Model {
                     return $data;
 
                 }else{
+                   
                     //------update last login date time------
                     $login_time = date("Y-m-d h:i:s");
                     $up['last_login'] = $login_time;
