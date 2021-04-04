@@ -62,35 +62,26 @@ if(!empty($_SESSION['user_type'])){
 		<li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'accountMapping'&& $uri3 == 'add_Kisan_Vahi'){echo 'btn_active';} ?>" href="<?= base_url('admin/accountMapping/add_Kisan_Vahi')?>">ऐड किसान वही</a></li>
 		</ul>
 	</li>
-	
-	</ul>
-	
-	
-	
-</ul>
-<?php
-	}
-}
-?>
-<?php
 
-if(!empty($_SESSION['user_type'])){
-	if($_SESSION['user_type'] == 4){
-		
-?>
-<ul class="sidebar-menu scrollable pos-r">
-	
-	
-	
-	<li class="nav-item dropdown  <?php if($uri1 == 'advertiser' && $uri2 == 'campaign'){echo 'open';} ?>">
-		<a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">Manage Campaigns</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
+	<li class="nav-item dropdown  <?php if($uri1 == 'admin' && $uri2 == 'setting'){echo 'open';} ?>">
+		<a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">सेटिंग</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
 		<ul class="dropdown-menu">
-		<li><a class="sidebar-link <?php if($uri1 == 'advertiser' && $uri2 == 'campaign'&& $uri3 == 'add'){echo 'btn_active';} ?>" href="<?= base_url('advertiser/campaign/add')?>">Add Campaign</a></li>
-		<li><a class="sidebar-link <?php if($uri1 == 'advertiser' && $uri2 == 'campaign'&& $uri3 == ''){echo 'btn_active';} ?>" href="<?= base_url('advertiser/campaign')?>">List Campaign</a></li>
+		<li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'setting'&& $uri3 == 'change_fy'){echo 'btn_active';} ?>" href="<?= base_url('admin/setting/change_fy')?>">वित्तीय वर्ष बदलें</a></li>
 		</ul>
 	</li>
 	
+	</ul>
+
+	
+
+	
+	
+	
+	
 </ul>
+
+
+
 <?php
 	}
 }

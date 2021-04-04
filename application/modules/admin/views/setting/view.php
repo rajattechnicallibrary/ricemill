@@ -76,8 +76,11 @@ input[type=submit] {
                             
                                 <div class="bgc-white p-20 bd">
                                 <?= get_flashdata() ?>	
-                                    <h6 class="c-grey-900">Add Form</h6>
-                                    
+                                    <h6 class="c-grey-900">Financial Year</h6>
+                                    <div class='text-center col-md-6'>
+                                        <span class="pull-left">Hello</span>
+                                        <span class="pull-right">Hello</span>
+                                    </div>
                                     <div class="mT-30">
                                       <?php echo form_open_multipart('', array('class' => '', 'id' => 'teamForm')); ?>
 
@@ -85,8 +88,8 @@ input[type=submit] {
 											<div class="form-row">
                         
                                             <div class="form-group col-md-2">
-                                               <label for="inputState2">Center Type *</label>
-                                               <select id="center_type" class="form-control" name="center_type">
+                                               <label for="inputState2">Template ID *</label>
+                                               <select id="center_type" class="form-control" name="rokad_type">
                                                       <option value="" selected >Select Center</option>
                                                       <option value="1" >शाहाबाद मंडी प्रथम</option>
                                                        <option value="2" >शाहाबाद मंडी द्विती</option>
@@ -96,97 +99,48 @@ input[type=submit] {
                                                        <option value="upss" >यूपीएसएस ( UPSS )</option>
                                                        <option value="todarpur_hardoi" >हरदोई टोडरपुर</option>
                                                   </select>                                         
-                                           <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('center_type'); ?></div></label>
+                                           <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('rokad_type'); ?></div></label>
                                            </div> 
 
                                             <div class="form-group col-md-2">
-                                               <label for="inputState2">Purchase ID *</label>
-                                               <?php  
-                                               $name = @$result->name;
-                                               $postvalue = @$_POST['purchase_id'];
-                                               echo form_input(array('autofocus'=>'autofocus','autocomplete'=>'off','name' => 'purchase_id','maxlength'=>'100', 'class' => 'form-control',  'placeholder' => 'Purchase ID', 'value' => !empty($postvalue) ? $postvalue : $name ));
-                                            ?>
-                                              <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('purchase_id'); ?></div></label>
-                                                  
-                                                                                         
-                                           </div> 
-                                           <div class="form-group col-md-2">
                                                <label for="inputState2">Farmer ID *</label>
                                                <?php  
                                                $name = @$result->name;
                                                $postvalue = @$_POST['farmer_id'];
-                                               echo form_input(array('autofocus'=>'autofocus','autocomplete'=>'off','name' => 'farmer_id','maxlength'=>'100', 'class' => 'form-control',  'placeholder' => 'Farmer ID', 'value' => !empty($postvalue) ? $postvalue : $name ));
+//                                                    $val = !empty($postvalue)? $postvalue:$name;
+                                               echo form_input(array('autofocus'=>'autofocus','autocomplete'=>'off','name' => 'farmer_id','maxlength'=>'100','id'=>'myInput', 'class' => 'form-control',  'placeholder' => 'Farmer Id', 'value' => !empty($postvalue) ? $postvalue : $name ));
                                             ?>
                                               <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('farmer_id'); ?></div></label>
-                                                  
                                                                                          
                                            </div> 
+                                           <div class="form-group col-md-2" style="margin-top:2%" onclick="getkisanData()">  <button type="button" class="btn btn-primary"> Submit </button></div>
                                            <div class="form-group col-md-6">
                                                     <label for="inputEmail4">Farmer Name*</label>
-                                                    <input type="text" name="farmer_name" value="<?php echo set_value('farmer_name') ?>" class="form-control"  placeholder="Farmer Name">
+                                                    <input type="text" name="farmer_name" readonly value="<?php echo set_value('farmer_name') ?>" class="form-control" id="farmer_name" placeholder="Farmer Name">
                                                     <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('farmer_name'); ?></div></label>
 
                                                 </div>
                                             </div>
 											<div class="form-row">
                                                 
-                                            <div class="form-group col-md-2">
+                                            <div class="form-group col-md-6">
+                                                    <label for="inputEmail4">Center Name*</label>
+                                                    <input type="text" name="CenterName" readonly value="<?php echo set_value('CenterName') ?>" class="form-control" id="CenterName" placeholder="CenterName">
+                                                    <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('CenterName'); ?></div></label>
+
+                                                </div>
+                                                <div class="form-group col-md-6">
                                                     <label for="inputEmail4">Quantity*</label>
-                                                    <input type="text" name="quantity"  value="<?php echo set_value('quantity') ?>" class="form-control"  placeholder="Quantity">
+                                                    <input type="text" name="quantity" readonly value="<?php echo set_value('quantity') ?>" class="form-control" id="quantity" placeholder="Quantity">
                                                     <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('quantity'); ?></div></label>
-
-                                                </div>
-                                                <div class="form-group col-md-2">
-                                                    <label for="inputEmail4">Amount*</label>
-                                                    <input type="text" name="amount"  value="<?php echo set_value('amount') ?>" class="form-control"  placeholder="Amount">
-                                                    <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('amount'); ?></div></label>
-
-                                                </div>
-                                                <div class="form-group col-md-2">
-                                                    <label for="inputEmail4">Purchase Date*</label>
-                                                    <input type="text" name="purchase_date"  value="<?php echo set_value('purchase_date') ?>" class="form-control"  placeholder="Purchase Date">
-                                                    <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('purchase_date'); ?></div></label>
-
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="inputEmail4">PFMS Status*</label>
-                                                    <input type="text" name="pfms_status"  value="<?php echo set_value('pfms_status') ?>" class="form-control" placeholder="PFMS Status">
-                                                    <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('pfms_status'); ?></div></label>
-
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                
-                                            <div class="form-group col-md-2">
-                                                    <label for="inputEmail4">Bank Account No*</label>
-                                                    <input type="text" name="bank_account_no"  value="<?php echo set_value('bank_account_no') ?>" class="form-control"  placeholder="Account No">
-                                                    <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('bank_account_no'); ?></div></label>
-
-                                                </div>
-                                                <div class="form-group col-md-2">
-                                                    <label for="inputEmail4">Ack Status*</label>
-                                                    <input type="text" name="ack_status"  value="<?php echo set_value('ack_status') ?>" class="form-control"  placeholder="Ack Status">
-                                                    <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('ack_status'); ?></div></label>
-
-                                                </div>
-                                                <div class="form-group col-md-2">
-                                                    <label for="inputEmail4">Payment Status*</label>
-                                                    <input type="text" name="payment_status"  value="<?php echo set_value('payment_status') ?>" class="form-control" placeholder="Payment Status">
-                                                    <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('payment_status'); ?></div></label>
-
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="inputEmail4">Payment Date*</label>
-                                                    <input class="datepicker1" type="text" name="payment_date"  value="<?php echo set_value('payment_date') ?>" class="form-control"  placeholder="Payment Date">
-                                                    <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('payment_date'); ?></div></label>
 
                                                 </div>
                                             </div>
 											<div class="form-row">
                                                 <div class="form-group col-md-6">
-                                                    <label for="inputEmail4">UTR No *</label>
-                                                    <input type="text"  name="utr_no" value="<?php echo set_value('utr_no') ?>" class="form-control"  placeholder="UTR No">
-                                                    <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('utr_no'); ?></div></label>
+                                                    <label for="inputEmail4">Amount *</label>
+                                                    <input type="text" readonly name="amount" value="<?php echo set_value('amount') ?>" class="form-control" id="amount" placeholder="Amount">
+                                                    <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('amount'); ?></div></label>
 
                                                 </div>
                                                 <div class="form-group col-md-6">
@@ -212,32 +166,11 @@ input[type=submit] {
                                         </form>
                                     </div>
                                 </div>
-                                                   <button type="button" class="btn btn-primary" id='myFunction'> Sync Now </button>
-                               <div style="text-align:center;height:100px; width:auto">
-                                      <iframe id="framemyval" style="height:1000%; width:100%" src="https://eproc.up.gov.in/wheat2122/Uparjan/FarmerReg.aspx?id=Mw==&id1=NQ==" frameborder="0"></iframe>
-                               
-                               </div>  
                             </div>
                         </div>
                     </div>
                 </div>
             </main>
-            <script>
-           
-// $(document).ready(function(){
-   
-   $('#myFunction').click(()=>{
-
-  //  var abc =  window.frames['framemyval'].contentWindow.document.getElementById('ctl00_ContentPlaceHolder1_txtMob')
-  //   console.log(abc)
-   var abc =  window.frames['framemyval']
-  abc =  document.getElementById("framemyval").contentWindow.document.getElementById('ctl00_ContentPlaceHolder1_txtMob');
-    console.log(abc)
-
-    })
-
-            </script>
-
             <script src="<?php echo base_url();?>assets/js/multiple-select.js"></script>
 
             <script>
@@ -480,13 +413,13 @@ function MappingIDautocomplete(inp, arr) {
 //var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-//autocomplete(document.getElementById("myInput"));
+autocomplete(document.getElementById("myInput"));
 MappingIDautocomplete(document.getElementById("mymappingInp"));
 
 
     $( function() {
    // alert(new Date());
-    $( "#datepicker .datepicker1" ).datepicker({ 
+    $( "#datepicker" ).datepicker({ 
         
         dateFormat: "dd-mm-yy",
         "setDate": '01-11-2020'     
@@ -544,9 +477,6 @@ if($('#center_type').val() == ''){
 
 }
   
-
-//var result = $.getScript("https://eproc.up.gov.in/wheat2122/Uparjan/FarmerReg.aspx?id=NA==");
-
 
 </script>
 

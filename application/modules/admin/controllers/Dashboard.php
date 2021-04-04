@@ -46,6 +46,16 @@ class Dashboard extends MY_Controller {
 
     public function index() {
 	
+        // $api_url = 'https://eproc.up.gov.in/wheat2122/Uparjan/Nominee_Update.aspx';
+    //     $api_url = urlencode($api_url);
+    //     $api_url = file_get_contents($api_url);
+    //    // $api_url = var_dump($api_url);
+        
+    //     pr($api_url); 
+    //   //  curl_close($curlSession);
+    //     die;
+
+
 
         $data['total_weight']   = $this->Auth_mod->RealTimeDataCount()['billing'];
         $data['FinalAmountPaddy']   = $this->Auth_mod->RealTimeDataCount()['FinalAmountPaddy'];
