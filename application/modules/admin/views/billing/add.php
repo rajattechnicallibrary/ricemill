@@ -73,6 +73,10 @@ input[type=submit] {
                             <div class="masonry-item col-md-12">
                                 <div class="bgc-white p-20 bd">
                                     <h6 class="c-grey-900">Add Billing Form</h6>
+                                    <select name="type_of_product" id="type_of_product">
+                                      <option value="40">Paddy</option>
+                                      <option value="60" selected>Wheat</option>
+                                    </select>
                                      <?=get_flashdata();
                                     // pr($result);
                                      ?>
@@ -366,7 +370,10 @@ $('#total_weight, #rate_val').keyup(()=>{
     var rate = $('#rate_val').val();
     var total_amount = total_weight * rate;
     $('#final_amount').val(total_amount);
-    var total_katti = ((total_weight * 100) / 40).toFixed(2)
+   // $('#final_amount').val(total_amount);
+  //  console.log($( "#type_of_product option:selected" ).val());
+
+    var total_katti = ((total_weight * 100) / $( "#type_of_product option:selected" ).val()).toFixed(2)
     $('#total_katti').val(total_katti);
     console.log(total_katti)
 })

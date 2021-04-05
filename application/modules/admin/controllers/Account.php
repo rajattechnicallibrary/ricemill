@@ -121,7 +121,10 @@ class Account extends CI_Controller {
 						'karch_amount' => $_POST['karch_amount'],
 						'added_by' => $this->session->userdata('userinfo')->id,
 						'status' => $_POST['status'],
-						'account_no' =>$lastid					
+						'account_no' =>$lastid,					
+						'FY' =>'2021-2022',	
+						'product_type' =>'2',					
+
 					);
 				}else{
 					$userdata = array(
@@ -134,7 +137,11 @@ class Account extends CI_Controller {
 						'karch_amount' => $_POST['karch_amount'],
 						'added_by' => $this->session->userdata('userinfo')->id,
 						'status' => $_POST['status'],
-						'account_no'=>$isFoundAccountDetail[1]				
+						'account_no'=>$isFoundAccountDetail[1],
+						'FY' =>'2021-2022',
+						'product_type' =>'2',					
+
+
 					);
 				}
 				$result = $this->Account_mod->add($userdata);
@@ -190,7 +197,9 @@ class Account extends CI_Controller {
 						'karch_amount' => $_POST['karch_amount'],
 						'added_by' => $this->session->userdata('userinfo')->id,
 						'status' => $_POST['status'],
-						'account_no' =>$lastid					
+						'account_no' =>$lastid,				
+						'FY' =>'2021-2022',	
+						'product_type' =>'2',						
 					);
 				}else{
 					$userdata = array(
@@ -204,9 +213,12 @@ class Account extends CI_Controller {
 						'karch_amount' => $_POST['karch_amount'],
 						'added_by' => $this->session->userdata('userinfo')->id,
 						'status' => $_POST['status'],
-						'account_no'=>$isFoundAccountDetail[1]				
+						'account_no'=>$isFoundAccountDetail[1],
+						'FY' =>'2021-2022',	
+						'product_type' =>'2',					
 					);
 				}
+				// pr($userdata); die;
 				$result = $this->Account_mod->add($userdata);
 				set_flashdata("success", "Expenditure added successfully.");
 				redirect('/admin/account/expenditure');     

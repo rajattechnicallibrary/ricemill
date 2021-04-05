@@ -1208,7 +1208,17 @@ function publisher_mapping_deatils($id){
 
 }
 
-
+function get_all_financial_year(){
+    $this->db->select("*");
+    $this->db->from("aa_template");
+    $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        }
+        else{
+            return false;
+        }
+}
 
   /**
      * check_preexistance

@@ -326,7 +326,8 @@ class Setting extends CI_Controller {
        
         $data['page'] = 'setting/view';
         $data['title'] = "Track (The Rest Accounting Key) || Billing View";
-	//	$data['users']= $this->Setting_mod->Billing_details($id);
+		$data['fy']= $this->Setting_mod->get_all_financial_year();
+		// pr($data); die;
 		$this->load->view('layout', $data);
 		
 		

@@ -87,34 +87,18 @@ input[type=submit] {
 
 											<div class="form-row">
                         
-                                            <div class="form-group col-md-2">
+                                            <div class="form-group col-md-6">
                                                <label for="inputState2">Template ID *</label>
-                                               <select id="center_type" class="form-control" name="rokad_type">
-                                                      <option value="" selected >Select Center</option>
-                                                      <option value="1" >शाहाबाद मंडी प्रथम</option>
-                                                       <option value="2" >शाहाबाद मंडी द्विती</option>
-                                                       <option value="3" >FCS जमुरा-टोडरपुर</option>
-                                                       <option value="pcf" >PCF शाहाबाद - शाहाबाद नगर पा. प.</option>
-                                                       <option value="reva" >रेवमुरादपुर</option>
-                                                       <option value="upss" >यूपीएसएस ( UPSS )</option>
-                                                       <option value="todarpur_hardoi" >हरदोई टोडरपुर</option>
+                                               <select id="template_fy" class="form-control" name="template_fy">
+                                                      <option value="" selected >Select Financial Year</option>
+                                                      <?php foreach($fy as $new) { ?>
+                                                        <option value="<?php echo $new->template_id; ?>" ><?php echo $new->template_name.' || '.$new->status; ?></option>
+                                                  <?php } ?>
                                                   </select>                                         
                                            <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('rokad_type'); ?></div></label>
                                            </div> 
 
-                                            <div class="form-group col-md-2">
-                                               <label for="inputState2">Farmer ID *</label>
-                                               <?php  
-                                               $name = @$result->name;
-                                               $postvalue = @$_POST['farmer_id'];
-//                                                    $val = !empty($postvalue)? $postvalue:$name;
-                                               echo form_input(array('autofocus'=>'autofocus','autocomplete'=>'off','name' => 'farmer_id','maxlength'=>'100','id'=>'myInput', 'class' => 'form-control',  'placeholder' => 'Farmer Id', 'value' => !empty($postvalue) ? $postvalue : $name ));
-                                            ?>
-                                              <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('farmer_id'); ?></div></label>
-                                                                                         
-                                           </div> 
-                                           <div class="form-group col-md-2" style="margin-top:2%" onclick="getkisanData()">  <button type="button" class="btn btn-primary"> Submit </button></div>
-                                           <div class="form-group col-md-6">
+                                            <div class="form-group col-md-6">
                                                     <label for="inputEmail4">Farmer Name*</label>
                                                     <input type="text" name="farmer_name" readonly value="<?php echo set_value('farmer_name') ?>" class="form-control" id="farmer_name" placeholder="Farmer Name">
                                                     <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('farmer_name'); ?></div></label>

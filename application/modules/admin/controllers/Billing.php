@@ -140,7 +140,10 @@ class Billing extends CI_Controller {
 						'added_by' => $this->session->userdata('userinfo')->id,
 						'status' => $_POST['status'],
 						'billing_type' =>  $_POST['payment_type'],
-						'purchaser_account_no' =>$lastid					
+						'purchaser_account_no' =>$lastid,					
+						'FY' =>'2021-2022',	
+						'product_type' =>'2',	
+											
 					);
 				}else{
 					$userdata = array(
@@ -156,7 +159,9 @@ class Billing extends CI_Controller {
 						'added_by' => $this->session->userdata('userinfo')->id,
 						'status' => $_POST['status'],
 						'billing_type' =>  $_POST['payment_type'],	
-						'purchaser_account_no'=>$isFoundAccountDetail[1]				
+						'purchaser_account_no'=>$isFoundAccountDetail[1],					
+						'FY' =>'2021-2022',	
+						'product_type' =>'2',					
 					);
 				}
 				$result = $this->Billing_mod->add($userdata);
