@@ -1172,6 +1172,8 @@ function publisher_mapping_deatils($id){
         function add_Kisan_Vahi(){
           //  pr($_POST);
 				// die;
+                $isFoundAccountDetail = explode('_',$_POST['account_name']);
+                $up = $isFoundAccountDetail[1];
                 $userdata = array(
                     'CenterName' => $_POST['center_type'],
                     'Purchase_ID' => $_POST['purchase_id'],
@@ -1182,13 +1184,13 @@ function publisher_mapping_deatils($id){
                     'Purchase_Date' => $_POST['purchase_date'],
                     'PFMS_Status' => $_POST['pfms_status'],
                     'Latest_Account_no' => $_POST['bank_account_no'], //bank account no
-                    'account_no' => $_POST['account_name'],
+                    'account_no' => $up,
                     'ack_status' => $_POST['ack_status'],
                     
                     'payment_status' => $_POST['payment_status'],
                     'payment_date' => $_POST['payment_date'],
                     'utr_no' => $_POST['utr_no'],
-                    'added_by' => $this->session->userdata('userinfo')->id,
+                   // 'added_by' => $this->session->userdata('userinfo')->id,
                     'status' => '',//$_POST['status'],
                     'status_rec' => 'done',
                     'added_date' =>  date("Y-m-d"),
