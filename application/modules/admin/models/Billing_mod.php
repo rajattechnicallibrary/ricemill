@@ -1054,7 +1054,8 @@ class Billing_mod extends CI_Model {
     }
     
     function add($data){
-     $this->db->insert('aa_billing', $data);
+      //  pr($data); die;
+     $this->db->insert('aa_rokad', $data);
         $last_id = $this->db->insert_id();
         return $last_id;			
     }

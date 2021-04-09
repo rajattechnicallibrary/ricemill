@@ -119,13 +119,13 @@ class AccountMapping extends CI_Controller {
 		
 		if(isPostBack()){
 			$this->form_validation->set_rules('center_type', 'Center Type', 'trim|required');
-            $this->form_validation->set_rules('purchase_id', 'Purchase ID', 'trim|required');
+            $this->form_validation->set_rules('purchase_id', 'Purchase ID', 'trim');
             $this->form_validation->set_rules('farmer_id', 'Farmer ID', 'trim|required');
             $this->form_validation->set_rules('farmer_name', 'Farmer Name', 'trim|required');
             $this->form_validation->set_rules('quantity', 'Quantity', 'trim|required');
-            $this->form_validation->set_rules('amount', 'Amount', 'trim|required');
+            $this->form_validation->set_rules('amount', 'Amount', 'trim');
             $this->form_validation->set_rules('purchase_date', 'Purchase Date', 'trim');
-            $this->form_validation->set_rules('pfms_status', 'PFMS Status', 'trim|required');
+            $this->form_validation->set_rules('pfms_status', 'PFMS Status', 'trim');
 			$this->form_validation->set_rules('bank_account_no', 'Account Number', 'trim');
 			$this->form_validation->set_rules('ack_status', 'ACK Status', 'trim');
 			$this->form_validation->set_rules('payment_status', 'Payment Status', 'trim');

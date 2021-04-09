@@ -101,6 +101,13 @@ if (!function_exists('validate_admin_login')) {
 
     function validate_admin_login() {
         $CI = &get_instance();		
+        $CI->db->select("*");
+        $CI->db->where('status', 'Active');
+        $query = $CI->db->get('aa_template');
+        if ($query->num_rows()) {
+            $res = $query->row();
+            $CI->session->set_userdata('fy', $res);
+        }
 		if ($CI->session->userdata('isLogin') == 'yes') { 
 					if($CI->session->userdata('user_type')==1){	
                    //     redirect('/admin/dashboard','refresh');	
@@ -150,6 +157,7 @@ if (!function_exists('_layout')) {
 
     function _layout($data = null) {
         $CI = &get_instance();
+        
         $CI->load->view('layout', $data);
     }
 
@@ -402,6 +410,14 @@ if (!function_exists('currentuserinfo')) {
     function currentuserinfo() {
         $CI = &get_instance();
         return $CI->session->userdata("userinfo");
+    }
+
+}
+if (!function_exists('fy')) {
+
+    function fy() {
+        $CI = &get_instance();
+        return $CI->session->userdata("fy");
     }
 
 }

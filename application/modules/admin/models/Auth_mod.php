@@ -204,25 +204,36 @@ class Auth_mod extends CI_Model {
            
 
             $this->db->select('SUM(total_weight) as FinalWeight');
+            $this->db->where('FY', fy()->FY);
+            $this->db->where('product_type', fy()->product_type);
             $this->db->from('aa_billing');
             $billing = $this->db->get();
             
             $this->db->select('SUM(final_amount) as FinalAmountPaddy');
+            $this->db->where('FY', fy()->FY);
+            $this->db->where('product_type', fy()->product_type);
             $this->db->from('aa_billing');
             $FinalAmountPaddy = $this->db->get();
             
             $this->db->select('SUM(total_katti) as TotalKatti');
+            $this->db->where('FY', fy()->FY);
+            $this->db->where('product_type', fy()->product_type);
             $this->db->from('aa_billing');
             $TotalKatti = $this->db->get();
 
             $this->db->select('MAX(final_amount) as maxpurchaser');
+            $this->db->where('FY', fy()->FY);
+            $this->db->where('product_type', fy()->product_type);
             $this->db->from('aa_billing');
             $maxpurchaser = $this->db->get();
 
             $TotalQuant = $this->db->query("SELECT ROUND(SUM(Quantity),2) AS totalQuant FROM kisanvahidata WHERE status_rec = 'done' GROUP by CenterName");
           //  $TotalQuant = $TotalQuant->result();
             
+        //   $TotalQuant = $this->db->query("SELECT ROUND(SUM(Quantity),2) AS totalQuant FROM kisanvahidata WHERE status_rec = 'done' AND FY = ". fy()->FY . " AND product_type = ". fy()->product_type . " GROUP by CenterName");
+
             $this->db->select('*');
+            
             $this->db->from('aa_rokad');
             $rokad = $this->db->get();
             

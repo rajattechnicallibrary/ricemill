@@ -77,8 +77,9 @@ class Account extends CI_Controller {
 		echo json_encode($this->Account_mod->account_name());
 		//echo $data;
 	}
-
+	
 	public function deposite(){
+	
 		// pr($_POST); die;
         if (isPostBack()) {
             
@@ -122,8 +123,8 @@ class Account extends CI_Controller {
 						'added_by' => $this->session->userdata('userinfo')->id,
 						'status' => $_POST['status'],
 						'account_no' =>$lastid,					
-						'FY' =>'2021-2022',	
-						'product_type' =>'2',					
+						'FY' =>fy()->FY,	
+						'product_type' =>fy()->product_type,					
 
 					);
 				}else{
@@ -138,8 +139,8 @@ class Account extends CI_Controller {
 						'added_by' => $this->session->userdata('userinfo')->id,
 						'status' => $_POST['status'],
 						'account_no'=>$isFoundAccountDetail[1],
-						'FY' =>'2021-2022',
-						'product_type' =>'2',					
+						'FY' =>fy()->FY,	
+						'product_type' =>fy()->product_type,					
 
 
 					);
@@ -198,8 +199,8 @@ class Account extends CI_Controller {
 						'added_by' => $this->session->userdata('userinfo')->id,
 						'status' => $_POST['status'],
 						'account_no' =>$lastid,				
-						'FY' =>'2021-2022',	
-						'product_type' =>'2',						
+						'FY' =>fy()->FY,	
+						'product_type' =>fy()->product_type,						
 					);
 				}else{
 					$userdata = array(
@@ -214,8 +215,8 @@ class Account extends CI_Controller {
 						'added_by' => $this->session->userdata('userinfo')->id,
 						'status' => $_POST['status'],
 						'account_no'=>$isFoundAccountDetail[1],
-						'FY' =>'2021-2022',	
-						'product_type' =>'2',					
+						'FY' =>fy()->FY,	
+						'product_type' =>fy()->product_type,					
 					);
 				}
 				// pr($userdata); die;

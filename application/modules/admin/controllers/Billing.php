@@ -141,8 +141,8 @@ class Billing extends CI_Controller {
 						'status' => $_POST['status'],
 						'billing_type' =>  $_POST['payment_type'],
 						'purchaser_account_no' =>$lastid,					
-						'FY' =>'2021-2022',	
-						'product_type' =>'2',	
+						'FY' =>fy()->FY,	
+						'product_type' =>fy()->product_type,	
 											
 					);
 				}else{
@@ -160,8 +160,8 @@ class Billing extends CI_Controller {
 						'status' => $_POST['status'],
 						'billing_type' =>  $_POST['payment_type'],	
 						'purchaser_account_no'=>$isFoundAccountDetail[1],					
-						'FY' =>'2021-2022',	
-						'product_type' =>'2',					
+						'FY' =>fy()->FY,	
+						'product_type' =>fy()->product_type,					
 					);
 				}
 				$result = $this->Billing_mod->add($userdata);

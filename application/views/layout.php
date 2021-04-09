@@ -67,8 +67,23 @@
                      <li><a id="sidebar-toggle" class="sidebar-toggle" href="javascript:void(0);"><i class="ti-menu"></i></a></li>
 
                   </ul>
+                 
                   <ul class="nav-right">
-
+                     <li class="dropdown">
+                     <a href="Javascript:void(0)" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1" data-toggle="dropdown">
+                           <div class="peer">
+                              <span style="font-size: 15px; color:blue">Financial Year</span>
+                              <span class="fsz-sm c-grey-900">
+                                 <?= "|| ".ucfirst(@fy()->FY)?>
+                              </span>
+                              <span class="fsz-sm c-grey-900" style="color:blue">
+                                 <?php if(@fy()->product_type == '1') { echo " || Paddy ||"; } ?>
+                                 <?php if(@fy()->product_type == '2') { echo "|| Wheat ||"; } ?>
+                              </span>
+                             
+                           </div>
+                        </a>
+                     </li>
                      <li class="dropdown">
                         <a href="#" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1" data-toggle="dropdown">
                            <div class="peer mR-10"><img class="w-2r bdrs-50p" src="assets/images/dp.jpg" alt=""></div>

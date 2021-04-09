@@ -1298,7 +1298,10 @@ function publisher_mapping_deatils($id){
 
     function fetchtheFinalAmountexpenses($id){
         $this->db->select('SUM(karch_amount) as expenses');
+        $this->db->where('FY', fy()->FY);
+        $this->db->where('product_type', fy()->product_type);
         $this->db->where('type_of_account', 'expenses');
+
         $this->db->where('account_no', $id);
        $querys = $this->db->get('aa_rokad');
     //    pr($querys->row()); 
@@ -1306,6 +1309,8 @@ function publisher_mapping_deatils($id){
        
        $this->db->select('SUM(Ammount) as expenses');
        //    $this->db->where('type_of_account', 'expenses');
+       $this->db->where('FY', fy()->FY);
+       $this->db->where('product_type', fy()->product_type);
        $this->db->where('account_no', $id);
        $query = $this->db->get('kisanvahidata');
        
@@ -1373,6 +1378,8 @@ function publisher_mapping_deatils($id){
     function fetchtheFinalAmountdeposit($id){
         $this->db->select('SUM(karch_amount) as deposit');
         $this->db->where('type_of_account', 'deposit');
+        $this->db->where('FY', fy()->FY);
+        $this->db->where('product_type', fy()->product_type);
         $this->db->where('account_no', $id);
         $query = $this->db->get('aa_rokad');
         return $query->row();
@@ -1381,6 +1388,8 @@ function publisher_mapping_deatils($id){
     function fetchsearchReportbykishanvahi($id){
         $this->db->select('count(*) as totalcount');
         $this->db->where('status_rec', 'done');
+        $this->db->where('FY', fy()->FY);
+        $this->db->where('product_type', fy()->product_type);
         $this->db->where('account_no', $id);
         $query = $this->db->get('kisanvahidata');
         return $query->row();

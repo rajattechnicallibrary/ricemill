@@ -76,75 +76,42 @@ input[type=submit] {
                             
                                 <div class="bgc-white p-20 bd">
                                 <?= get_flashdata() ?>	
-                                    <h6 class="c-grey-900">Financial Year</h6>
-                                    <div class='text-center col-md-6'>
-                                        <span class="pull-left">Hello</span>
-                                        <span class="pull-right">Hello</span>
-                                    </div>
+                                <div class="peer">
+                              <span style="font-size: 15px; color:blue">Financial Year</span>
+                              <span class="fsz-sm c-grey-900">
+                                 <?= "|| ".ucfirst(@fy()->FY)?>
+                              </span>
+                              <span class="fsz-sm c-grey-900" style="color:blue">
+                                 <?php if(@fy()->product_type == '1') { echo " || Paddy ||"; } ?>
+                                 <?php if(@fy()->product_type == '2') { echo "|| Wheat ||"; } ?>
+                              </span>
+                             
+                           </div>
                                     <div class="mT-30">
                                       <?php echo form_open_multipart('', array('class' => '', 'id' => 'teamForm')); ?>
 
 
 											<div class="form-row">
                         
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-12">
                                                <label for="inputState2">Template ID *</label>
-                                               <select id="template_fy" class="form-control" name="template_fy">
+                                               <select id="template_fy" class="form-control" name="template_fy" required  >
                                                       <option value="" selected >Select Financial Year</option>
                                                       <?php foreach($fy as $new) { ?>
-                                                        <option value="<?php echo $new->template_id; ?>" ><?php echo $new->template_name.' || '.$new->status; ?></option>
+                                                        <option <?php if($new->status == 'Active'){ echo "selected"; }?> value="<?php echo $new->template_id; ?>" ><?php echo $new->template_name.' || '.$new->status; ?></option>
                                                   <?php } ?>
                                                   </select>                                         
                                            <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('rokad_type'); ?></div></label>
                                            </div> 
 
-                                            <div class="form-group col-md-6">
-                                                    <label for="inputEmail4">Farmer Name*</label>
-                                                    <input type="text" name="farmer_name" readonly value="<?php echo set_value('farmer_name') ?>" class="form-control" id="farmer_name" placeholder="Farmer Name">
-                                                    <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('farmer_name'); ?></div></label>
-
-                                                </div>
-                                            </div>
-											<div class="form-row">
-                                                
-                                            <div class="form-group col-md-6">
-                                                    <label for="inputEmail4">Center Name*</label>
-                                                    <input type="text" name="CenterName" readonly value="<?php echo set_value('CenterName') ?>" class="form-control" id="CenterName" placeholder="CenterName">
-                                                    <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('CenterName'); ?></div></label>
-
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="inputEmail4">Quantity*</label>
-                                                    <input type="text" name="quantity" readonly value="<?php echo set_value('quantity') ?>" class="form-control" id="quantity" placeholder="Quantity">
-                                                    <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('quantity'); ?></div></label>
-
-                                                </div>
-                                            </div>
-											<div class="form-row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="inputEmail4">Amount *</label>
-                                                    <input type="text" readonly name="amount" value="<?php echo set_value('amount') ?>" class="form-control" id="amount" placeholder="Amount">
-                                                    <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('amount'); ?></div></label>
-
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                               <label for="inputState2">Account Name *</label>
-                                               <?php  
-                                               $name = @$result->name;
-                                               $postvalue = @$_POST['account_name'];
-//                                                    $val = !empty($postvalue)? $postvalue:$name;
-                                               echo form_input(array('autocomplete'=>'off','name' => 'account_name','maxlength'=>'100','id'=>'mymappingInp', 'class' => 'form-control',  'placeholder' => 'Account Name', 'value' => !empty($postvalue) ? $postvalue : $name ));
-                                            ?>
-                                              <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('account_name'); ?></div></label>
-                                                                                         
-                                           </div> 
+								
 										
 										
 
 											
                                            <div class="peer" style="text-align:center"> 
                                                    <button type="submit" class="btn btn-primary"> Submit </button>
-                                                   <a href="<?php echo base_url('admin/campaign');?>"><button type="button" class="btn btn-primary"> Cancel </button></a>
+                                                   <a href="<?php echo base_url('admin/dashboard');?>"><button type="button" class="btn btn-primary"> Cancel </button></a>
 
                                                    </div>
                                         </form>

@@ -1267,6 +1267,16 @@ function get_all_financial_year(){
         return $query;
     }
     
+    function add_fy($data){
+        
+      //  $this->db->where('template_id',$data['template_id']);
+        $this->db->update('aa_template',array('status'=>'Inactive'));
+
+        $this->db->where('template_id',$data['template_id']);
+        $this->db->update('aa_template',$data);
+        $last_id = $this->db->affected_rows();
+           return $last_id;			
+       }
 
 
 }
