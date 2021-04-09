@@ -1211,6 +1211,8 @@ function publisher_mapping_deatils($id){
             $up = $isFoundAccountDetail[1];
             $this->db->select("*");
             $this->db->where('account_no', $up);
+            $this->db->where('FY', fy()->FY);
+            $this->db->where('product_type', fy()->product_type);
             $this->db->from("kisanvahidata");
             $query = $this->db->get();
             //pr($query->num_rows()); die;

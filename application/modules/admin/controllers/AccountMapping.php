@@ -137,7 +137,7 @@ class AccountMapping extends CI_Controller {
             } else {
 				
 				$result = $this->AccountMapping_mod->add_Kisan_Vahi();
-			//	$results = $this->AccountMapping_mod->count_account_mapping();
+				$results = $this->AccountMapping_mod->count_account_mapping();
 				//pr($results);  die;
 				if($result){
 					set_flashdata("success", "Kisaan Vahi Added successfully.Last ID is ".$_POST['farmer_id']." (Total Count ".$results." )");

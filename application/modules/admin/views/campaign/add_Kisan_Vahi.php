@@ -77,7 +77,21 @@ input[type=submit] {
                                 <div class="bgc-white p-20 bd">
                                 <?= get_flashdata() ?>	
                                     <h6 class="c-grey-900">Add Form</h6>
-                                    
+                                    <div class="form-row">
+                                    <div class="form-group col-md-2">
+                                               <?php  
+                                               $name = @$result->name;
+                                               $postvalue = @$_POST['purchase_id'];
+                                               echo form_input(array('autofocus'=>'autofocus','autocomplete'=>'off','name' => 'purchase_id','maxlength'=>'100', 'class' => 'form-control',  'placeholder' => 'Purchase ID', 'value' => !empty($postvalue) ? $postvalue : $name ));
+                                            ?>
+                                              <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('purchase_id'); ?></div></label>
+                                                  
+                                                                                         
+                                           </div>
+                                           <div class="form-group col-md-2">
+                                           <button type="button" class="btn btn-primary"> Fetch </button>                                         
+                                           </div>
+                                    </div>
                                     <div class="mT-30">
                                       <?php echo form_open_multipart('', array('class' => '', 'id' => 'teamForm')); ?>
 
