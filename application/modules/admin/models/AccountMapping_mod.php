@@ -1192,6 +1192,8 @@ function publisher_mapping_deatils($id){
                     'status' => '',//$_POST['status'],
                     'status_rec' => 'done',
                     'added_date' =>  date("Y-m-d"),
+                    'FY' =>fy()->FY,	
+					'product_type' =>fy()->product_type,
                     
                 );
                 // pr($userdata);
