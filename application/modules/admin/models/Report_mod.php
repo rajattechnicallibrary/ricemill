@@ -1398,6 +1398,8 @@ function publisher_mapping_deatils($id){
         $this->db->select('*');
         $this->db->where('status_rec', 'done');
         $this->db->where('account_no', $id);
+        $this->db->where('FY', fy()->FY);
+        $this->db->where('product_type', fy()->product_type);
         $query = $this->db->get('kisanvahidata');
         return $query->result();
     }
