@@ -1170,39 +1170,62 @@ function publisher_mapping_deatils($id){
         }
 
         function add_Kisan_Vahi(){
-          //  pr($_POST);
-				// die;
+        //    pr($_POST);
+		// 		die;
                 $isFoundAccountDetail = explode('_',$_POST['account_name']);
                 $up = $isFoundAccountDetail[1];
-                $userdata = array(
-                    'CenterName' => $_POST['center_type'],
-                    'Purchase_ID' => $_POST['purchase_id'],
-                    'Farmer_ID' => $_POST['farmer_id'],
-                    'Farmer_name' => $_POST['farmer_name'],
-                    'Quantity' => $_POST['quantity'],
-                    'Ammount' => $_POST['amount'],
-                    'Purchase_Date' => $_POST['purchase_date'],
-                    'PFMS_Status' => $_POST['pfms_status'],
-                    'Latest_Account_no' => $_POST['bank_account_no'], //bank account no
-                    'account_no' => $up,
-                    'ack_status' => $_POST['ack_status'],
-                    
-                    'payment_status' => $_POST['payment_status'],
-                    'payment_date' => $_POST['payment_date'],
-                    'utr_no' => $_POST['utr_no'],
-                   // 'added_by' => $this->session->userdata('userinfo')->id,
-                    'status' => '',//$_POST['status'],
-                    'status_rec' => 'done',
-                    'added_date' =>  date("Y-m-d"),
-                    'FY' =>fy()->FY,	
-					'product_type' =>fy()->product_type,
-                    
-                );
-                // pr($userdata);
-                // die;
-
-                $this->db->insert('kisanvahidata', $userdata);
-                $last_id = $this->db->insert_id();
+                if(empty($_POST['checknow'])){
+                    $userdata = array(
+                        'CenterName' => $_POST['center_type'],
+                        'Purchase_ID' => $_POST['purchase_id'],
+                        'Farmer_ID' => $_POST['farmer_id'],
+                        'Farmer_name' => $_POST['farmer_name'],
+                        'Quantity' => $_POST['quantity'],
+                        'Ammount' => $_POST['amount'],
+                        'Purchase_Date' => $_POST['purchase_date'],
+                        'PFMS_Status' => $_POST['pfms_status'],
+                        'Latest_Account_no' => $_POST['bank_account_no'], //bank account no
+                        'account_no' => $up,
+                        'ack_status' => $_POST['ack_status'],
+                        'payment_status' => $_POST['payment_status'],
+                        'payment_date' => $_POST['payment_date'],
+                        'utr_no' => $_POST['utr_no'],
+                        'status' => '',//$_POST['status'],
+                        'status_rec' => 'done',
+                        'added_date' =>  date("Y-m-d"),
+                        'FY' =>fy()->FY,	
+                        'product_type' =>fy()->product_type,
+                        
+                    );
+                    $this->db->insert('kisanvahidata', $userdata);
+                    $last_id = $this->db->insert_id();
+                }else{
+                    $userdata = array(
+                        'CenterName' => $_POST['center_type'],
+                        'Purchase_ID' => $_POST['purchase_id'],
+                        'Farmer_ID' => $_POST['farmer_id'],
+                        'Farmer_name' => $_POST['farmer_name'],
+                        'Quantity' => $_POST['quantity'],
+                        'Ammount' => $_POST['amount'],
+                        'Purchase_Date' => $_POST['purchase_date'],
+                        'PFMS_Status' => $_POST['pfms_status'],
+                        'Latest_Account_no' => $_POST['bank_account_no'], //bank account no
+                        'account_no' => $up,
+                        'ack_status' => $_POST['ack_status'],
+                        'payment_status' => $_POST['payment_status'],
+                        'payment_date' => $_POST['payment_date'],
+                        'utr_no' => $_POST['utr_no'],
+                        'status' => '',//$_POST['status'],
+                        'status_rec' => 'done',
+                        'added_date' =>  date("Y-m-d"),
+                        'FY' =>fy()->FY,	
+                        'product_type' =>fy()->product_type,
+                    );
+                    $this->db->update('kisanvahidata', $userdata, array('Kisan_ID'=>$_POST['checknow']));
+                    $last_id = $this->db->affected_rows();
+                }
+                
+               
                 return $last_id;
         }
 
@@ -1223,6 +1246,29 @@ function publisher_mapping_deatils($id){
                     return 0;
                 }
            
+        }
+
+        function getall_farmer_id(){
+            $this->db->select("*, acn.name");
+            if(!empty($_POST['purchase_id'])){
+                $this->db->or_where_in('Purchase_ID', $_POST['purchase_id']);
+            }
+            if(!empty($_POST['farmer_id'])){
+                $this->db->or_where_in('Farmer_ID', $_POST['farmer_id']);
+            }
+            if(!empty($_POST['center_type'])){
+                $this->db->where('CenterName', $_POST['center_type']);
+            }
+            $this->db->join('aa_account_name acn','acn.account_id = kisanvahidata.account_no','left');
+            $this->db->where('FY', fy()->FY);
+            $this->db->where('product_type', fy()->product_type);
+            $this->db->from("kisanvahidata");
+            $query = $this->db->get();
+            if ($query->num_rows() > 0) {
+                return $query->row();
+            }else{
+                return 0;
+            }
         }
 
 }

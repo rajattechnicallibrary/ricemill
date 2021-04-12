@@ -79,6 +79,29 @@ input[type=submit] {
                                     <h6 class="c-grey-900">Add Form</h6>
                                     <div class="form-row">
                                     <div class="form-group col-md-2">
+                                              <select id="center_type" class="form-control" name="rokad_type">
+                                                      <option value="" selected >Select Center</option>
+                                                      <option value="1" >शाहाबाद मंडी प्रथम</option>
+                                                       <option value="2" >शाहाबाद मंडी द्विती</option>
+                                                       <option value="3" >FCS जमुरा-टोडरपुर</option>
+                                                       <option value="pcf" >PCF शाहाबाद - शाहाबाद नगर पा. प.</option>
+                                                       <option value="reva" >रेवमुरादपुर</option>
+                                                       <option value="upss" >यूपीएसएस ( UPSS )</option>
+                                                       <option value="todarpur_hardoi" >हरदोई टोडरपुर</option>
+                                                </select>                                         
+                                           <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('rokad_type'); ?></div></label>
+                                           </div> 
+                                    <div class="form-group col-md-2">
+                                               <?php  
+                                               $name = @$result->name;
+                                               $postvalue = @$_POST['farmer_id'];
+                                               echo form_input(array('autofocus'=>'autofocus','autocomplete'=>'off','name' => 'farmer_id','maxlength'=>'100', 'class' => 'form-control',  'placeholder' => 'Farmer ID', 'value' => !empty($postvalue) ? $postvalue : $name ));
+                                            ?>
+                                              <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('farmer_id'); ?></div></label>
+                                                  
+                                                                                         
+                                           </div>
+                                           <div class="form-group col-md-2">
                                                <?php  
                                                $name = @$result->name;
                                                $postvalue = @$_POST['purchase_id'];
@@ -89,7 +112,7 @@ input[type=submit] {
                                                                                          
                                            </div>
                                            <div class="form-group col-md-2">
-                                           <button type="button" class="btn btn-primary"> Fetch </button>                                         
+                                           <button type="button" id="fetch_button" class="btn btn-primary"> Fetch </button>                                         
                                            </div>
                                     </div>
                                     <div class="mT-30">
@@ -100,7 +123,7 @@ input[type=submit] {
                         
                                             <div class="form-group col-md-2">
                                                <label for="inputState2">Center Type *</label>
-                                               <select id="center_type" class="form-control" name="center_type">
+                                               <select id="center_type" class="form-control nill" name="center_type">
                                                       <option value="" selected >Select Center</option>
                                                       <option value="1" >शाहाबाद मंडी प्रथम</option>
                                                        <option value="2" >शाहाबाद मंडी द्विती</option>
@@ -216,6 +239,7 @@ input[type=submit] {
                                            </div> 
 										
 										
+                                           <input type="hidden"  name="checknow" value="" class="form-control"  placeholder="checknow">
 
 											
                                            <div class="peer" style="text-align:center"> 
@@ -238,6 +262,58 @@ input[type=submit] {
             </main>
             <script>
            
+           $('#fetch_button').click(()=>{
+            var farmer_id = $('input[name=farmer_id]').val()
+            var purchase_id = $('input[name=purchase_id]').val()
+            $.ajax({
+                  url: "<?php echo base_url(); ?>admin/accountMapping/getall_farmer_id",
+                  type: "POST",
+                  dataType: 'json',
+                  data:{'farmer_id':farmer_id, 'purchase_id':purchase_id},
+                  success: function (a) {
+                      arr = a
+                      console.log("--------",a)
+                      if(a != 0){
+
+                        $('.nill').val(a.CenterName)
+                      $('input[name=purchase_id]').val(a.Purchase_ID)
+                      $('input[name=farmer_id]').val(a.Farmer_ID)
+                      $('input[name=farmer_name]').val(a.Farmer_name)
+                      $('input[name=quantity]').val(a.Quantity)
+                      $('input[name=amount]').val(a.Ammount)
+                      $('input[name=purchase_date]').val(a.Purchase_Date)
+                      $('input[name=pfms_status]').val(a.PFMS_Status)
+                      $('input[name=bank_account_no]').val(a.Latest_Account_no)
+                      $('input[name=ack_status]').val(a.Ack_Status)
+                      $('input[name=payment_status]').val(a.Payment_Status)
+                      $('input[name=payment_date]').val(a.Payment_Date)
+                      $('input[name=utr_no]').val(a.UTR_No)
+                      $('input[name=account_name]').val(a.name + "_"+a.account_no)
+                      $('input[name=checknow]').val(a.Kisan_ID)
+                      }else{
+                        $('.nill').val('')
+                      $('input[name=purchase_id]').val('')
+                      $('input[name=farmer_id]').val('')
+                      $('input[name=farmer_name]').val('')
+                      $('input[name=quantity]').val('')
+                      $('input[name=amount]').val('')
+                      $('input[name=purchase_date]').val('')
+                      $('input[name=pfms_status]').val('')
+                      $('input[name=bank_account_no]').val('')
+                      $('input[name=ack_status]').val('')
+                      $('input[name=payment_status]').val('')
+                      $('input[name=payment_date]').val('')
+                      $('input[name=utr_no]').val('')
+                      $('input[name=account_name]').val('')
+                      $('input[name=checknow]').val('')
+                      }
+                      
+                  },
+                  error: function () {
+                      alert("Error");
+                  }
+              });
+                })
 // $(document).ready(function(){
    
    $('#myFunction').click(()=>{
@@ -514,12 +590,12 @@ if($('#center_type').val() == ''){
   return;
 }
   $.ajax({
-        url: "<?php echo base_url(); ?>admin/billing/account_kishanName",
+        url: "<?php echo base_url(); ?>admin/billing/getall_farmer_id",
         type: "POST",
         dataType: 'json',
         data:{'farmer_id':$('#myInput').val(), 'center_type':$('#center_type').val()},
         success: function (a) {
-         // console.log(a);
+         console.log(a);
           if(a == null){
             alert('This Farmer ID is Already Mapped with another account')
             $('#farmer_name').val('');

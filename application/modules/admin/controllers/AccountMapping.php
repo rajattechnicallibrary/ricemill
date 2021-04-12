@@ -113,10 +113,6 @@ class AccountMapping extends CI_Controller {
 	}
 
 	public function add_Kisan_Vahi(){
-		//pr($_POST);
-		// die;
-
-		
 		if(isPostBack()){
 			$this->form_validation->set_rules('center_type', 'Center Type', 'trim|required');
             $this->form_validation->set_rules('purchase_id', 'Purchase ID', 'trim');
@@ -533,7 +529,12 @@ class AccountMapping extends CI_Controller {
     }
 
 	
-	
+	function getall_farmer_id(){
+		//pr($_POST);
+
+		echo json_encode($this->AccountMapping_mod->getall_farmer_id());
+
+	}
 
 }
 
