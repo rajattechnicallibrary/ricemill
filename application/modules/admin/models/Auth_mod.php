@@ -227,7 +227,7 @@ class Auth_mod extends CI_Model {
             $this->db->from('aa_billing');
             $maxpurchaser = $this->db->get();
 
-            $TotalQuant = $this->db->query("SELECT ROUND(SUM(Quantity),2) AS totalQuant FROM kisanvahidata WHERE status_rec = 'done' GROUP by CenterName");
+            $TotalQuant = $this->db->query("SELECT ROUND(SUM(Quantity),2) AS totalQuant FROM kisanvahidata WHERE status_rec = 'done'  AND FY = ".fy()->FY." AND product_type = ". fy()->product_type ." GROUP by CenterName");
           //  $TotalQuant = $TotalQuant->result();
             
         //   $TotalQuant = $this->db->query("SELECT ROUND(SUM(Quantity),2) AS totalQuant FROM kisanvahidata WHERE status_rec = 'done' AND FY = ". fy()->FY . " AND product_type = ". fy()->product_type . " GROUP by CenterName");
