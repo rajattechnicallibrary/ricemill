@@ -113,7 +113,7 @@ input[type=submit] {
   
                                            </div> 
                                            <div class="form-group col-md-4" style="height:67px">
-                                               <label for="inputEmail4">Mobile Number *</label>
+                                               <label for="inputEmail4">Send Detail To Mobile Number *</label>
                                               <?php  
                                                    $name = @$result->mobile_no;
                                                    $postvalue = @$_SESSION['mobile_no'];

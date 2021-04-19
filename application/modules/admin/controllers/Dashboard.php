@@ -86,7 +86,7 @@ class Dashboard extends MY_Controller {
 
       // pr($_POST); die;
             $custommsg = 'अपके नाम ' .$_POST['totalExpenses']. ' धन राशी है | अपके जमा ' .$_POST['deposit']. ' धन राशी है शेष नाम ' .$_POST['MyFinalExpenses']; 
-            $chatApiToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjE0MDU0OTcsInVzZXIiOiI5MTg4ODc5MDUwNzAifQ.7cJSI1z-J7tN-sjYZoUQ7MT_HxXFzSLUk4_IzGtv0JM"; // Get it from https://www.phphive.info/255/get-whatsapp-password/
+            $chatApiToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjE0MzA1MDgsInVzZXIiOiI5MTg4ODc5MDUwNzAifQ.4LwafGBl-ZEmWAAixPeVTGZMDBSBPrzp7PV6DAlNXMM"; // Get it from https://www.phphive.info/255/get-whatsapp-password/
             $number = $_POST['mobile_no']; // Number
             $message = $custommsg; // Message
             $curl = curl_init();
