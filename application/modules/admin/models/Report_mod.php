@@ -1407,6 +1407,8 @@ function publisher_mapping_deatils($id){
         $this->db->select('*');
         $this->db->where('type_of_account', 'deposit');
         $this->db->where('account_no', $id);
+        $this->db->where('FY', fy()->FY);
+        $this->db->where('product_type', fy()->product_type);
         $query = $this->db->get('aa_rokad');
         return $query->result();
     }
@@ -1414,6 +1416,8 @@ function publisher_mapping_deatils($id){
         $this->db->select('*');
         $this->db->where('type_of_account', 'expenses');
         $this->db->where('account_no', $id);
+        $this->db->where('FY', fy()->FY);
+        $this->db->where('product_type', fy()->product_type);
         $query = $this->db->get('aa_rokad');
         return $query->result();
     }
