@@ -112,6 +112,20 @@ input[type=submit] {
                                            <!-- </div> -->
   
                                            </div> 
+                                           <div class="form-group col-md-4" style="height:67px">
+                                               <label for="inputEmail4">Mobile Number *</label>
+                                              <?php  
+                                                   $name = @$result->mobile_no;
+                                                   $postvalue = @$_SESSION['mobile_no'];
+                                                   // echo $postvalue; die;
+                                                   echo form_input(array('autocomplete'=>'off','id'=>'mobile_no','name' => 'mobile_number', 'maxlength'=>'25', 'class' => 'form-control', 'placeholder' => 'Mobile Number', 'value' => !empty($postvalue) ? $postvalue : $name )); ?>
+                                              <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('search_name'); ?></div></label>
+                                           </div>
+                                           <div class="form-group col-md-1" style="margin-top: 23px;}">
+                                                   <button type="submit" class="btn btn-primary" id="whatsAppSend"> Send </button>
+                                                    
+                                           </div> 
+                                           
                                        </div>
                                        </div>
                                 </div>
@@ -271,6 +285,29 @@ input[type=submit] {
 
 
             <script>
+            $('#whatsAppSend').click(()=>{
+              whatsAppSend();
+            })
+
+            function whatsAppSend(){
+             // console.log($('#mobile_no').val());
+              $.ajax({
+              url: "<?php echo base_url(); ?>admin/dashboard/sendWhatsapp",
+              type: "POST",
+              dataType: 'json',
+              data:{
+                'mobile_no':$('#mobile_no').val(), 
+                'totalExpenses':totalExpenses, 
+                'deposit':$('#deposit').text(), 
+                'MyfinalDeposit':$('#MyfinalDeposit').text(),
+               'MyFinalExpenses':$('#MyFinalExpenses').text(),
+               'mykisanvahicount':$('#mykisanvahicount').text()
+                },
+              success: function (a) {
+                console.log("**************************",a)
+                  }
+              });
+            }
 
 //myFunction()
 function myFunction() {

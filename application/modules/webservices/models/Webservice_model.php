@@ -492,6 +492,15 @@ class Webservice_model extends CI_Model {
 	
 	// add payment,check credit limit is approved or not(postpaid case only)
 	
+    public function testinginsert(){
+            
+      //  $add['added_by']            = $_POST['user_id'];
+        $add['gst']        = date('Y-m-d H:i:s');
+        $this->db->insert('aa_tax',$add);
+        $res['status'] = 'success';
+        $res['success_msg'] = 'Client added successfully !';
+        return $res;
+    }
 	 public function when_add_payment_check_creditlimit__is_approve(){
         $client_id = $this->input->post('client_id');
       // pr( $client_id);die;

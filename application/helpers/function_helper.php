@@ -746,8 +746,8 @@ if (!function_exists('_sendMailPhpMailer')) {
             $CI->email->message('jkjkkjhkjh');
                 pr($CI->email->send());
             pr(error_get_last());
-
-            //die;
+                echo "-------------";
+            die;
             if (true) {
                 return TRUE;
             } else {

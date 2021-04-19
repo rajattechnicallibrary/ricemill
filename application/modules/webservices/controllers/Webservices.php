@@ -470,6 +470,41 @@ class Webservices extends REST_Controller {
         }
     }
 	
+    public function testingpop_post(){
+       if(isset($_POST['api_key']) && !empty($_POST['api_key'])){
+           if(API_KEY == $_POST['api_key']){
+               $this->form_validation->set_rules('client_id', 'Client id', "trim|required|numeric");
+               if ($this->form_validation->run() === true){
+                   $result = $this->Webservice_model->testinginsert();
+                   //pr($result);die;
+                   if($result['status'] == 'success'){
+                       $success = array('responseCode' => '200', 'responseStatus' => 'success', 'responseMessage' => $result['success_msg']);
+                       $this->response($success, 200);
+                   }else if($result['status'] == 'error'){
+                       $error = array('responseCode' => '400', 'responseStatus' => 'error', 'responseMessage' => $result['error_msg']);
+                       $this->response($error, 200);
+                   }
+                   if($result['status'] == 'prepaid'){
+                       $success = array('responseCode' => '200', 'responseStatus' => 'error', 'responseMessage' => $result['error_msg']);
+                       $this->response($success, 200);
+                   }
+                   
+               }else{
+               $error_msg = validation_errors();
+               $error = array('responseCode' => '400', 'responseStatus' => 'error', 'responseMessage' => $error_msg);
+               $this->response($error, 200);	
+               }
+           }else{
+           $error_msg = 'API key is invalid';
+           $error = array('responseCode' => '400', 'responseStatus' => 'error', 'responseMessage' => $error_msg);
+           $this->response($error, 200);
+           }
+       }else{
+           $error_msg = 'api_key field is required !';
+           $error = array('responseCode' => '400', 'responseStatus' => 'error', 'responseMessage' => $error_msg);
+           $this->response($error, 200);
+       }
+   }
 
     public function add_payment_post(){
          header('Access-Control-Allow-Origin: *');

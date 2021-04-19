@@ -73,7 +73,7 @@ class Dashboard extends MY_Controller {
         $data['total_runningcampaigns']   = 50;
         // pr($this->session->all_userdata()); die;
         $data['page'] = 'dashboard/site_dashboard';
-        $data['title'] = 'Track (The Rest Accounting Key) || Dashboard';
+        $data['title'] = 'Track (The Rest Accounting Key) ||p Dashboard';
         $this->load->view('layout',$data);
     }
     public function profilesss() {
@@ -82,33 +82,36 @@ class Dashboard extends MY_Controller {
         $this->load->view('layout',$data);
     }
 
-    public function email(){
+    public function sendWhatsapp(){
 
-     //   pr(phpinfo()); 
-       // die;
+      // pr($_POST); die;
+            $custommsg = 'अपके नाम ' .$_POST['totalExpenses']. ' धन राशी है | अपके जमा ' .$_POST['deposit']. ' धन राशी है शेष नाम ' .$_POST['MyFinalExpenses']; 
+            $chatApiToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjE0MDU0OTcsInVzZXIiOiI5MTg4ODc5MDUwNzAifQ.7cJSI1z-J7tN-sjYZoUQ7MT_HxXFzSLUk4_IzGtv0JM"; // Get it from https://www.phphive.info/255/get-whatsapp-password/
+            $number = $_POST['mobile_no']; // Number
+            $message = $custommsg; // Message
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => 'http://chat-api.phphive.info/message/send/text',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS =>json_encode(array("jid"=> $number."@s.whatsapp.net", "message" => $message)),
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: Bearer '.$chatApiToken,
+                'Content-Type: application/json'),
+            ));
+            $response = curl_exec($curl);
+            curl_close($curl);
+            echo $response;
+    }
 
-//        $config['protocol'] = 'sendmail';
-// $config['mailpath'] = '/usr/sbin/sendmail';
-// $config['charset'] = 'iso-8859-1';
-// $config['wordwrap'] = TRUE;
-
-// $this->email->initialize($config);
-
-
-//        $this->load->library('email');
-       $this->load->library('Sendmail');
-
-// $this->email->from('tekshapers.rajat@gmail.com', 'Your Name');
-// $this->email->to('tekshapers.rajat@gmail.com');
-// // $this->email->cc('another@another-example.com');
-// // $this->email->bcc('them@their-example.com');
-
-// $this->email->subject('Email Test');
-// $this->email->message('Testing the email class.');
-
-//         $this->email->send();
-
-
+    public function email($emailTo,$emailToName, $subject, $body){
+       // pr($emailTo); die;
+            $this->load->library('Sendmail');
             $mail = new PHPMailer(); // create a new object
             $mail->IsSMTP(); // enable SMTP
             $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
@@ -117,21 +120,16 @@ class Dashboard extends MY_Controller {
             $mail->Host = "smtp.gmail.com";
             $mail->Port = 465; // or 587
             $mail->IsHTML(true);
-            $mail->Username = "erp@kyisolutions.com";//ankit2@thealternativeaccount.com    OR   test.thealternativeaccount@gmail.com";
-            $mail->Password = "kyi@1234";  
+            $mail->Username = "tekshapers.rajat@gmail.com";//ankit2@thealternativeaccount.com    OR   test.thealternativeaccount@gmail.com";
+            $mail->Password = "Rkg@5853";  
             $mail->Subject = 'sss';
             $mail->Body = 'sdfsdf';
-           // $mail->AddAddress = 'tekshapers.rajat@gmail.com';
-
-            $mail->AddAddress('sendto@gmail.com', 'abc');
-      $mail->SetFrom('xxxxxx@gmail.com', 'def');
-      $mail->Subject = 'PHPMailer Test Subject via mail(), advanced';
-      $mail->AltBody = 'To view the message, please use an HTML compatible email viewer!'; // optional - MsgHTML will create an alternate automatically
-      $mail->MsgHTML('sssss');
-      $mail->Send();
-
-
-
+            $mail->AddAddress($emailTo, $emailToName);
+            $mail->SetFrom('admin@thecrindustries.com', 'C R Industries');
+            $mail->Subject = $subject;
+            $mail->AltBody = $body;
+            $mail->MsgHTML('sssss');
+            $mail->Send();
             if($mail->Send()){
                 echo  'TRUE';
 			
@@ -139,9 +137,6 @@ class Dashboard extends MY_Controller {
                 echo 'FALSE';
 			
             }
-
-        _sendMailPhpMailer('tekshapers.rajat@gmail.com');
-       // echo "Yes";
     }
 	
 	/*End of function*/
