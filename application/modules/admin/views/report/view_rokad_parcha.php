@@ -26,6 +26,7 @@
                                            </div> 
                                            </div> 
                                            </form>
+                                           <?php if(!empty($jama)){?>
                         <div class="container" id="printTable" style="text-align: center; border: 4px solid black;">
                                               <div style="text-align:center;"><img width="50" height="50" src="https://i.pinimg.com/originals/df/7a/c3/df7ac32ca67a39a812bbe7b7b69f1a28.jpg" alt="" srcset=""></div>
                             <div class="col-md-12">
@@ -45,7 +46,7 @@
         <!-- <div class="row">
         
     </div> -->
-           <?php  $sums = 0; foreach($naam as $key=>$val){?>
+           <?php  if (!empty($naam)) { $sums = 0; foreach($naam as $key=>$val){?>
     <div class="grid-container">
 
     <div class="grid-child purple">
@@ -57,7 +58,8 @@
     </div>
   
     </div>
-        <?php }?>
+        <?php }
+    }?>
 <style>
 .grid-container {
     display: grid;
@@ -73,7 +75,7 @@
     </div>
     <div class="col-6" style="width:50%">
       <p class="text-center" style="font-weight:900; font-size:20px; text-decoration:underline">नाम</p>
-      <?php $sum = 0; foreach($jama as $key=>$val){?>
+      <?php if(!empty($jama)) { $sum = 0; foreach($jama as $key=>$val){?>
         <div class="grid-container">
 
 <div class="grid-child purple">
@@ -94,7 +96,7 @@
 </style>
 
      
-        <?php }?>
+        <?php } }?>
    <div style="text-align:left; margin-left:20px">
    <hr style="border: 1px solid black">
    <span class="margin-left-short"> <?php echo @$sum; ?> </span>
@@ -103,10 +105,14 @@
     </div>
   </div>
 </div>  
-<div style="text-align:center;color:green;font-size:30px"><?php echo "शेष रोकड़ पर्चा: ".($sums-$sum); ?></div>
+<div style="text-align:center;color:green;font-size:30px"><?php echo "शेष रोकड़ पर्चा: ".(@$sums-@$sum); ?></div>
                                 </div>
                             </div>
                         </div>
+                        <?php }else{?>
+                        <h1 style="text-align:center">रोकड़ पर्चा अभी उपलब्ध नहीं है | </h1>
+                        <marquee behavior="" direction=""><h1 >कृपया इंतजार करें या एडमिनिस्ट्रेशन से बात करें </h1></marquee>
+                        <?php }?>
                     </div>
                 </div>
             </main>

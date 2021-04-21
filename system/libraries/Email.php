@@ -1034,14 +1034,13 @@ class CI_Email {
 	 * @return	bool
 	 */
 	public function valid_email($email)
-	{
-		if (function_exists('idn_to_ascii') && $atpos = strpos($email, '@'))
-		{
-			$email = substr($email, 0, ++$atpos).idn_to_ascii(substr($email, $atpos));
-		}
-
-		return (bool) filter_var($email, FILTER_VALIDATE_EMAIL);
-	}
+    {
+    if (function_exists('idn_to_ascii') && defined('INTL_IDNA_VARIANT_UTS46') && $atpos = strpos($email, '@'))
+    {
+        $email = self::substr($email, 0, ++$atpos).idn_to_ascii(self::substr($email, $atpos), 0, INTL_IDNA_VARIANT_UTS46);
+    }
+    return (bool) filter_var($email, FILTER_VALIDATE_EMAIL);
+   }
 
 	// --------------------------------------------------------------------
 
