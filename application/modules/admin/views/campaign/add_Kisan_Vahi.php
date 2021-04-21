@@ -250,9 +250,9 @@ input[type=submit] {
                                         </form>
                                     </div>
                                 </div>
-                                                   <button type="button" class="btn btn-primary" id='myFunction'> Sync Now </button>
+                                                   <!-- <button type="button" class="btn btn-primary" id='myFunction'> Sync Now </button> -->
                                <div style="text-align:center;height:100px; width:auto">
-                                      <iframe id="framemyval" style="height:1000%; width:100%" src="https://eproc.up.gov.in/wheat2122/Uparjan/FarmerReg.aspx?id=Mw==&id1=NQ==" frameborder="0"></iframe>
+                                      <!-- <iframe id="framemyval" style="height:1000%; width:100%" src="https://eproc.up.gov.in/wheat2122/Uparjan/FarmerReg.aspx?id=Mw==&id1=NQ==" frameborder="0"></iframe> -->
                                
                                </div>  
                             </div>
