@@ -80,8 +80,10 @@
                                  <?php if(@fy()->product_type == '1') { echo " || Paddy ||"; } ?>
                                  <?php if(@fy()->product_type == '2') { echo "|| Wheat ||"; } ?>
                               </span>
+                              <span style="font-size: 13px; color:black" id="current_date"></span>
                              
                            </div>
+                          
                         </a>
                      </li>
                      <li class="dropdown">
@@ -197,6 +199,19 @@
 $(function() {
         $('.bs-select').fSelect();
     });
+                           display_ct();
+                           function display_ct() {
+                              var today = new Date();
+
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
+var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+var dateTime = date+' '+time;
+document.getElementById('current_date').innerHTML = dateTime;
+tt = display_c();
+ }
+
 </script>
 
 <!-- BEGIN PAGE LEVEL PLUGINS -->
