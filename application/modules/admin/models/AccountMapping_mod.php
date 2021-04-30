@@ -1176,6 +1176,7 @@ function publisher_mapping_deatils($id){
                 $up = $isFoundAccountDetail[1];
                 if(empty($_POST['checknow'])){
                     $userdata = array(
+                        'mobile_no' => $_POST['mobile_no'],
                         'CenterName' => $_POST['center_type'],
                         'Purchase_ID' => $_POST['purchase_id'],
                         'Farmer_ID' => $_POST['farmer_id'],

@@ -115,6 +115,7 @@ class AccountMapping extends CI_Controller {
 	public function add_Kisan_Vahi(){
 		if(isPostBack()){
 			$this->form_validation->set_rules('center_type', 'Center Type', 'trim|required');
+			$this->form_validation->set_rules('mobile_no', 'Mobile No', 'trim|required');
             $this->form_validation->set_rules('purchase_id', 'Purchase ID', 'trim');
             $this->form_validation->set_rules('farmer_id', 'Farmer ID', 'trim|required');
             $this->form_validation->set_rules('farmer_name', 'Farmer Name', 'trim|required');

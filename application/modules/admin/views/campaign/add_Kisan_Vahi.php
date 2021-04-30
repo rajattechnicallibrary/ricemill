@@ -220,10 +220,16 @@ input[type=submit] {
                                                 </div>
                                             </div>
 											<div class="form-row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-3">
                                                     <label for="inputEmail4">UTR No *</label>
                                                     <input type="text"  name="utr_no" value="<?php echo set_value('utr_no') ?>" class="form-control"  placeholder="UTR No">
                                                     <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('utr_no'); ?></div></label>
+
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="inputEmail4">Mobile No *</label>
+                                                    <input type="text"  name="mobile_no" value="<?php echo set_value('mobile_no') ?>" class="form-control"  placeholder="Mobile No">
+                                                    <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('mobile_no'); ?></div></label>
 
                                                 </div>
                                                 <div class="form-group col-md-6">
@@ -290,6 +296,7 @@ input[type=submit] {
                       $('input[name=utr_no]').val(a.UTR_No)
                       $('input[name=account_name]').val(a.name + "_"+a.account_no)
                       $('input[name=checknow]').val(a.Kisan_ID)
+                      $('input[name=mobile_no]').val(a.mobile_no)
                       }else{
                         $('.nill').val('')
                       $('input[name=purchase_id]').val('')
@@ -306,6 +313,7 @@ input[type=submit] {
                       $('input[name=utr_no]').val('')
                       $('input[name=account_name]').val('')
                       $('input[name=checknow]').val('')
+                      $('input[name=mobile_no]').val('')
                       }
                       
                   },
