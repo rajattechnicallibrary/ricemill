@@ -48,6 +48,7 @@ if(!empty($_SESSION['user_type'])){
 		<li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'report'&& $uri3 == 'search'){echo 'btn_active';} ?>" href="<?= base_url('admin/report/search')?>">खाता नाम</a></li>
 		<li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'report'&& $uri3 == 'byaccount_name'){echo 'btn_active';} ?>" href="<?= base_url('admin/report/byaccount_name')?>">खाता नाम सूची</a></li>
 		<li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'report'&& $uri3 == 'rokad_parcha'){echo 'btn_active';} ?>" href="<?= base_url('admin/report/rokad_parcha')?>">रोकड़ पर्चा</a></li>
+		<li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'report'&& $uri3 == 'kishanVahi_parcha'){echo 'btn_active';} ?>" href="<?= base_url('admin/report/kishanVahi_parcha')?>">किसान वही पर्चा</a></li>
 		<!-- <li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'report'&& $uri3 == 'searchbycondition'){echo 'btn_active';} ?>" href="<?= base_url('admin/report/searchbycondition')?>">Search By Condition</a></li> -->
 		
 		</ul>

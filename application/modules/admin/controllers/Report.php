@@ -411,6 +411,28 @@ class Report extends CI_Controller {
 	}
 
 
+	public function kishanVahi_parcha(){
+		if (isPostBack()) {
+			$old_date = $_POST['search_name'];            // works
+			$middle = strtotime($old_date);             // returns bool(false)
+			$new_date = date('Y-m-d', $middle);
+			$this->session->set_userdata("setParchaDate",$new_date);   
+		}
+
+		//pr(@$_POST['search_name']); die;
+		if(empty(@$_POST['search_name'])){
+			$new_date = date('Y-m-d',strtotime("-2day"));
+			$this->session->set_userdata("setParchaDate",$new_date);   
+		}
+		$data['page'] = 'report/view_kisanvahi_data';
+        $data['title'] = "Track (The Rest Accounting Key) || Search Report";
+		$data['kisanVahiData']= $this->Report_mod->kishanVahi_Data_details();
+		// $data['jama']= $this->Report_mod->jama_Billing_details();
+		// pr($data); die;
+		$this->load->view('layout', $data);
+	}
+
+
 	public function view_all() {
         $requestData    = $this->input->post(null,true);
         /*Counting warehouse data*/

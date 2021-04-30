@@ -1092,6 +1092,30 @@ class Report_mod extends CI_Model {
             }
 		
 	}
+
+    function kishanVahi_Data_details(){
+        //  pr($this->session->all_userdata("setParchaDate")['setParchaDate']); 
+        $defaultDate;
+          if(!empty($this->session->all_userdata("setParchaDate")['setParchaDate'])){
+              $defaultDate = $this->session->all_userdata("setParchaDate")['setParchaDate'];
+          }else{
+              $defaultDate =  $new_date = date('d-m-Y');
+          }
+          $defaultDate = date('d-m-Y',strtotime($defaultDate));
+          $querys =  $this->db->query("SELECT aa_account_name.name, kisanvahidata.* FROM kisanvahidata LEFT JOIN aa_account_name on aa_account_name.account_id = kisanvahidata.account_no where kisanvahidata.Purchase_Date = '".$defaultDate."'");
+         // print_r($this->db->last_query());    
+          // pr($defaultDate); die;
+  
+      //    pr($querys->result()); die;    
+          if ($querys->num_rows() > 0) {
+                  return $querys->result();
+              }
+              else{
+                  return false;
+              }
+          
+      }
+
 	function naam_Billing_details(){
       //  pr($this->session->all_userdata("setParchaDate")['setParchaDate']); 
       $defaultDate;
