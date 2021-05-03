@@ -95,7 +95,7 @@ input[type=submit] {
                                                <?php  
                                                $name = @$result->name;
                                                $postvalue = @$_POST['farmer_id'];
-                                               echo form_input(array('autofocus'=>'autofocus','autocomplete'=>'off','name' => 'farmer_id','maxlength'=>'100', 'class' => 'form-control',  'placeholder' => 'Farmer ID', 'value' => !empty($postvalue) ? $postvalue : $name ));
+                                               echo form_input(array('autocomplete'=>'off','name' => 'farmer_id','maxlength'=>'100', 'class' => 'form-control',  'placeholder' => 'Farmer ID', 'value' => !empty($postvalue) ? $postvalue : $name ));
                                             ?>
                                               <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('farmer_id'); ?></div></label>
                                                   
@@ -105,7 +105,7 @@ input[type=submit] {
                                                <?php  
                                                $name = @$result->name;
                                                $postvalue = @$_POST['purchase_id'];
-                                               echo form_input(array('autofocus'=>'autofocus','autocomplete'=>'off','name' => 'purchase_id','maxlength'=>'100', 'class' => 'form-control',  'placeholder' => 'Purchase ID', 'value' => !empty($postvalue) ? $postvalue : $name ));
+                                               echo form_input(array('autocomplete'=>'off','name' => 'purchase_id','maxlength'=>'100', 'class' => 'form-control',  'placeholder' => 'Purchase ID', 'value' => !empty($postvalue) ? $postvalue : $name ));
                                             ?>
                                               <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('purchase_id'); ?></div></label>
                                                   
