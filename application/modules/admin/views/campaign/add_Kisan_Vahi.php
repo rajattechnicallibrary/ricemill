@@ -268,7 +268,6 @@ input[type=submit] {
             </main>
             <script>
                       $('input[name=pfms_status]').val('PENDING')
-                      $('input[name=bank_account_no]').val('PENDING')
                       $('input[name=ack_status]').val('PENDING')
                       $('input[name=payment_status]').val('PENDING')
                       $('input[name=payment_date]').val('PENDING')
