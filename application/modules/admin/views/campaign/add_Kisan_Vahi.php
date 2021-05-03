@@ -274,7 +274,7 @@ input[type=submit] {
                       $('input[name=utr_no]').val('PENDING')
                       
                       $('input[name=quantity]').change(()=>{
-                        $('input[name=amount]').val(parseInt( $('input[name=quantity]').val() * 1975));
+                        $('input[name=amount]').val(parseFloat( $('input[name=quantity]').val() * 1975));
                       })
            $('#fetch_button').click(()=>{
             var farmer_id = $('input[name=farmer_id]').val()
