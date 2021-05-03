@@ -267,7 +267,14 @@ input[type=submit] {
                 </div>
             </main>
             <script>
-           
+                      $('input[name=pfms_status]').val('PENDING')
+                      $('input[name=bank_account_no]').val('PENDING')
+                      $('input[name=ack_status]').val('PENDING')
+                      $('input[name=payment_status]').val('PENDING')
+                      $('input[name=payment_date]').val('PENDING')
+                      $('input[name=utr_no]').val('PENDING')
+                      
+
            $('#fetch_button').click(()=>{
             var farmer_id = $('input[name=farmer_id]').val()
             var purchase_id = $('input[name=purchase_id]').val()
