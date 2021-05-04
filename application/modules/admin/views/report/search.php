@@ -282,6 +282,7 @@ input[type=submit] {
 <script src="https://cdn.datatables.net/buttons/1.4.0/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.4.0/js/buttons.print.min.js"></script>
 <script src="//cdn.datatables.net/plug-ins/1.10.22/api/sum().js"></script>
+<script src="https://momentjs.com/downloads/moment.js"></script>
 
 
             <script>
@@ -455,7 +456,7 @@ function myFunction_expenses() {
         data:{'search_name':$('#myInput').val()},
         success: function (a) {
           myFunction_expenese_var = 1;
-          console.log("**************************",a)
+         // console.log("**************************",a)
           for(var i = 0 ; i < a.length; i++){
             $('#ExpensesgetData').append(`
                     <tr>
@@ -767,7 +768,10 @@ $('#search').click(()=>{
         dataType: 'json',
         data:{'search_name':$('#myInput').val()},
         success: function (a) {
-          console.log("**************************",a)
+          console.log("**************************",a);
+          var abc = $('#myInput').val();
+          abc = abc.split("_")[0]
+          $('title').text(moment().format('DD-MM-YYYY')+"_"+abc);
           findMyExpenses(a);
           findMyDesposit(a);
           finalDeposit(a);

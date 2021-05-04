@@ -207,17 +207,19 @@ class Dashboard extends MY_Controller {
                     {
                         $data[] = fgetcsv($file);
                     }
+                //    pr($data);  die;                
 
               for($j = 0 ; $j < count($data) ; ){
                 $date = str_replace('/', '-', $data[$j][12]);
                 $updateData			=	array(
                 'PFMS_Status' =>  $data[$j][7],
                 'Ack_Status' =>  $data[$j][10],
+                'UTR_No' =>  $data[$j][13],
+                'Farmer_name_PFMS' =>  $data[$j][3],
                 'Payment_Status' =>  $data[$j][11],
                 'Payment_Date' => date('d-m-Y',strtotime($date)),
                 'Purchase_ID' =>  $data[$j][0],
                  );
-                    // pr($updateData); die;                  
                 $this->db->where('Farmer_ID', $data[$j][1]);
                 $this->db->where('FY', fy()->FY);
                 $this->db->where('CenterName', $_POST['centerType']);
