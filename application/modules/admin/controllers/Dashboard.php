@@ -139,6 +139,108 @@ class Dashboard extends MY_Controller {
             }
     }
 	
+    public function invoice_creation(){
+        generate_kyi_invoice_pdf();
+    }
+    public function js_invoice_creation(){
+       // $data['page'] = 'billing/add';
+		//$data['title'] = "Track (The Rest Accounting Key) || Edit";
+        
+		$this->load->view('invoice_data/js_pdfs', true);
+       // $this->load->view('layout', $data);
+    }
 	/*End of function*/
+    
+    
+    
+    public function mydata(){
+        
+    //     $file = fopen("uploads/abc.csv","r");
+    //     $data = [];
+    //     $i = 0;
+    //     while(!feof($file))
+    //     {
+    //         $data[] = fgetcsv($file);
+    //     }
+    //   pr($data);
+    //    for($j = 0 ; $j < count($data) ; ){
+    //         $date = str_replace('/', '-', $data[$j][12]);
+    //         $updateData			=	array(
+    //             //'PFMS_Status' =>  $data[$j][7],
+    //             //'Ack_Status' =>  $data[$j][10],
+    //             //'Payment_Status' =>  $data[$j][11],
+    //             'Payment_Date' => date('d-m-Y',strtotime($date)),
+    //             //'Purchase_ID' =>  $data[$j][0],
+    //              );
+    //                 // pr($updateData); die;                  
+    //             $this->db->where('Farmer_ID', $data[$j][1]);
+    //             $this->db->where('FY', fy()->FY);
+    //             $this->db->where('product_type', fy()->product_type);	
+    //             $this->db->update('kisanvahidata',$updateData);
+    //         $j++;
+    //    }
+    //     die;
+        // Check form submit or not 
+        if($this->input->post('upload') != NULL ){ 
+           $data = array(); 
+           if(!empty($_FILES['file']['name'])){ 
+             // Set preference 
+                $config['upload_path'] = 'uploads/'; 
+                $config['allowed_types'] = 'csv'; 
+               // $config['encrypt_name'] = true; 
+                $config['max_size'] = '1000'; // max_size in kb 
+                $config['file_name'] = $_FILES['file']['name'];
+    
+                // Load upload library 
+                $this->load->library('upload',$config); 
+        
+                // File upload
+                if($this->upload->do_upload('file')){ 
+                // Get data about the file
+                $uploadData = $this->upload->data(); 
+                $filename = $uploadData['file_name'];
+
+                    $file = fopen("uploads/".$filename,"r");
+                    $data = [];
+                    $i = 0;
+                    while(!feof($file))
+                    {
+                        $data[] = fgetcsv($file);
+                    }
+
+              for($j = 0 ; $j < count($data) ; ){
+                $date = str_replace('/', '-', $data[$j][12]);
+                $updateData			=	array(
+                'PFMS_Status' =>  $data[$j][7],
+                'Ack_Status' =>  $data[$j][10],
+                'Payment_Status' =>  $data[$j][11],
+                'Payment_Date' => date('d-m-Y',strtotime($date)),
+                'Purchase_ID' =>  $data[$j][0],
+                 );
+                    // pr($updateData); die;                  
+                $this->db->where('Farmer_ID', $data[$j][1]);
+                $this->db->where('FY', fy()->FY);
+                $this->db->where('CenterName', $_POST['centerType']);
+                $this->db->where('product_type', fy()->product_type);	
+                $this->db->update('kisanvahidata',$updateData);
+            $j++;
+            }
+
+            $data['response'] = '<h1>successfully uploaded '.$filename."</h1>"; 
+             }else{ 
+                $data['response'] = 'failed'; 
+             } 
+          }else{ 
+             $data['response'] = 'failed'; 
+          } 
+          // load view 
+          $this->load->view('invoice_data/js_pdfs',$data); 
+        }else{
+          // load view 
+          $this->load->view('invoice_data/js_pdfs'); 
+        }
+    
+      }
+    
 }
 /*End of class*/

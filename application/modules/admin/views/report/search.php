@@ -325,6 +325,7 @@ function myFunction() {
                             <th>Purchase Date</th>
                             <th>Latest Account No</th>
                             <th>Center Name</th>
+                            <th>UTR No</th>
                             `)
   $.ajax({
         url: "<?php echo base_url(); ?>admin/report/Listmytotalkisanvahi",
@@ -344,6 +345,7 @@ function myFunction() {
                     <td>`+a[i].Purchase_Date+`</td>
                     <td>`+a[i].Latest_Account_no+`</td>
                     <td>`+a[i].CenterName+`</td>
+                    <td>`+a[i].UTR_No+`</td>
                     
                     </tr>
               `);
