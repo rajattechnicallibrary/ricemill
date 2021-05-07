@@ -243,6 +243,77 @@ class Dashboard extends MY_Controller {
         }
     
       }
+
+      public function all_mydata(){
+        
+        //      $file = fopen("uploads/fy_all_data_excel_2.csv","r");
+        // $data = [];
+        // $i = 0;
+        // while(!feof($file))
+        // {
+        //     $data[] = fgetcsv($file);
+        // }
+            if($this->input->post('upload') != NULL ){ 
+               $data = array(); 
+               if(!empty($_FILES['file']['name'])){ 
+                 // Set preference 
+                    $config['upload_path'] = 'uploads/'; 
+                    $config['allowed_types'] = 'csv'; 
+                   // $config['encrypt_name'] = true; 
+                    $config['max_size'] = '1000'; // max_size in kb 
+                    $config['file_name'] = $_FILES['file']['name'];
+        
+                    // Load upload library 
+                    $this->load->library('upload',$config); 
+            
+                    // File upload
+                    if($this->upload->do_upload('file')){ 
+                    // Get data about the file
+                    $uploadData = $this->upload->data(); 
+                    $filename = $uploadData['file_name'];
+    
+                        $file = fopen("uploads/".$filename,"r");
+                        $data = [];
+                        $i = 0;
+                        while(!feof($file))
+                        {
+                            $data[] = fgetcsv($file);
+                        }
+                    //    pr($data);  die;                
+    
+                  for($j = 0 ; $j < count($data) ; ){
+        //           $date = str_replace('/', '-', $data[$j][12]);
+                    $updateData			=	array(
+                    'Farmer_hindi_name' =>  $data[$j][0],
+                    'bank_name' =>  $data[$j][4],
+                    'ifsc_code' =>  $data[$j][6],
+                    'mobile_no' =>  $data[$j][1],
+                    'Farmer_ID' =>  $data[$j][2],
+                     );
+                  //   pr($updateData);
+                    $this->db->where('Farmer_ID', $data[$j][2]);
+                    $this->db->where('FY', fy()->FY);
+                    $this->db->where('CenterName', $_POST['centerType']);
+                    $this->db->where('product_type', fy()->product_type);	
+                    $this->db->update('kisanvahidata',$updateData);
+                $j++;
+                }
+    
+                $data['response'] = '<h1>successfully uploaded '.$filename."</h1>"; 
+                 }else{ 
+                    $data['response'] = 'failed'; 
+                 } 
+              }else{ 
+                 $data['response'] = 'failed'; 
+              } 
+              // load view 
+              $this->load->view('invoice_data/all_my_js_pdfs',$data); 
+            }else{
+              // load view 
+              $this->load->view('invoice_data/all_my_js_pdfs'); 
+            }
+        
+          }
     
 }
 /*End of class*/

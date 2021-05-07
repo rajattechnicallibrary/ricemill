@@ -14,8 +14,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      echo $response;
    }
    ?>
-   <h1>Upload Custom CSV Formate</h1>
 
+<h1>All Data Upload CSV Formate</h1>
    <form method='post' action='' enctype="multipart/form-data">
     <select name="centerType" id="" required>
     <option value="">Select Center</option>
