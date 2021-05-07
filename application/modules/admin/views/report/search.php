@@ -321,7 +321,6 @@ function myFunction() {
  <th>Sno</th>
                             <th>Farmer ID</th>
                             <th>Farmer Name</th>
-                            <th>Farmer Hindi Name</th>
                             <th>Quantity</th>
                             <th>Amount</th>
                             <th>Purchase Date</th>
@@ -342,7 +341,6 @@ function myFunction() {
                     <td>`+(i+1)+`</td>
                     <td>`+a[i].Farmer_ID+`</td>
                     <td>`+a[i].Farmer_name+`</td>
-                    <td>`+a[i].Farmer_hindi_name+`</td>
                     <td>`+a[i].Quantity+`</td>
                     <td>`+a[i].Ammount+`</td>
                     <td>`+a[i].Purchase_Date+`</td>
