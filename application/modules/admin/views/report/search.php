@@ -181,7 +181,8 @@ input[type=submit] {
                                             </tr>
                                             <tr onClick="myFunction()"  data-toggle="modal" data-target="#myModal">
                                                 <th class="table_bg" scope="row" >किसान संख्या</th>
-                                                <td id="mykisanvahicount" class="blackCSS" style="margin-left:10px"></td>
+                                              
+                                                <td id="mykisanvahicount">   <button class="btn btn-primary">Show KisanVahi</button> </td>
 
                                             </tr>
                                             
