@@ -179,13 +179,13 @@ input[type=submit] {
                                                 <td id="MyFinalExpenses" class="blackCSS textcenter"></td>
 
                                             </tr>
-                                            <!-- <tr onClick="myFunction()"  data-toggle="modal" data-target="#myModal">
+                                            <tr onClick="myFunction()"  data-toggle="modal" data-target="#myModal">
                                                 <th class="table_bg" scope="row" >किसान संख्या</th>
                                                 <td id="mykisanvahicount" class="blackCSS" style="margin-left:10px"></td>
 
                                             </tr>
                                             
-                                            <tr>
+                                            <!-- <tr>
                                                 <th class="table_bg" scope="row" >Amount</th>
                                                 <td id="mykisanvahiamount" class="blackCSS" style="margin-left:10px"></td>
 

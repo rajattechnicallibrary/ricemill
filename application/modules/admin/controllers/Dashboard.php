@@ -210,7 +210,7 @@ class Dashboard extends MY_Controller {
                 //    pr($data);  die;                
 
               for($j = 0 ; $j < count($data) ; ){
-                $date = str_replace('/', '-', $data[$j][12]);
+               // $date = str_replace('/', '-', $data[$j][12]);
                 $updateData			=	array(
                 'PFMS_Status' =>  $data[$j][7],
                 'Ack_Status' =>  $data[$j][10],
