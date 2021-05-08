@@ -217,7 +217,7 @@ class Dashboard extends MY_Controller {
                 'UTR_No' =>  $data[$j][13],
                 'Farmer_name_PFMS' =>  $data[$j][3],
                 'Payment_Status' =>  $data[$j][11],
-                'Payment_Date' => date('d-m-Y',strtotime($date)),
+                'Payment_Date' => $data[$j][12], //date('d-m-Y',strtotime($date)),
                 'Purchase_ID' =>  $data[$j][0],
                  );
                 $this->db->where('Farmer_ID', $data[$j][1]);
