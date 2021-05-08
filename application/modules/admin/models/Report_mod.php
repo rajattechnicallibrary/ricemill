@@ -1408,6 +1408,24 @@ function publisher_mapping_deatils($id){
         $query = $this->db->get('aa_rokad');
         return $query->row();
     }
+    function fetchtheFinalAmountKisanVahi($id){
+        $this->db->select('SUM(Ammount) as Amount, SUM(Quantity) as Quantity');
+        $this->db->where('FY', fy()->FY);
+        $this->db->where('product_type', fy()->product_type);
+        $this->db->where('account_no', $id);
+        $query = $this->db->get('kisanvahidata');
+        return $query->row();
+    }
+    
+    function getKisanVahiUTRAmount($id){
+        $this->db->select('SUM(Ammount) as Amount, SUM(Quantity) as Quantity, Count(Kisan_ID) as Count');
+        $this->db->where('FY', fy()->FY);
+        $this->db->where('UTR_No !=', '');
+        $this->db->where('product_type', fy()->product_type);
+        $this->db->where('account_no', $id);
+        $query = $this->db->get('kisanvahidata');
+        return $query->row();
+    }
     
     function fetchsearchReportbykishanvahi($id){
         $this->db->select('count(*) as totalcount');

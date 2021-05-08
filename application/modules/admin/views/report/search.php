@@ -35,6 +35,10 @@ input[type=submit] {
   cursor: pointer;
 }
 
+.textcenter{
+  font-weight:600;
+  font-size:25px;
+}
 .autocomplete-items {
   position: absolute;
   border: 1px solid #d4d4d4;
@@ -106,13 +110,30 @@ input[type=submit] {
                                            }
                                            </style>
                                            <div class="form-group col-md-7">
-                                           <!-- <div class="overflow-auto" style="height:100px; overflow-x:auto"> -->
-                                              <select name="" id="mySelect" multiple class="selectSetting" onchange="changeFunc();">
-                                              </select>
-                                           <!-- </div> -->
-  
+                                           <table class="table">
+  <thead>
+    <tr style="text-align:center">
+      <th scope="col">Count</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">UTR Amount</th>
+      <th scope="col">UTR Quantity</th>
+      <th scope="col">UTR Count</th>
+    </tr>
+  </thead>
+  <tbody style="text-align:center">
+    <tr>
+      <th scope="row" id="mykisanvahicount"></th>
+      <th scope="row" id="mykisanvahiamount"></th>
+      <th scope="row" id="mykisanvahiquantity"></th>
+      <th scope="row" id="kisanvahiUTRNo"></th>
+      <th scope="row" id="kisanvahiUTRNoQuantity"></th>
+      <th scope="row" id="kisanvahiUTRNoCount"></th>
+    </tr>
+  </tbody>
+</table>
                                            </div> 
-                                           <div class="form-group col-md-4" style="height:67px">
+                                           <div class="form-group col-md-4 hide" style="height:67px">
                                                <label for="inputEmail4">Send Detail To Mobile Number *</label>
                                               <?php  
                                                    $name = @$result->mobile_no;
@@ -121,7 +142,7 @@ input[type=submit] {
                                                    echo form_input(array('autocomplete'=>'off','id'=>'mobile_no','name' => 'mobile_number', 'maxlength'=>'25', 'class' => 'form-control', 'placeholder' => 'Mobile Number', 'value' => !empty($postvalue) ? $postvalue : $name )); ?>
                                               <label  class="error"><div class="help-block" style="color:red"> <?php echo form_error('search_name'); ?></div></label>
                                            </div>
-                                           <div class="form-group col-md-1" style="margin-top: 23px;}">
+                                           <div class="form-group col-md-1 hide" style="margin-top: 23px;}">
                                                    <button type="submit" class="btn btn-primary" id="whatsAppSend"> Send </button>
                                                     
                                            </div> 
@@ -141,28 +162,39 @@ input[type=submit] {
                                         <tbody>
                                             <tr onClick="myFunction_expenses()"  data-toggle="modal" data-target="#ExpensesmyModal">
                                                 <th  class="table_bg" scope="row">नाम</th>
-                                                <td id="expense" class="blackCSS"></td>
+                                                <td id="expense" class="blackCSS textcenter"></td>
                                             </tr>
                                             <tr onClick="myFunction_deposit()"  data-toggle="modal" data-target="#DepositmyModal">
                                                 <th class="table_bg" scope="row">जमा</th>
-                                                <td id="deposit" class="blackCSS"></td>
+                                                <td id="deposit" class="blackCSS textcenter"></td>
 
                                             </tr>
                                             <tr>
                                                 <th class="table_bg" scope="row">शेष जमा</th>
-                                                <td id="MyfinalDeposit" class="blackCSS"></td>
+                                                <td id="MyfinalDeposit" class="blackCSS textcenter"></td>
 
                                             </tr>
                                             <tr>
                                                 <th class="table_bg" scope="row">शेष नाम</th>
-                                                <td id="MyFinalExpenses" class="blackCSS"></td>
+                                                <td id="MyFinalExpenses" class="blackCSS textcenter"></td>
 
                                             </tr>
-                                            <tr onClick="myFunction()"  data-toggle="modal" data-target="#myModal">
+                                            <!-- <tr onClick="myFunction()"  data-toggle="modal" data-target="#myModal">
                                                 <th class="table_bg" scope="row" >किसान संख्या</th>
                                                 <td id="mykisanvahicount" class="blackCSS" style="margin-left:10px"></td>
 
                                             </tr>
+                                            
+                                            <tr>
+                                                <th class="table_bg" scope="row" >Amount</th>
+                                                <td id="mykisanvahiamount" class="blackCSS" style="margin-left:10px"></td>
+
+                                            </tr>
+                                            <tr>
+                                                <th class="table_bg" scope="row" >Quantity</th>
+                                                <td id="mykisanvahiquantity" class="blackCSS" style="margin-left:10px"></td>
+
+                                            </tr>                                           -->
 
                                         </tbody>
                                     </table>
@@ -768,7 +800,7 @@ $('#search').click(()=>{
         dataType: 'json',
         data:{'search_name':$('#myInput').val()},
         success: function (a) {
-          console.log("**************************",a);
+          console.log("************search**************",a);
           var abc = $('#myInput').val();
           abc = abc.split("_")[0]
           $('title').text(moment().format('DD-MM-YYYY')+"_"+abc);
@@ -779,6 +811,11 @@ $('#search').click(()=>{
           fetchsearchReport(a)
           mykisanvahi(a)
           myFunction_expenese_var = 0
+          $('#mykisanvahiamount').text(a.kisanvahi_Amount.Amount)
+          $('#mykisanvahiquantity').text(a.kisanvahi_Amount.Quantity);
+          $('#kisanvahiUTRNo').text(a.UTR_Amount.Amount);
+          $('#kisanvahiUTRNoQuantity').text(a.UTR_Amount.Quantity);
+          $('#kisanvahiUTRNoCount').text(a.UTR_Amount.Count);
         },
         error: function () {
             alert("Error");
@@ -794,8 +831,9 @@ function mykisanvahi(a){
         dataType: 'json',
         data:{'search_name':$('#myInput').val()},
         success: function (a) {
-          console.log("**************************",a)
+          console.log("***********mytotalkisanvahi ***************",a)
           $('#mykisanvahicount').text(a.totalcount)
+         
         },
         error: function () {
             alert("Error");
@@ -811,7 +849,9 @@ function changeFunc(val){
         dataType: 'json',
         data:{'search_name':$('#myInput').val()},
         success: function (a) {
-          console.log("**************************",a)
+          console.log("************search**************",a)
+         // alert("")
+         
           findMyExpenses(a);
           findMyDesposit(a);
           finalDeposit(a);
@@ -833,7 +873,7 @@ function fetchsearchReport(){
         dataType: 'json',
         data:{'search_name':$('#myInput').val()},
         success: function (a) {
-          console.log("**************************",a)
+          console.log("***********fetchsearchReports***************",a)
             // Iterate over object and add options to select
             $.each(a, function(index, value){
                 $("<option/>", {

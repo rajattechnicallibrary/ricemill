@@ -282,6 +282,8 @@ class Report extends CI_Controller {
 			$isFoundAccountDetail = explode('_',$_POST['search_name']);
 			$data['expenses'] = $this->Report_mod->fetchtheFinalAmountexpenses($isFoundAccountDetail[1]);
 			$data['deposit'] = $this->Report_mod->fetchtheFinalAmountdeposit($isFoundAccountDetail[1]);
+			$data['kisanvahi_Amount'] = $this->Report_mod->fetchtheFinalAmountKisanVahi($isFoundAccountDetail[1]);
+			$data['UTR_Amount'] = $this->Report_mod->getKisanVahiUTRAmount($isFoundAccountDetail[1]);
 			$data['Finaldeposit'] = '';
 			$data['Finalexpenses'] = '';
 		//	pr($data['expenses']->expenses);
