@@ -93,7 +93,11 @@
 
 
   $(document).ready(function() {
-    $('#dtBasicExample').DataTable();
+    $('#dtBasicExample').DataTable(
+      {
+        "order": [[ 4, "desc" ]]
+    }
+    );
 } );
 
 
