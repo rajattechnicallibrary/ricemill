@@ -46,6 +46,9 @@
       <th class="th-sm">Center Name
 
       </th>
+      <th class="th-sm">Quantity
+
+      </th>
       <th class="th-sm">Purchase date
 
       </th>
@@ -62,6 +65,7 @@
       <td><?php echo $val->Farmer_ID; ?></td>
       <td><?php echo $val->Farmer_name; ?></td>
       <td><?php echo $val->CenterName; ?></td>
+      <td><?php echo $val->Quantity; ?></td>
       <td><?php echo $val->Purchase_Date; ?></td>
       <td><?php echo $val->name; ?></td>
       <td><?php echo $val->Ammount; ?></td>
