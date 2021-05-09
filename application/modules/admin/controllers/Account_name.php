@@ -38,11 +38,7 @@ class Account_name extends CI_Controller {
 	public function index($pageno=1)
     {
 
-        $data['page'] = 'accountname/listing';
-        $data['title'] = "Track (The Rest Accounting Key) || Billing Listing";
-        $data['pageno'] = $pageno;
-        //$data['users']= $this->Advertiser_mod->listing();
-        $this->load->view('layout', $data);
+       $this->listing();
     }
 	
 	public function smsapi(){
@@ -136,7 +132,7 @@ class Account_name extends CI_Controller {
 	public function listing(){
 		
 		$data['page'] = 'accountname/listing';
-        $data['title'] = "Track (The Rest Accounting Key) || Billing Listing";
+        $data['title'] = "Track (The Rest Accounting Key) || Listing";
         // $data['pageno'] = $pageno;
         //$data['users']= $this->Advertiser_mod->listing();
         $this->load->view('layout', $data);

@@ -9,7 +9,16 @@ if(!empty($_SESSION['user_type'])){
 		
 ?>
 <ul class="sidebar-menu scrollable pos-r">
-	<li class="nav-item mT-30 hide"><a class="sidebar-link" href="<?= base_url('admin/dashboard')?>" default><span class="icon-holder"><i class="c-blue-500 ti-home"></i> </span><span class="title">Dashboard</span></a></li>
+
+<li class="nav-item dropdown  <?php if($uri1 == 'admin' && $uri2 == 'account_name'){echo 'open';} ?>">
+		<a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">खाता नाम</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
+		<ul class="dropdown-menu">
+			<li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'account_name'&& $uri3 == 'listing'){echo 'btn_active';} ?>" href="<?= base_url('admin/account_name/listing')?>">Listing</a></li>
+		<li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'account_name'&& $uri3 == 'add'){echo 'btn_active';} ?>" href="<?= base_url('admin/account_name/add')?>">Add</a></li>
+		</ul>
+	</li>
+
+<li class="nav-item mT-30 hide"><a class="sidebar-link" href="<?= base_url('admin/dashboard')?>" default><span class="icon-holder"><i class="c-blue-500 ti-home"></i> </span><span class="title">Dashboard</span></a></li>
 	<li class="nav-item dropdown hide <?php if($uri1 == 'master'){echo 'open';} ?>">
 		<a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">Masters</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
 		<ul class="dropdown-menu">
@@ -95,6 +104,14 @@ if(!empty($_SESSION['user_type'])){
 		
 ?>
 <ul class="sidebar-menu scrollable pos-r">
+<li class="nav-item dropdown  <?php if($uri1 == 'admin' && $uri2 == 'account_name'){echo 'open';} ?>">
+		<a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">खाता नाम</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
+		<ul class="dropdown-menu">
+			<li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'account_name'&& $uri3 == 'account_mapping'){echo 'btn_active';} ?>" href="<?= base_url('admin/account_name/Add')?>">List</a></li>
+		<li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'account_name'&& $uri3 == 'add_Kisan_Vahi'){echo 'btn_active';} ?>" href="<?= base_url('admin/account_name/listing')?>">Add</a></li>
+		<!-- <li><a class="sidebar-link <?php if($uri1 == 'admin' && $uri2 == 'account_name'&& $uri3 == 'account_mapping'){echo 'btn_active';} ?>" href="<?= base_url('admin/accountMapping/')?>">किसान खाता नक्शा</a></li> -->
+		</ul>
+	</li>
 <li class="nav-item dropdown <?php if($uri1 == 'admin' && $uri2 == 'report'){echo 'open';} ?>">
 		<a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">रिपोर्ट</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
 		<ul class="dropdown-menu">
@@ -107,6 +124,7 @@ if(!empty($_SESSION['user_type'])){
 		
 		</ul>
 	</li>
+	
 	
 
 	<li class="nav-item dropdown  <?php if($uri1 == 'admin' && $uri2 == 'accountMapping'){echo 'open';} ?>">
