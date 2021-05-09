@@ -32,6 +32,7 @@ $QUERY_STRING = $_SERVER['QUERY_STRING'];
                              <tr>
                             <!-- <th width="1%"> </th>                                -->
                             <th>S.No.</th>
+                            <th>Account ID</th>
                             <th>Account Name</th>
                             <th>Contact Number</th>
                             <th>Action</th>
@@ -83,9 +84,11 @@ $QUERY_STRING = $_SERVER['QUERY_STRING'];
         "columns": [{
                 "orderable": false
             }, {
-                "orderable": true
+                "orderable": false
             }, {
                 "orderable": true
+            }, {
+                "orderable": false
             }, {
                 "orderable": false
             }
@@ -106,6 +109,7 @@ $QUERY_STRING = $_SERVER['QUERY_STRING'];
             {"targets": [1], "orderable": true, "searchable": true},
             {"targets": [2], "orderable": false, "searchable": false},
             {"targets": [3], "orderable": false, "searchable": false},
+            {"targets": [4], "orderable": false, "searchable": false},
         ],
         "ajax": {
             url: "<?php echo base_url(); ?>admin/account_name/view_all?<?php echo $QUERY_STRING; ?>", // json datasource

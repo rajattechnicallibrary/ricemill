@@ -176,9 +176,9 @@ class Account_name extends CI_Controller {
                 $nestedData[]   =   $j;
                 
                 // $nestedData[]   =   '<a href="'.base_url().'admin/accountname/view/'.ID_encode($row['account_id']).'">'.$row['account_id'].'</a>';
+                $nestedData[]   =   $row["account_id"];
 				$nestedData[]   =   $row["name"];
 				$nestedData[]   =   $row["contact_person_number"];
-                // $nestedData[]   =   $row["seller_amount"];
                 // $nestedData[]   =   $row["site_name"];
                 // $nestedData[]   =   $row["gst_amount"];
 
