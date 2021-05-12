@@ -160,8 +160,16 @@ input[type=submit] {
                                     <!--<h4 class="c-grey-900 mB-20">Simple Table</h4>-->
                                     <table class="table">
                                         <tbody>
+                                            <tr>
+                                                <th  class="table_bg" scope="row">नागद नाम</th>
+                                                <td id="expense_nagad" class="blackCSS textcenter"></td>
+                                            </tr>
+                                            <tr>
+                                                <th  class="table_bg" scope="row">किसान वाही नाम</th>
+                                                <td id="expense_kisanvahi" class="blackCSS textcenter"></td>
+                                            </tr>
                                             <tr onClick="myFunction_expenses()"  data-toggle="modal" data-target="#ExpensesmyModal">
-                                                <th  class="table_bg" scope="row">नाम</th>
+                                                <th  class="table_bg" scope="row">टोटल नाम</th>
                                                 <td id="expense" class="blackCSS textcenter"></td>
                                             </tr>
                                             <tr onClick="myFunction_deposit()"  data-toggle="modal" data-target="#DepositmyModal">
@@ -911,11 +919,15 @@ function fetchsearchReport(){
    // $('#deposit').text('');
     $('#expense').text('');
     totalExpenses = parseInt(val.expenses.expenses);
+    kisanvahiName = parseInt(val.expenses.kisanvahiName);
+    jama = parseInt(val.expenses.jama);
     console.log('findMyExpenses',totalExpenses)
     if(isNaN(totalExpenses)){
       $('#expense').text('कोई नाम नही है')
     }else{
       $('#expense').text(totalExpenses  +' ₹/-  ' + convertNumberToWords(totalExpenses))
+      $('#expense_nagad').text(jama  +' ₹/-  ' + convertNumberToWords(jama))
+      $('#expense_kisanvahi').text(kisanvahiName  +' ₹/-  ' + convertNumberToWords(kisanvahiName))
     }
   } 
 

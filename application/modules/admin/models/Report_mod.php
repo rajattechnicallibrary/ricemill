@@ -1325,7 +1325,6 @@ function publisher_mapping_deatils($id){
         $this->db->where('FY', fy()->FY);
         $this->db->where('product_type', fy()->product_type);
         $this->db->where('type_of_account', 'expenses');
-
         $this->db->where('account_no', $id);
        $querys = $this->db->get('aa_rokad');
     //    pr($querys->row()); 
@@ -1338,7 +1337,7 @@ function publisher_mapping_deatils($id){
        $this->db->where('account_no', $id);
        $query = $this->db->get('kisanvahidata');
        
-       $data = (object) array('expenses' => $query->row()->expenses + $querys->row()->expenses );
+       $data = (object) array('expenses' => $query->row()->expenses + $querys->row()->expenses, 'kisanvahiName' => (int)($query->row()->expenses), 'jama' => (int)$querys->row()->expenses );
       // $data['expenses'] = $query->row()->expenses + $querys->row()->expenses;
     //    pr($data); 
     //    die;

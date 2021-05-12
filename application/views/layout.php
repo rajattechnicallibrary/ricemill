@@ -212,7 +212,7 @@ var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds(
 
 var dateTime = date+' '+time;
 document.getElementById('current_date').innerHTML = dateTime;
-tt = display_c();
+//tt = display_c();
  }
 
 </script>
