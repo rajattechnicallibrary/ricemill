@@ -72,6 +72,11 @@ input[type=submit] {
   background-color: DodgerBlue !important; 
   color: #ffffff; 
 }
+
+.runmytable_wrapper{
+  overflow-x: auto;
+    width: max-content;
+}
 </style>
 
 <main class="main-content bgc-grey-100">

@@ -121,14 +121,14 @@ class Dashboard extends MY_Controller {
             $mail->Port = 465; // or 587
             $mail->IsHTML(true);
             $mail->Username = "tekshapers.rajat@gmail.com";//ankit2@thealternativeaccount.com    OR   test.thealternativeaccount@gmail.com";
-            $mail->Password = "Rkg@5853";  
+            $mail->Password = "Google@5853";  
             $mail->Subject = 'sss';
             $mail->Body = 'sdfsdf';
             $mail->AddAddress($emailTo, $emailToName);
             $mail->SetFrom('admin@thecrindustries.com', 'C R Industries');
             $mail->Subject = $subject;
             $mail->AltBody = $body;
-            $mail->MsgHTML('sssss');
+            $mail->MsgHTML($body);
             $mail->Send();
             if($mail->Send()){
                 echo  'TRUE';
@@ -315,5 +315,56 @@ class Dashboard extends MY_Controller {
         
           }
     
+          public function getmyDataSPN(){ //657 : Hardoi, 688 : SPN
+            // echo Date('d-m-Y');
+            // die;
+            $val = file_get_contents('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=657&date='.Date('d-m-Y'));
+          //  pr(json_decode($val)->centers);
+          //  die;
+           // $globalmsg;
+            $varGlobal = json_decode($val)->centers;
+            if(!empty($varGlobal)){
+              for($i = 0 ; $i < count($varGlobal); $i++){
+                // echo $varGlobal[$i]->name;
+                // echo "</br>";
+                // echo $varGlobal[$i]->district_name;
+                // echo "</br>";
+                for($j = 0; $j < count($varGlobal[$i]->sessions); $j++){
+                 
+                  if($varGlobal[$i]->sessions[$j]->available_capacity > 0 && $varGlobal[$i]->sessions[$j]->min_age_limit == '18'){
+                    // available_capacity
+                    $msg = "Center Name : ".$varGlobal[$i]->name .", <br> District : ".$varGlobal[$i]->district_name.", <br> Date: ".$varGlobal[$i]->sessions[$j]->date.',   Available Capacity: '.$varGlobal[$i]->sessions[$j]->available_capacity."</br> </br>";
+                    $this->email('rajatinvoice@gmail.com','Rajat Covax',$varGlobal[$i]->name, $msg);
+                    // echo "</br>";
+                  }
+                }
+              }
+            }
+          }
+
+          public function getmyDataHardoi(){ //657 : Hardoi, 688 : SPN
+            $val = file_get_contents('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=657&date='.Date('d-m-Y'));
+          //  pr(json_decode($val)->centers);
+          //  die;
+           // $globalmsg;
+            $varGlobal = json_decode($val)->centers;
+            if(!empty($varGlobal)){
+              for($i = 0 ; $i < count($varGlobal); $i++){
+                // echo $varGlobal[$i]->name;
+                // echo "</br>";
+                // echo $varGlobal[$i]->district_name;
+                // echo "</br>";
+                for($j = 0; $j < count($varGlobal[$i]->sessions); $j++){
+                 
+                  if($varGlobal[$i]->sessions[$j]->available_capacity > 0 && $varGlobal[$i]->sessions[$j]->min_age_limit == '45'){
+                    // available_capacity
+                    $msg = "Center Name : ".$varGlobal[$i]->name .", <br> District : ".$varGlobal[$i]->district_name.", <br> Date: ".$varGlobal[$i]->sessions[$j]->date.',   Available Capacity: '.$varGlobal[$i]->sessions[$j]->available_capacity."</br> </br>";
+                    $this->email('rajatinvoice@gmail.com','Rajat Covax',$varGlobal[$i]->name, $msg);
+                    // echo "</br>";
+                  }
+                }
+              }
+            }
+          }
 }
 /*End of class*/
