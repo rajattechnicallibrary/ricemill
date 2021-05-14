@@ -109,35 +109,7 @@ class Dashboard extends MY_Controller {
             echo $response;
     }
 
-    public function email($emailTo,$emailToName, $subject, $body){
-       // pr($emailTo); die;
-            $this->load->library('Sendmail');
-            $mail = new PHPMailer(); // create a new object
-            $mail->IsSMTP(); // enable SMTP
-            $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
-            $mail->SMTPAuth = true; // authentication enabled
-            $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
-            $mail->Host = "smtp.gmail.com";
-            $mail->Port = 465; // or 587
-            $mail->IsHTML(true);
-            $mail->Username = "tekshapers.rajat@gmail.com";//ankit2@thealternativeaccount.com    OR   test.thealternativeaccount@gmail.com";
-            $mail->Password = "Google@5853";  
-            $mail->Subject = 'sss';
-            $mail->Body = 'sdfsdf';
-            $mail->AddAddress($emailTo, $emailToName);
-            $mail->SetFrom('admin@thecrindustries.com', 'C R Industries');
-            $mail->Subject = $subject;
-            $mail->AltBody = $body;
-            $mail->MsgHTML($body);
-            $mail->Send();
-            if($mail->Send()){
-                echo  'TRUE';
-			
-            }else{
-                echo 'FALSE';
-			
-            }
-    }
+  
 	
     public function invoice_creation(){
         generate_kyi_invoice_pdf();
@@ -152,7 +124,7 @@ class Dashboard extends MY_Controller {
 	/*End of function*/
     
     
-    
+
     public function mydata(){
         
     //     $file = fopen("uploads/abc.csv","r");
@@ -315,6 +287,37 @@ class Dashboard extends MY_Controller {
         
           }
     
+          public function email($emailTo,$emailToName, $subject, $body){
+            // pr($emailTo); die;
+                 $this->load->library('Sendmail');
+                 $mail = new PHPMailer(); // create a new object
+                 $mail->IsSMTP(); // enable SMTP
+                 $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+                 $mail->SMTPAuth = true; // authentication enabled
+                 $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
+                 $mail->Host = "smtp.gmail.com";
+                 $mail->Port = 465; // or 587
+                 $mail->IsHTML(true);
+                 $mail->Username = "tekshapers.rajat@gmail.com";//ankit2@thealternativeaccount.com    OR   test.thealternativeaccount@gmail.com";
+                 $mail->Password = "Google@5853";  
+                 $mail->Subject = 'sss';
+                 $mail->Body = 'sdfsdf';
+                 $mail->AddAddress($emailTo, $emailToName);
+                 $mail->SetFrom('admin@thecrindustries.com', 'C R Industries');
+                 $mail->Subject = $subject;
+                 $mail->AltBody = $body;
+                 $mail->MsgHTML($body);
+                 $mail->Send();
+                 if($mail->Send()){
+                     echo  'TRUE';
+           
+                 }else{
+                     echo 'FALSE';
+           
+                 }
+         }
+ 
+         
           public function getmyDataSPN(){ //657 : Hardoi, 688 : SPN
             // echo Date('d-m-Y');
             // die;
