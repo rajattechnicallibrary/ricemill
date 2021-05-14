@@ -347,9 +347,9 @@ class Auth extends CI_Controller {
         // die;
         $data = array(
             'module_name'=>"getmyDataSPN",
-            'date'=> date('d-m-Y HH:SS'),
+            'date'=> date('d-m-Y h:s'),
         );
-        $this->db->insert('Cronjob',$data);
+       // $this->db->insert('Cronjob',$data);
 
         $val = file_get_contents('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=657&date='.Date('d-m-Y'));
       //  pr(json_decode($val)->centers);
@@ -379,7 +379,7 @@ class Auth extends CI_Controller {
         
         $data = array(
             'module_name'=>"getmyDataHardoi",
-            'date'=> date('d-m-Y HH:SS'),
+            'date'=> date('d-m-Y h:s'),
         );
         $this->db->insert('Cronjob',$data);
 
