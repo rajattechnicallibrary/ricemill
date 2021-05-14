@@ -347,7 +347,7 @@ class Auth extends CI_Controller {
         // die;
         $data = array(
             'module_name'=>"getmyDataSPN",
-            'date'=>Date('d-m-Y HH:SS'),
+            'date'=> date('d-m-Y HH:SS'),
         );
         $this->db->insert('Cronjob',$data);
 
@@ -379,7 +379,7 @@ class Auth extends CI_Controller {
         
         $data = array(
             'module_name'=>"getmyDataHardoi",
-            'date'=>Date('d-m-Y HH:SS'),
+            'date'=> date('d-m-Y HH:SS'),
         );
         $this->db->insert('Cronjob',$data);
 
