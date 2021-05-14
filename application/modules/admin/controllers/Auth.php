@@ -349,7 +349,7 @@ class Auth extends CI_Controller {
             'module_name'=>"getmyDataSPN",
             'date'=> date('d-m-Y h:s'),
         );
-       // $this->db->insert('Cronjob',$data);
+       $this->db->insert('cronjob',$data);
 
         $val = file_get_contents('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=657&date='.Date('d-m-Y'));
       //  pr(json_decode($val)->centers);
@@ -381,7 +381,7 @@ class Auth extends CI_Controller {
             'module_name'=>"getmyDataHardoi",
             'date'=> date('d-m-Y h:s'),
         );
-        $this->db->insert('Cronjob',$data);
+        $this->db->insert('cronjob',$data);
 
         $val = file_get_contents('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=657&date='.Date('d-m-Y'));
     //    pr(json_decode($val)->centers);
@@ -396,7 +396,7 @@ class Auth extends CI_Controller {
             // echo "</br>";
             for($j = 0; $j < count($varGlobal[$i]->sessions); $j++){
              
-              if($varGlobal[$i]->sessions[$j]->available_capacity > 0 && $varGlobal[$i]->sessions[$j]->min_age_limit == '45'){
+              if($varGlobal[$i]->sessions[$j]->available_capacity > 0 && $varGlobal[$i]->sessions[$j]->min_age_limit == '18'){
                 // available_capacity
                 $msg = "Center Name : ".$varGlobal[$i]->name .", <br> District : ".$varGlobal[$i]->district_name.", <br> Date: ".$varGlobal[$i]->sessions[$j]->date.',   Available Capacity: '.$varGlobal[$i]->sessions[$j]->available_capacity."</br> </br>";
                 $this->email('rajatinvoice@gmail.com','Rajat Covax',$varGlobal[$i]->name, $msg);
