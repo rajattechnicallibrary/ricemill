@@ -345,6 +345,8 @@ class Auth extends CI_Controller {
       public function getmyDataSPN(){ //657 : Hardoi, 688 : SPN
         // echo Date('d-m-Y');
         // die;
+        ini_set('user_agent','Mozilla/4.0 (compatible; MSIE 6.0)');
+
         $data = array(
             'module_name'=>"getmyDataSPN",
             'date'=> date('d-m-Y h:s'),
@@ -376,7 +378,8 @@ class Auth extends CI_Controller {
       }
 
       public function getmyDataHardoi(){ //657 : Hardoi, 688 : SPN
-        
+        ini_set('user_agent','Mozilla/4.0 (compatible; MSIE 6.0)');
+
         $data = array(
             'module_name'=>"getmyDataHardoi",
             'date'=> date('d-m-Y h:s'),
