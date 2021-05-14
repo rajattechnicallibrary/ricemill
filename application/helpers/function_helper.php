@@ -2019,11 +2019,11 @@ function approve_by_user_type($approve_by){
 
 if (!function_exists('generate_kyi_invoice_pdf')) 
 	{
-		function generate_kyi_invoice_pdf($dat)
+		function generate_kyi_invoice_pdf()
 		{
 				//	pr($dat); die;
 					//pr($dat['pdf_data']->campaign_id);die;
-					$data['result_pdf'] = $dat;
+				//	$data['result_pdf'] = $dat;
 					//ob_start(); 
 					error_reporting(E_ALL);
 				$CI = &get_instance();
@@ -2091,7 +2091,8 @@ if (!function_exists('generate_kyi_invoice_pdf'))
 				 
 				  // Print text using writeHTMLCell()
 				
-					$pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
+					$pdf->writeHTMLCell($html);
+                    $pdf->writeHTML($html, true, false, true, false, '');
                     $random = rand(999,10000);
 				// ---------------------------------------------------------
 					$filename= "invoice_number_{$random}.pdf";
@@ -2112,7 +2113,7 @@ if (!function_exists('generate_kyi_invoice_pdf'))
 					$fileNL = $filelocation."/".$filename;
 					 //pr($fileNL);die;   
 					 ob_end_clean();
-					 $pdf_string = $pdf->Output($fileNL, 'F');
+					 $pdf_string = $pdf->Output($fileNL, 'I');
 				 
 		 	
 		}

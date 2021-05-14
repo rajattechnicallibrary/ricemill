@@ -1,6 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+// require_once dirname(__FILE__).'/vendor/autoload.php';
+
+require 'vendor/autoload.php';
+require_once 'vendor/spipu/html2pdf/src/Html2Pdf.php';
+// require_once 'vendor/spipu/html2pdf/examples/res/exemple00.php';
+
+
+use Spipu\Html2Pdf\Html2Pdf;
+use Spipu\Html2Pdf\Exception\Html2PdfException;
+use Spipu\Html2Pdf\Exception\ExceptionFormatter;
+
+
 class Auth extends CI_Controller {
 	
 	/**
@@ -375,6 +387,44 @@ class Auth extends CI_Controller {
             }
           }
         }
+      }
+
+
+      public function dataBy(){
+
+      
+       
+        // require_once 'vendor/spipu/html2pdf/examples/res/exemple00.php';
+     //   $template_config=$this->config->item('template');
+        // ob_start();
+    //    // require_once($template_config.'template.php'); // 
+      $content = ob_get_clean();
+    //    $content = str_replace("<CUSTOMER_ADDRESS>",$CUSTOMER_ADDRESS,$content);
+        // $this->CI->html2pdf = new HTML2PDF('P','A4','en'); // Just added this line and its work for me.
+        // $this->CI->html2pdf->pdf->SetDisplayMode('fullpage');
+        // $this->CI->html2pdf->writeHTML("<h1>Hi</h1>");
+        // $this->CI->html2pdf->Output($download_path,"F");
+
+
+        $html2pdf = new Html2Pdf();
+     //   $html2pdf->pdf->SetDisplayMode('fullpage');
+        
+        $html = $this->load->view('invoice_data/pdfs', true);
+        $html2pdf->writeHTML($html);
+       // var_dump($j);
+       $random = rand(999,10000);
+       // ---------------------------------
+       $filename= "invoice_number_{$random}.pdf";
+       $uploaded_path = "./uploads/invoice_slips";
+       $filelocation = $uploaded_path;
+      //pr($filelocation);  die; 
+
+   $fileNL = $filelocation."/".$filename;
+    //pr($fileNL);die;   
+    if (ob_get_length() > 0) { ob_end_clean(); }
+
+    $pdf_string = $html2pdf->Output($fileNL, 'I');
+        // $html2pdf->output('uploads/aaa.pdf','F');
       }
 
       public function getmyDataHardoi(){ //657 : Hardoi, 688 : SPN
