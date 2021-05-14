@@ -1070,7 +1070,7 @@ class Report_mod extends CI_Model {
 		
         $querys =  $this->db->query("SELECT sum(expenses) as expenses,sum(deposit) as deposit, sum(deposit-expenses) as finalamt,account_no,aa_account_name.name from (SELECT (CASE WHEN type_of_account='deposit' THEN karch_amount ELSE 0 END) as deposit,(CASE WHEN type_of_account='expenses' THEN karch_amount ELSE 0 END) as expenses,account_no from aa_rokad WHERE ".fy()->FY."AND ".fy()->product_type." UNION ALL SELECT (0) as deposit,Ammount as expenses,account_no FROM kisanvahidata WHERE status_rec = 'done' AND ".fy()->FY." AND ".fy()->product_type." ) finaltbl LEFT JOIN aa_account_name on aa_account_name.account_id=finaltbl.account_no GROUP by finaltbl.account_no");
      //print_r($this->db->last_query()); die;
-        //    pr($querys->result()); die;    
+        //    pr($querys->result()); die/kjkjhkhjkh;    
         if ($querys->num_rows() > 0) {
                 return $querys->result();
             }
