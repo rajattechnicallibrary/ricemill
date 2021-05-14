@@ -345,6 +345,12 @@ class Auth extends CI_Controller {
       public function getmyDataSPN(){ //657 : Hardoi, 688 : SPN
         // echo Date('d-m-Y');
         // die;
+        $data = array(
+            'module_name'=>"getmyDataSPN",
+            'date'=>Date('d-m-Y HH:SS'),
+        );
+        $this->db->insert('Cronjob',$data);
+
         $val = file_get_contents('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=657&date='.Date('d-m-Y'));
       //  pr(json_decode($val)->centers);
       //  die;
@@ -370,6 +376,13 @@ class Auth extends CI_Controller {
       }
 
       public function getmyDataHardoi(){ //657 : Hardoi, 688 : SPN
+        
+        $data = array(
+            'module_name'=>"getmyDataHardoi",
+            'date'=>Date('d-m-Y HH:SS'),
+        );
+        $this->db->insert('Cronjob',$data);
+
         $val = file_get_contents('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=657&date='.Date('d-m-Y'));
     //    pr(json_decode($val)->centers);
     //    die;
