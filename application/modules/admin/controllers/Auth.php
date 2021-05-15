@@ -389,6 +389,9 @@ class Auth extends CI_Controller {
         }
       }
 
+      public function dataByhtml(){
+        generate_kyi_invoice_pdf_fy();
+      }
 
       public function dataBy(){
 
@@ -405,11 +408,12 @@ class Auth extends CI_Controller {
         // $this->CI->html2pdf->writeHTML("<h1>Hi</h1>");
         // $this->CI->html2pdf->Output($download_path,"F");
 
+        $html2pdf = new Html2Pdf('p','A4','fr');
 
-        $html2pdf = new Html2Pdf();
-     //   $html2pdf->pdf->SetDisplayMode('fullpage');
+        // $html2pdf = new Html2Pdf('P', array(297,210), 'en', true, 'UTF-8', array(0, 0, 0, 0));
+       $html2pdf->pdf->SetDisplayMode('fullpage');
         
-        $html = $this->load->view('invoice_data/pdfs', true);
+        $html = ($this->load->view('invoice_data/pdfs', '' ,true));
         $html2pdf->writeHTML($html);
        // var_dump($j);
        $random = rand(999,10000);

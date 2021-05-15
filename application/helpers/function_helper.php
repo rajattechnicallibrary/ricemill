@@ -2091,7 +2091,7 @@ if (!function_exists('generate_kyi_invoice_pdf'))
 				 
 				  // Print text using writeHTMLCell()
 				
-					$pdf->writeHTMLCell($html);
+                  $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
                     $pdf->writeHTML($html, true, false, true, false, '');
                     $random = rand(999,10000);
 				// ---------------------------------------------------------
@@ -2122,6 +2122,115 @@ if (!function_exists('generate_kyi_invoice_pdf'))
 
 
 	
+
+if (!function_exists('generate_kyi_invoice_pdf_fy')) 
+{
+    function generate_kyi_invoice_pdf_fy()
+    {
+        
+            //	pr($dat); die;
+                //pr($dat['pdf_data']->campaign_id);die;
+            //	$data['result_pdf'] = $dat;
+                ob_start(); 
+                error_reporting(E_ALL);
+            $CI = &get_instance();
+            require('./assets/TCPDF-master/tcpdf.php');	
+            // create new PDF document
+            $pdf = new tcpdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);		
+            // set document information
+            $pdf->SetCreator(PDF_CREATOR);
+            // set default header data
+            // $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH,PDF_HEADER_TITLE, null, array(0,64,255), array(0,64,128));
+            // $pdf->setFooterData(array(0,64,0), array(0,64,128));
+
+            // set header and footer fonts
+            // $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+            // $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+        
+            // set default monospaced font
+            $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+            // set margins
+            $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+            $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+            $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+            // set auto page breaks
+            $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+            // set image scale factor
+            $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+            
+            // set some language-dependent strings (optional)
+            if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
+                require_once(dirname(__FILE__).'/lang/eng.php');
+            $pdf->setLanguageArray($l);
+            }
+        
+            // ---------------------------------------------------------
+
+
+
+            // set default font subsetting mode
+            $pdf->setFontSubsetting(true);
+
+            // Set font
+            // dejavusans is a UTF-8 Unicode font, if you only need to
+            // print standard ASCII chars, you can use core fonts like
+            // helvetica or times to reduce file size.
+            $pdf->SetFont('dejavusans', '', 14, '', true);
+
+            // Add a page
+            // This method has several options, check the source code documentation for more information.
+            $pdf->AddPage();
+
+            // set text shadow effect
+            $pdf->setTextShadow(array('enabled'=>true, 'depth_w'=>0, 'depth_h'=>0, 'color'=>array(196,196,196), 'opacity'=>1, 'blend_mode'=>'Normal'));	
+            // Print text using writeHTMLCell()
+            //$html = $CI->load->view('pdfs',true);
+             
+            // die;
+            $content = ob_get_clean();
+            
+                $html = $CI->load->view('invoice_data/pdfs', true);
+             
+            // pr($html);die;
+            // ---------------------------------------------------------		
+            // Close and output PDF document
+            // This method has several options, check the source code documentation for more information.
+             
+              // Print text using writeHTMLCell()
+            
+                $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
+                $pdf->writeHTML($html, true, false, true, false, '');
+                $random = rand(999,10000);
+            // ---------------------------------------------------------
+                $filename= "invoice_number_{$random}.pdf";
+                // update created invoice name in database also
+                    // $payment_id = $dat['pdf_data']->id;
+                    // $up['invoice_name'] = $filename;
+                    // $CI->db->where('id',$payment_id);
+                    // $query = $CI->db->update('am_billing',$up);
+                // pr($filename);die;
+                if (!is_dir('uploads/invoice_slips')) {
+                    mkdir('./uploads/invoice_slips' , 0777, TRUE);
+
+                    }
+                    $uploaded_path = "uploads/invoice_slips";
+                    $filelocation = $uploaded_path;
+                //    pr($filelocation);  die; 
+
+                $fileNL = $filelocation."/".$filename;
+                 //pr($fileNL);die;   
+                 ob_end_clean();
+                 $pdf_string = $pdf->Output($fileNL, 'FI');
+             
+         
+    }
+         
+}
+
+
 	// get currency in words also
 	
 	function getIndianCurrency(float $number)
