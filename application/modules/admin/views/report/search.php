@@ -124,6 +124,7 @@ input[type=submit] {
       <th scope="col">UTR Amount</th>
       <th scope="col">UTR Quantity</th>
       <th scope="col">UTR Count</th>
+      <th scope="col">Current नाम</th>
     </tr>
   </thead>
   <tbody style="text-align:center">
@@ -134,6 +135,7 @@ input[type=submit] {
       <th scope="row" id="kisanvahiUTRNo"></th>
       <th scope="row" id="kisanvahiUTRNoQuantity"></th>
       <th scope="row" id="kisanvahiUTRNoCount"></th>
+      <th scope="row" id="kisanvahiUTRNaam"></th>
     </tr>
   </tbody>
 </table>
@@ -166,11 +168,11 @@ input[type=submit] {
                                     <table class="table">
                                         <tbody>
                                             <tr>
-                                                <th  class="table_bg" scope="row">नागद नाम</th>
+                                                <th  class="table_bg" scope="row">नगद नाम</th>
                                                 <td id="expense_nagad" class="blackCSS textcenter"></td>
                                             </tr>
                                             <tr>
-                                                <th  class="table_bg" scope="row">किसान वाही नाम</th>
+                                                <th  class="table_bg" scope="row">किसान वही नाम</th>
                                                 <td id="expense_kisanvahi" class="blackCSS textcenter"></td>
                                             </tr>
                                             <tr onClick="myFunction_expenses()"  data-toggle="modal" data-target="#ExpensesmyModal">
@@ -847,6 +849,10 @@ function mykisanvahi(a){
         success: function (a) {
           console.log("***********mytotalkisanvahi ***************",a)
           $('#mykisanvahicount').text(a.totalcount)
+
+          $('#kisanvahiUTRNaam').text(parseInt( $('#kisanvahiUTRNo').text()) - parseInt( $('#deposit').text()))
+
+          
          
         },
         error: function () {
