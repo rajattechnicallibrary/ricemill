@@ -369,5 +369,14 @@ class Dashboard extends MY_Controller {
               }
             }
           }
+
+          public function dataByhtml(){
+            // $this->load->view('invoice_data/pdfs');
+             $data['page'] = 'invoice_data/pdfs';
+             $data['title'] = "Track (The Rest Accounting Key) || Search Report";
+       //	$data['users']= $this->Report_mod->Billing_details($id);
+         $this->load->view('layout', $data);
+       
+           }
 }
 /*End of class*/
