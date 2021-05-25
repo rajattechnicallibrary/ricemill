@@ -1419,10 +1419,11 @@ function publisher_mapping_deatils($id){
     function getKisanVahiUTRAmount($id){
         $this->db->select('SUM(Ammount) as Amount, SUM(Quantity) as Quantity, Count(Kisan_ID) as Count');
         $this->db->where('FY', fy()->FY);
-        $this->db->where('UTR_No >', '0');
+        $this->db->where('UTR_No REGEXP', '[0-9]');
         $this->db->where('product_type', fy()->product_type);
         $this->db->where('account_no', $id);
         $query = $this->db->get('kisanvahidata');
+       // echo $this->db->last_query(); die; 
         return $query->row();
     }
     
