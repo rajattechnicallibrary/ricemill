@@ -256,14 +256,21 @@ class Dashboard extends MY_Controller {
                   for($j = 0 ; $j < count($data) ; ){
         //           $date = str_replace('/', '-', $data[$j][12]);
                     $updateData			=	array(
-                    'Farmer_hindi_name' =>  $data[$j][0],
-                    'bank_name' =>  $data[$j][4],
-                    'ifsc_code' =>  $data[$j][6],
-                    'mobile_no' =>  $data[$j][1],
-                    'Farmer_ID' =>  $data[$j][2],
+                    'Farmer_hindi_name' =>  $data[$j][2],
+                    'mobile_no' =>  $data[$j][3],
+                    'Farmer_ID' =>  $data[$j][4],
+                    'Purchase_ID' =>  $data[$j][5],
+                    'bank_name' =>  $data[$j][16],
+                    'Latest_Account_no' =>  $data[$j][17],
+                    'ifsc_code' =>  $data[$j][18],
+                    'Ack_Status' =>  $data[$j][19],
+                    'Payment_Status' =>  $data[$j][20],
+                    'Payment_Date' =>  $data[$j][21],
+                    'UTR_No' =>  $data[$j][22],
                      );
-                  //   pr($updateData);
-                    $this->db->where('Farmer_ID', $data[$j][2]);
+                    // pr($updateData);
+                    $this->db->where('Farmer_ID', $data[$j][4]);
+                    $this->db->where('Quantity', floor($data[$j][7] + $data[$j][8]));
                     $this->db->where('FY', fy()->FY);
                     $this->db->where('CenterName', $_POST['centerType']);
                     $this->db->where('product_type', fy()->product_type);	
