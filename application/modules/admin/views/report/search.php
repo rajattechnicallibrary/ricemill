@@ -372,7 +372,7 @@ function myFunction() {
                             <th>Quantity</th>
                             <th>Amount</th>
                             <th>Purchase Date</th>
-                            <th>Mobile No</th>
+                            <th>Status</th>
                             <th>Center Name</th>
                             <th>UTR No</th>
                             `)
@@ -392,7 +392,7 @@ function myFunction() {
                     <td>`+a[i].Quantity+`</td>
                     <td>`+a[i].Ammount+`</td>
                     <td>`+a[i].Purchase_Date+`</td>
-                    <td>`+a[i].mobile_no+`</td>
+                    <td>`+a[i].PFMS_Status+`</td>
                     <td>`+a[i].CenterName+`</td>
                     <td>`+a[i].UTR_No+`</td>
                     
