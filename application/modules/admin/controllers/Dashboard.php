@@ -270,7 +270,7 @@ class Dashboard extends MY_Controller {
                      );
                     // pr($updateData);
                     $this->db->where('Farmer_ID', $data[$j][4]);
-                    $this->db->where('Quantity', floor($data[$j][7] + $data[$j][8]));
+                    $this->db->where('Quantity', floatval($data[$j][7] + $data[$j][8]));
                     $this->db->where('FY', fy()->FY);
                     $this->db->where('CenterName', $_POST['centerType']);
                     $this->db->where('product_type', fy()->product_type);	
