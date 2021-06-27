@@ -23,8 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-// print_r($_SERVER['HTTP_HOST']);
-// die;
+print_r($_SERVER);
+die;
 if( $_SERVER['HTTP_HOST'] == 'thecrindustries.com' || $_SERVER['HTTP_HOST'] == 'www.thecrindustries.com'){
     
     $config['base_url'] = 'https://'.$_SERVER['HTTP_HOST'];
