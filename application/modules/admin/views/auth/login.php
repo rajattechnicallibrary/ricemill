@@ -215,7 +215,9 @@ setTimeout(function(){ $("#errorMsg").hide();}, 4000);
             }, 300);
         });
     </script>
-
+<footer>
+<h6 style="text-align:center">V 1.0.0</h6>
+</footer>
 <!-- END JAVASCRIPTS -->
 </body>
 <!-- END BODY -->

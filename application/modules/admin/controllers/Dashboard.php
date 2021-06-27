@@ -200,7 +200,7 @@ class Dashboard extends MY_Controller {
             $j++;
             }
 
-            $data['response'] = '<h1>successfully uploaded '.$filename." Total Affected Rows: </h1>".$this->db->affected_rows(); 
+            $data['response'] = '<h1>successfully uploaded '.$filename." Total Affected Rows: </h1>"; 
              }else{ 
                 $data['response'] = 'failed'; 
              } 
